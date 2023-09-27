@@ -1,0 +1,17 @@
+:root{
+  --negro: #000000;
+  --morado: #523178;
+  --blanco: #ffffff;
+  --background-primario: #090900;
+  --background-secundario: #252323;
+
+  --border-primario: #252323;
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+p{
+  color: var(--blanco);
+}
