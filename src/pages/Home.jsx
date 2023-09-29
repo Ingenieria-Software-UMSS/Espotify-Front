@@ -5,7 +5,6 @@ export default function Home () {
     return (
       <div>
         <h1>Home Principal</h1>
-        <Button primary>Primary</Button>
       </div>
     )
   }
