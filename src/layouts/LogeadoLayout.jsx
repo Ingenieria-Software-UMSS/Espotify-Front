@@ -1,6 +1,7 @@
 
 import React from 'react'
 import "./Logueado.css"
+import Footer from '../components/Footer';
 
 
 
@@ -12,12 +13,12 @@ const LogeadoLayout = (props) => {
 
       <div className='contenido'>
         <div className='menu-izquierdo'>
-          <p>Menu Izquierdo</p>
+          <p>Menu</p>
         </div>
 
         <div className='principal'>
           <div className='barra-superior'>
-            <p>barra superior de busqueda</p>
+            <p>barra superior</p>
           </div>
 
           <div> {children}</div>
@@ -28,7 +29,8 @@ const LogeadoLayout = (props) => {
       </div>
 
       <div className='footer'>
-        <p>Reproductor Musica</p>
+      
+        <Footer/>
       </div>
 
 

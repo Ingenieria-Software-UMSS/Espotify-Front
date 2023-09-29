@@ -1,6 +1,6 @@
 import React from 'react'
 import LogeadoLayout from './layouts/LogeadoLayout'
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 
 const LogeadoNavegacion = () => {
@@ -14,9 +14,6 @@ const LogeadoNavegacion = () => {
       </LogeadoLayout>
 
     </BrowserRouter>
-
-
-
 
 
 
