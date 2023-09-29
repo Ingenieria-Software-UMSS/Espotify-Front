@@ -11,7 +11,12 @@ const Footer = () => {
     <div className='footer'>
       <div className='footerIzquierda'>
         <Image src = {null} className='imagenMiniatura'/>
-        <span>nombre cancion</span>
+        <div className='infoCancion'>
+          <p>nombre artista</p>
+        
+        <p>nombre cancion</p>
+        </div>
+        
       </div>
 
       <div className='footerCentro'>

@@ -17,6 +17,9 @@
     width: 20%;
 
 }
+.footerIzquierda .infoCancion p{
+    margin: 0;
+}
 .footerIzquierda .imagenMiniatura {
     width: 80px;
     height: 80px;
