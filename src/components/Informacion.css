@@ -1,0 +1,31 @@
+.informacion {
+    background-color: white;
+    color: black;
+}
+
+.imagen-cancion {
+    background-color: white;
+    color: black;
+}
+
+.detalles-cancion {
+    background-color: white;
+    color: black;
+}
+
+.boton-regresar {
+    background-color: white;
+    color: black;
+}
+
+.informacion {
+    background-color: white;
+    color: black;
+}
+
+.informacion h1,
+.informacion h2,
+.informacion p {
+    color: black;
+}
+
