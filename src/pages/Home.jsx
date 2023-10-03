@@ -1,20 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import { Button } from 'semantic-ui-react'
 import {Cancion} from "../api/Cancion"
 import "./Home.css";
 import ListaCanciones from '../components/ListaCanciones';
 
-import {UsarPlayer} from "../hooks/UsarPlayer"
-
 const cancionController = new Cancion();
 
-
-
 export default function Home () {
-
-    const [canciones, setCanciones] = useState(null);
-
-    //console.log(UsarPlayer());
+    const [canciones, setCanciones] = useState([]);
 
     useEffect(() =>{
       (async () => {
@@ -32,10 +24,9 @@ export default function Home () {
 
     return (
       <div className='canciones'>
-        <h1>Home Principal</h1>
+        <h1>Lista de canciones</h1>
 
         <ListaCanciones canciones={canciones}/>
-
       </div>
     )
   }

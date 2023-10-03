@@ -1,5 +1,11 @@
 @import '../App.css';
 
-.canciones{
-    
+.canciones { 
+  color: #fff;
+  padding: 2rem 3rem;
+}
+
+.canciones h1{ 
+
+  margin-bottom: 4rem;
 }
