@@ -32,7 +32,19 @@
     background-color: var(--background-secundario);
     
     border-bottom: 1px solid var(--background-primario);
-
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+    color: aliceblue;
+}
+.principal .barra-superior h3{
+    margin: 0;
+}
+.principal .barra-superior img{
+    border-radius: 10px;
+    /*border-color: brown;
+    border: 2px solid chocolate;*/
 }
 
 .footer {

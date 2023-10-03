@@ -2,7 +2,7 @@
 import React from 'react'
 import "./Logueado.css"
 import Footer from '../components/Footer';
-
+import logo from '../assets/logo.jpg'
 
 
 const LogeadoLayout = (props) => {
@@ -18,7 +18,8 @@ const LogeadoLayout = (props) => {
 
         <div className='principal'>
           <div className='barra-superior'>
-            <p>barra superior</p>
+            <h3 className='name'>Espotify</h3>
+            <img width={50} src={logo} alt='logo' className='logo'/>
           </div>
 
           <div> {children}</div>
