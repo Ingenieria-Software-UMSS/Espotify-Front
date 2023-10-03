@@ -17,9 +17,6 @@ const LogeadoNavegacion = () => {
       </LogeadoLayout>
 
     </BrowserRouter>
-
-
-
   )
 }
 
