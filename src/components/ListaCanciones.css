@@ -1,0 +1,14 @@
+@import '../App.css';
+
+.lista-canciones{
+
+}
+
+.ui.table.inverted.list-songs {
+
+}
+
+tr:hover td {
+    cursor: pointer;
+    color: red;
+}
