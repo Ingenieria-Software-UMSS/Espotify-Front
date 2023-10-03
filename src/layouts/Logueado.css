@@ -34,9 +34,10 @@
     border-bottom: 1px solid var(--background-primario);
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
     color: aliceblue;
+    padding: 0 3rem;
 }
 .principal .barra-superior h3{
     margin: 0;
