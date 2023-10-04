@@ -25,7 +25,7 @@ const ListaCanciones = (props) => {
                 <Button>Lo nuevo</Button>
                 <Button inverted>Ultimos Artistas</Button>
             </div>
-            <Table inverted className='lista-canciones' >
+            <Table inverted className='lista-canciones'  >
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>#</Table.HeaderCell>
@@ -55,7 +55,7 @@ const ListaCanciones = (props) => {
                                 {cancion.artista}
                             </Table.Cell>
                             <Table.Cell>
-                               
+                               {cancion.duracion}
                             </Table.Cell>
                             <Table.Cell onClick={(ev) => {
                                 ev.stopPropagation();
