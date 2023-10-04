@@ -5,10 +5,12 @@ import {Image, Input, Icon} from "semantic-ui-react"
 import Player from './Player'
 import { UsarPlayer } from '../hooks/UsarPlayer'
 import "./Footer.css"
-
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   
+  const naviagte = useNavigate();
+
   const {cancion, volumen, setVolumen} = UsarPlayer();
   
   //console.log(cancion);
@@ -17,7 +19,7 @@ const Footer = () => {
   return (
     <div className='footer'>
       <div className='footerIzquierda'>
-        <Image src = {urlImagen} className='imagenMiniatura'/>
+        <Image src = {urlImagen} className='imagenMiniatura' onClick={() => naviagte('/songs/' + cancion.id)}/>
         <div className='infoCancion'>
           {/* <p>nombre cancion</p> */}
           {cancion && <p>{nombre}</p>}

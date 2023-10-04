@@ -21,7 +21,10 @@
     width: 80px;
     height: 80px;
     margin-right: 20px;
-
+    
+}
+.footerIzquierda .imagenMiniatura:hover{
+    cursor: pointer;
 }
 
 .footerCentro {
