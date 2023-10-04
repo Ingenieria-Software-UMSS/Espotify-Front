@@ -44,6 +44,7 @@
     align-items: stretch;
     min-width: 200px;
     gap: 2rem;
+    padding-left: 30px;
 }
 
 tr:hover td {

@@ -12,9 +12,9 @@ const LogeadoLayout = (props) => {
     <div className='logged-layout'>
 
       <div className='contenido'>
-        <div className='menu-izquierdo'>
-          {/* <p>Menu</p> */}
-        </div>
+        {/* <div className='menu-izquierdo'>
+          <p>Menu</p> 
+        </div> */}
 
         <div className='principal'>
           <div className='barra-superior'>
