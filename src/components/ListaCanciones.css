@@ -1,9 +1,41 @@
 @import '../App.css';
 
+
+
+
 .list_songs_container {
     display: flex;
     align-items: center;
     gap: 2rem;
+
+  
+}
+
+.tabla{
+      
+    width: 80%;
+    height: 400px;
+    overflow-y:scroll;
+}
+
+.tabla .noCanciones{
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    color: var(--color-subtitulos);
+}
+
+.ui.table thead{
+    /* background-color: var(--background-secundario); */
+    background-color: var(--morado);
+}
+
+.ui.table thead tr:first-child > th {
+    /* background-color: var(--background-secundario); */
+    background-color: var(--morado);
+    position: sticky !important;
+    top: 0;
+    z-index: 2;
 }
 
 .list_songs__buttons {
@@ -12,14 +44,15 @@
     align-items: stretch;
     min-width: 200px;
     gap: 2rem;
+    padding-left: 30px;
 }
 
 tr:hover td {
     cursor: pointer;
-    color: #999;
+    color: var(--contenedor-color);
 }
 
 img{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
   }

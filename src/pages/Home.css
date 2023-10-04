@@ -1,11 +1,15 @@
 @import '../App.css';
-
-.canciones { 
-  color: #fff;
-  padding: 2rem 3rem;
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
 .canciones h1{ 
+  color: var(--blanco);
+  padding: 2rem 3rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 40px;
+  
+}
 
+.canciones{ 
+  
   margin-bottom: 4rem;
 }
