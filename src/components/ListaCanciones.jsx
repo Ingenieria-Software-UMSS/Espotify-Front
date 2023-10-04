@@ -7,13 +7,20 @@ import { useNavigate } from 'react-router-dom';
 
 const ListaCanciones = (props) => {
     const { canciones } = props;
-    const naviagte = useNavigate();
+    const navigate = useNavigate();
 
     const { playCancion, play } = UsarPlayer();
 
     console.log(play);
 
-
+    const onClick = (i) => () => {
+        const song = canciones[i];
+        const description = `Disfruta de '${song.nombre}', interpretada por ${song.artista}.
+        Una canción que te atrapará con su ritmo y letras.
+        ¡Reproduce y déjate llevar durante ${song.duracion} minutos de pura magia musical!`;
+        const url = `/cancion?title=${encodeURIComponent(song.nombre)}&artist=${encodeURIComponent(song.artista)}&duration=${encodeURIComponent(song.duracion)}&description=${encodeURIComponent(description)}&image=${encodeURIComponent(song.urlImagen)}`;
+        navigate(url);
+    }
 
     const onPlay = (item) => {
         playCancion(item);
@@ -42,7 +49,7 @@ const ListaCanciones = (props) => {
                     <Table.Body>
                         {[...canciones].map((cancion, i) => (
 
-                            <Table.Row onClick={() => naviagte('/songs/' + cancion.id)} key={i}>
+                            <Table.Row onClick={onClick(i)} key={i}>
                                 <Table.Cell>
                                     {i + 1}
                                 </Table.Cell>

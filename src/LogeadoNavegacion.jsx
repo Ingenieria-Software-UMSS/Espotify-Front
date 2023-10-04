@@ -11,30 +11,13 @@ const LogeadoNavegacion = () => {
         <Routes>
           <Route path='/' element={<LandingPageLayout />} />
           <Route path='/home' element={<LogeadoLayout><Home /></LogeadoLayout>} />
-
-          {/* <Route path='/home' element={<LogeadoLayout><Home /></LogeadoLayout>} />
-          <Route path="cancion" element={<Informacion />} /> */}
+          <Route path="cancion" element={<LogeadoLayout><Informacion /></LogeadoLayout>} />
         </Routes>
   
     </BrowserRouter>
 
     
   )
-
-  // return (
-  //   <BrowserRouter>
-  //     <LogeadoLayout>
-  //       <Routes>
-  //         <Route path='/' element={<LandingPageLayout />} />
-  //         {/* <Route path='/home' element={<LogeadoLayout><Home /></LogeadoLayout>} />
-  //         <Route path="cancion" element={<Informacion />} /> */}
-  //       </Routes>
-  //     </LogeadoLayout>
-  //   </BrowserRouter> 
-  //)
-
-
-
 }
 
 export default LogeadoNavegacion
