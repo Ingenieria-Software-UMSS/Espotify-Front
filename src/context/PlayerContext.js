@@ -9,19 +9,17 @@ export function PlayerProvider(props) {
     const [play, setPlay] = useState(false);
     const [volumen, setVolumen] = useState(0.5);
 
-    const playCancion = (cancionData) =>{
-        console.log(cancionData);
+
+    const playCancion = (cancionData) => {
+        
         setCancion(cancionData);
-
+        setPlay(true);
+        
     }
 
-    const pausarCancion = () => {
-        setPlay(false);
-    }
+    const pause = () => setPlay(false);
 
-    const continuarCancion = ()=>{
-        setPlay(true)
-    }
+    const resume = () => setPlay(true);
 
 
 
@@ -29,10 +27,12 @@ export function PlayerProvider(props) {
         cancion,
         play,
         volumen,
+
         playCancion,
-        pausarCancion,
-        continuarCancion,
-        setVolumen,
+        pause,
+        resume,
+
+        setVolumen
     };
 
     return (
