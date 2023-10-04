@@ -25,7 +25,7 @@ const Footer = () => {
     return (
         <div className='footer'>
             <div className='footerIzquierda'>
-                <Image src={urlImagen} className='imagenMiniatura' onClick={onImageClick} />
+                {cancion && <Image src={urlImagen} className='imagenMiniatura' onClick={onImageClick} />}
                 <div className='infoCancion'>
                     {cancion && <p>{nombre}</p>}
                     {cancion && <p>{artista}</p>}
