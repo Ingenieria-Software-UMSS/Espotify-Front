@@ -1,7 +1,27 @@
-import React, { useState } from 'react';
-import { Button } from "semantic-ui-react";
+import React, {useEffect, useState} from 'react';
+import {Cancion} from "../api/Cancion"
+import "./Home.css";
+import ListaCanciones from '../components/ListaCanciones';
 
-export default function Home() {
+const cancionController = new Cancion();
+
+export default function Home () {
+
+    const [canciones, setCanciones] = useState([]);
+
+    useEffect(() =>{
+      (async () => {
+        try {
+          
+          const response = await cancionController.obtenerTodas();
+          console.log(response);
+          setCanciones(response);
+
+        } catch (error) {
+          console.error(error);
+        }
+      })();
+    },[]);
     const [songInfo, setSongInfo] = useState({
         title: "My Song Title",
         artist: "Artist Name",
@@ -14,9 +34,10 @@ export default function Home() {
     };
 
     return (
-        <div>
-            <h1>Home Principal</h1>
-            <Button primary onClick={handleInfoClick}>Informacion Cancion</Button>
-        </div>
-    );
-}
+      <div className='canciones'>
+        <h1>Lista de canciones</h1>
+
+        <ListaCanciones canciones={canciones}/>
+      </div>
+    )
+  }

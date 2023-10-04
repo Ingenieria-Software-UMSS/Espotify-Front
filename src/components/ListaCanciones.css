@@ -1,0 +1,25 @@
+@import '../App.css';
+
+.list_songs_container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.list_songs__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 200px;
+    gap: 2rem;
+}
+
+tr:hover td {
+    cursor: pointer;
+    color: #999;
+}
+
+img{
+    width: 50px;
+    height: 50px;
+  }

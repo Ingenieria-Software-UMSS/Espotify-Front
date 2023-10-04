@@ -1,0 +1,26 @@
+@import '../App.css';
+
+.player {
+    text-align: center;
+}
+
+.player i.icon{
+    font-size: 40px;
+    margin: 0;
+    margin-bottom: 0;
+    color: #fff;
+
+}
+
+.player i.icon:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.player .ui.progress.tiny {
+    margin: 0;
+}
+
+.player .ui.progress.tiny .progress{
+    display: none;
+}

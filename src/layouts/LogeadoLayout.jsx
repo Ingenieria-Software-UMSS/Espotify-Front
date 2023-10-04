@@ -1,7 +1,8 @@
 
 import React from 'react'
 import "./Logueado.css"
-
+import Footer from '../components/Footer';
+import logo from '../assets/logo.jpg'
 
 
 const LogeadoLayout = (props) => {
@@ -12,12 +13,13 @@ const LogeadoLayout = (props) => {
 
       <div className='contenido'>
         <div className='menu-izquierdo'>
-          <p>Menu Izquierdo</p>
+          <p>Menu</p>
         </div>
 
         <div className='principal'>
           <div className='barra-superior'>
-            <p>barra superior de busqueda</p>
+            <h3 className='name'>Espotify</h3>
+            <img width={50} src={logo} alt='logo' className='logo'/>
           </div>
 
           <div> {children}</div>
@@ -28,7 +30,8 @@ const LogeadoLayout = (props) => {
       </div>
 
       <div className='footer'>
-        <p>Reproductor Musica</p>
+      
+        <Footer/>
       </div>
 
 

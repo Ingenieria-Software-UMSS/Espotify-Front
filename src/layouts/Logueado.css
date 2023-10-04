@@ -3,16 +3,14 @@
 .logged-layout{
 
     height: 100vh;
-    background-color: var(--background-primario) ;
 }
-
 .contenido {
     display: flex;
     height: calc(100% - 100px);
 }
 
 .menu-izquierdo{
-    background-color: var(--background-secundario);
+    background-color: var(--background-primario);
     width: 15%;
     margin-left: 1px solid var(--background-secundario);
 
@@ -22,7 +20,8 @@
 
 .principal {
     width: calc(100% - 15%);
-    background: rgb(10,10,10);
+    background-color: var(--background-secundario);
+
 }
 
 .principal .barra-superior {
@@ -30,9 +29,23 @@
     width: 100%;
     height: 80px;
     z-index: 1;
-    background: rgb(87,86,86);
-    background: linear-gradient(90deg, rgba(87,86,86,1) 1%, rgba(72,75,78,1) 46%, rgba(35,34,41,1) 97%);
-
+    background-color: var(--background-secundario);
+    
+    border-bottom: 1px solid var(--background-primario);
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+    color: aliceblue;
+    padding: 0 3rem;
+}
+.principal .barra-superior h3{
+    margin: 0;
+}
+.principal .barra-superior img{
+    border-radius: 10px;
+    /*border-color: brown;
+    border: 2px solid chocolate;*/
 }
 
 .footer {

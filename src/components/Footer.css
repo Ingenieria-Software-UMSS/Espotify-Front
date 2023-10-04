@@ -1,0 +1,58 @@
+@import '../App.css';
+
+
+.footer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+
+}
+.footerIzquierda{
+
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    width: 20%;
+
+}
+.footerIzquierda .imagenMiniatura {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    
+}
+.footerIzquierda .imagenMiniatura:hover{
+    cursor: pointer;
+}
+
+.footerCentro {
+    width: 60%;
+}
+
+.footerDerecha {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 20%;
+}
+
+.footerDerecha{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.footerDerecha .ui.input{
+    display: flex;
+    align-items: center;
+    
+}
+.footerDerecha .ui.input i.icon{
+    display: flex;
+    align-items: center;
+    margin-right:  10px;
+    color: #fff;
+}
