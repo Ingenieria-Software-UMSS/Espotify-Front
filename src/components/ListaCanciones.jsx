@@ -25,7 +25,7 @@ const ListaCanciones = (props) => {
                 <Button>Lo nuevo</Button>
                 <Button inverted>Ultimos Artistas</Button>
             </div>
-            <Table inverted className='lista-canciones'>
+            <Table inverted className='lista-canciones' >
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>#</Table.HeaderCell>
