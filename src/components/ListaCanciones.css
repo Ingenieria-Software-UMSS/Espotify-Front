@@ -8,10 +8,19 @@
     align-items: center;
     gap: 2rem;
 
+  
+}
+
+.tabla{
+      
     width: 80%;
     height: 400px;
     overflow-y:scroll;
+}
 
+.lista-canciones{
+
+    
 }
 
 .list_songs__buttons {
