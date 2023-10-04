@@ -9,6 +9,7 @@
     height: calc(100% - 100px);
 }
 
+
 .menu-izquierdo{
     background-color: var(--background-primario);
     width: 15%;

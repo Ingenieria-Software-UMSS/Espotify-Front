@@ -23,7 +23,7 @@ const Player = () => {
       <Icon name={play ? "pause circle outline" : "play circle outline"} onClick={play ? pause : resume} />
       <Progress progress='value' value={currentSeconds} total={totalSeconds} size='tiny'/>
 
-      <ReactPlayer url={cancion?.urlCancion} playing={play} height={0} width={0} volume={volumen} onProgress={enProgreso} />
+      <ReactPlayer url={cancion?.urlCancion} playing={play} height={0} width={0} volume={volumen} onProgress={enProgreso}/>
     </div>
   )
 }

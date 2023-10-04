@@ -13,17 +13,16 @@ const LogeadoLayout = (props) => {
 
       <div className='contenido'>
         <div className='menu-izquierdo'>
-          <p>Menu</p>
+          {/* <p>Menu</p> */}
         </div>
 
         <div className='principal'>
           <div className='barra-superior'>
             <h3 className='name'>Espotify</h3>
-            <img width={50} src={logo} alt='logo' className='logo'/>
+            <img width={50} src={logo} alt='logo' className='logoLayout'/>
           </div>
 
           <div> {children}</div>
-
 
         </div>
 
