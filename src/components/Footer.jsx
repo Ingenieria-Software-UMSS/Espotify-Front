@@ -20,8 +20,9 @@ const Footer = () => {
         <Image src = {urlImagen} className='imagenMiniatura'/>
         <div className='infoCancion'>
           {/* <p>nombre cancion</p> */}
-          {cancion && <p>{artista}</p>}
           {cancion && <p>{nombre}</p>}
+          {cancion && <p>{artista}</p>}
+          
         </div>
         
       </div>
