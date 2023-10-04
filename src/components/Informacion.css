@@ -1,0 +1,66 @@
+.imagen-cancion {
+    background-color: white;
+    color: black;
+    width: 300px;
+    height: 300px;
+    margin-left: 10%;
+}
+
+.detalles-cancion {
+    /* display: flex; */
+    display: block;
+    background-color: white;
+    color: black;
+}
+
+.detalles-cancion p {
+    /* flex-grow: 1; */
+}
+
+
+.boton-regresar {
+    background-color: white;
+    color: black;
+}
+
+.boton-contenedor {
+    align-content: center;
+    background: rgb(87, 86, 86);
+}
+
+.informacion {
+    background-color: white;
+    color: black;
+    margin: 5% 10% 10% 10%;
+}
+
+.contenido {
+    background: rgb(87, 86, 86);
+
+}
+
+.imagen-contenedor {
+    max-width: 250px;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.detalles-cancion {
+    background: rgb(87, 86, 86);
+    margin: 10% 10% 10% 10%;
+}
+
+.informacion h1,
+.informacion h2,
+.informacion p {
+    color: black;
+}
+
+.informacion h1 {
+    font-size: 50px;
+}
+
+.informacion h2 {
+    font-size: 20px;
+}
