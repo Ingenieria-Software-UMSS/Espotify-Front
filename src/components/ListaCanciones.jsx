@@ -42,7 +42,7 @@ const ListaCanciones = (props) => {
                     
                         <Table.Row onClick={() => naviagte('/songs/' + cancion.id)} key={i}>
                             <Table.Cell>
-                                {cancion.id}
+                                {i+1}
                             </Table.Cell>
                             <Table.Cell>
                                 <img src={cancion.urlImagen} className='miniatura'></img>

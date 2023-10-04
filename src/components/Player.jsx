@@ -11,8 +11,7 @@ const Player = () => {
   const [totalSeconds, setTotalSeconds] = useState(0)
   const [currentSeconds, setCurrentSeconds] = useState(0);
 
-  console.log(play);
-  
+  //console.log(play);
   const enProgreso = (data) => {
     setTotalSeconds(data.loadedSeconds);
     setCurrentSeconds(data.playedSeconds);
@@ -22,9 +21,9 @@ const Player = () => {
   return (
     <div className='player'>
       <Icon name={play ? "pause circle outline" : "play circle outline"} onClick={play ? pause : resume} />
-      <Progress progress='value' value={currentSeconds} total={totalSeconds} size='tiny' />
+      <Progress progress='value' value={currentSeconds} total={totalSeconds} size='tiny'/>
 
-      <ReactPlayer url={cancion?.urlCancion} playing={play} height={0} width={0} volume={volumen} onProgress={enProgreso}/>
+      <ReactPlayer url={cancion?.urlCancion} playing={play} height={0} width={0} volume={volumen} onProgress={enProgreso} />
     </div>
   )
 }
