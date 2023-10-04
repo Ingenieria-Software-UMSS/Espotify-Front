@@ -18,9 +18,26 @@
 }
 
 .player .ui.progress.tiny {
-    margin: 0;
+    margin: 0 30px;
+
 }
 
 .player .ui.progress.tiny .progress{
     display: none;
+}
+
+.progress{
+    
+    color: var(--blanco);
+    position: relative;
+}
+.progress .time-left{
+    position: absolute;
+    left: -5px;
+    top: -8px;
+}
+.progress .time-right{
+    position: absolute;
+    right: -10px;
+    top: -8px;
 }

@@ -1,9 +1,15 @@
 @import '../App.css';
 
+
+
+
 .list_songs_container {
     display: flex;
     align-items: center;
     gap: 2rem;
+
+
+    
 }
 
 .list_songs__buttons {
