@@ -18,9 +18,15 @@
     overflow-y:scroll;
 }
 
-.lista-canciones{
+.ui.table thead{
+    background-color: var(--background-secundario);
+}
 
-    
+.ui.table thead tr:first-child > th {
+    background-color: var(--background-secundario);
+    position: sticky !important;
+    top: 0;
+    z-index: 2;
 }
 
 .list_songs__buttons {
