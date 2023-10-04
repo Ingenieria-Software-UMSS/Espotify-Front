@@ -11,15 +11,17 @@ const Footer = () => {
   
   const {cancion, volumen, setVolumen} = UsarPlayer();
   
-  console.log(cancion);
+  //console.log(cancion);
+  const {artista, nombre, urlImagen} = cancion ?? {};
+ 
   return (
     <div className='footer'>
       <div className='footerIzquierda'>
-        <Image src = {null} className='imagenMiniatura'/>
+        <Image src = {urlImagen} className='imagenMiniatura'/>
         <div className='infoCancion'>
           {/* <p>nombre cancion</p> */}
-          {cancion && <p>{cancion.album}</p>}
-          {cancion && <p>{cancion.nombre}</p>}
+          {cancion && <p>{artista}</p>}
+          {cancion && <p>{nombre}</p>}
         </div>
         
       </div>
