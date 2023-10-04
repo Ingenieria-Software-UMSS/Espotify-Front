@@ -1,6 +1,8 @@
+@import '../App.css';
+
 .imagen-cancion {
-    background-color: white;
-    color: black;
+    background-color: var(--blanco);
+    color: var(--background-primario);
     width: 300px;
     height: 300px;
     margin-left: 10%;
@@ -9,8 +11,8 @@
 .detalles-cancion {
     /* display: flex; */
     display: block;
-    background-color: white;
-    color: black;
+    background-color: var(--blanco);
+    color: var(--background-primario);
 }
 
 .detalles-cancion p {
@@ -19,23 +21,23 @@
 
 
 .boton-regresar {
-    background-color: white;
-    color: black;
+    background-color: var(--blanco);
+    color: var(--background-primario);
 }
 
 .boton-contenedor {
     align-content: center;
-    background: rgb(87, 86, 86);
+    background: var(--contenedor-color);
 }
 
 .informacion {
-    background-color: white;
-    color: black;
+    background-color: var(--blanco);
+    color: var(--background-primario);
     margin: 5% 10% 10% 10%;
 }
 
 .contenido {
-    background: rgb(87, 86, 86);
+    background: var(--contenedor-color);
 
 }
 
@@ -47,7 +49,7 @@
 }
 
 .detalles-cancion {
-    background: rgb(87, 86, 86);
+    background: var(--contenedor-color);
     margin: 10% 10% 10% 10%;
 }
 

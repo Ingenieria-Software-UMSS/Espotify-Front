@@ -83,7 +83,7 @@ const ListaCanciones = (props) => {
                         </Table.Body>
                     </Table>
                 ) : (
-                    <p>No se encontraron canciones</p>
+                    <p className='noCanciones'>No se encontraron canciones</p>
                 )}
             </div>
         </div>

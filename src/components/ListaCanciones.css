@@ -18,6 +18,13 @@
     overflow-y:scroll;
 }
 
+.tabla .noCanciones{
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    color: var(--color-subtitulos);
+}
+
 .ui.table thead{
     /* background-color: var(--background-secundario); */
     background-color: var(--morado);
@@ -41,7 +48,7 @@
 
 tr:hover td {
     cursor: pointer;
-    color: #999;
+    color: var(--contenedor-color);
 }
 
 img{
