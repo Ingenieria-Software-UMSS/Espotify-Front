@@ -18,6 +18,21 @@ const LogeadoNavegacion = () => {
 
     
   )
+
+  // return (
+  //   <BrowserRouter>
+  //     <LogeadoLayout>
+  //       <Routes>
+  //         <Route path='/' element={<LandingPageLayout />} />
+  //         {/* <Route path='/home' element={<LogeadoLayout><Home /></LogeadoLayout>} />
+  //         <Route path="cancion" element={<Informacion />} /> */}
+  //       </Routes>
+  //     </LogeadoLayout>
+  //   </BrowserRouter> 
+  //)
+
+
+
 }
 
 export default LogeadoNavegacion
