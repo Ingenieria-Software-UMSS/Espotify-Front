@@ -1,22 +1,50 @@
 .logo {
-    width: 250px;
+    max-width: 250px;
     height: auto;
     margin-top: 20px;
+}
+.text-container h1.titulo {
+    margin-bottom: 20px;
+}
+
+.logo-container {
+    max-width: 250px;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .row-container {
     display: flex;
     margin: 0 10% 0 10%;
+    vertical-align: middle;
+}
+
+@media (min-width:1000px) {
+    .row-container {
+        margin: 0 20% 0 20%;
+    }
 }
 
 .text-container {
     flex-grow: 1;
     margin: auto;
-    font-size: 23px;
+    font-size: 30px;
     line-height: normal;
     padding-right: 10px;
 }
 
 .button-empezar {
     text-align: center;
+}
+
+.button-empezar .ui.button {
+    font-size: 2rem;
+}
+
+.landingtext-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
