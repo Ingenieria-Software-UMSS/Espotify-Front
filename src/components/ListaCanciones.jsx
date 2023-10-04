@@ -12,7 +12,6 @@ const ListaCanciones = (props) => {
     
     
 
-
     const onClick = (i) => () => {
         const song = canciones[i];
         const description = `Disfruta de '${song.nombre}', interpretada por ${song.artista}.
