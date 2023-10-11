@@ -1,5 +1,7 @@
 @import '../App.css';
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 .player {
     text-align: center;
 }
@@ -40,4 +42,12 @@
     position: absolute;
     right: -10px;
     top: -8px;
+}
+.botones  { 
+    background-color:#fff !important; 
+    font-family: 'Montserrat', sans-serif !important;
+    border: 0;
+}
+.botones.seleccionado {
+    background-color: #a0a0a0 !important;
 }
