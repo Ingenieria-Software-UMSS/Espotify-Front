@@ -28,14 +28,14 @@ const Footer = () => {
     };
 
 
-    const onVolumenIconClick = (e) => {
+   /*  const onVolumenIconClick = (e) => {
        
         setMute(true);
         setVolumen(0);
         // const iconVolumen = document.getElementsByClassName('iconVolumen');
         
 
-    }
+    } */
 
     function VolumeBtns () {
 
