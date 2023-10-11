@@ -1,16 +1,21 @@
 import React from 'react';
-import { Image, Input, Icon } from 'semantic-ui-react';
+import { Image, Input, Icon, Slider } from 'semantic-ui-react';
 import Player from './Player';
 import { UsarPlayer } from '../hooks/UsarPlayer';
 import './Footer.css';
 import { useNavigate } from 'react-router-dom';
+import { set } from 'lodash';
+import { useState } from 'react';
 
 const Footer = () => {
     const navigate = useNavigate();
 
     const { cancion, volumen, setVolumen } = UsarPlayer();
 
+
     const { artista, nombre, urlImagen } = cancion ?? {};
+
+    const [mute, setMute] = useState(false);
 
     const onImageClick = () => {
         if (cancion) {
@@ -21,6 +26,26 @@ const Footer = () => {
             navigate(url);
         }
     };
+
+
+    const onVolumenIconClick = (e) => {
+       
+        setMute(true);
+        setVolumen(0);
+        // const iconVolumen = document.getElementsByClassName('iconVolumen');
+        
+
+    }
+
+    function VolumeBtns () {
+
+        return  mute
+            ? <Icon name='volume off' onClick = {()=> setMute(!mute)} />
+            : volumen <= 0.05 ? <Icon name='volume off' onClick = {()=> setMute(!mute)}/>
+            : volumen <= 0.49 ? <Icon name='volume down' onClick = {()=> setMute(!mute)} />
+            : <Icon name='volume up' onClick = {()=> setMute(!mute)} />
+    }
+
 
     return (
         <div className='footer'>
@@ -33,18 +58,31 @@ const Footer = () => {
             </div>
 
             <div className='footerCentro'>
-                <Player />
+                <Player mute={mute}/>
             </div>
 
             <div className='footerDerecha'>
-                <Input
-                    label={<Icon name='volume up' className='iconVolumen' />}
+                {/* <button onClick={() => setMute(m => !m)}>
+                    {mute ? ("mute", setVolumen(0) ): ("unmute", setVolumen(volumen))}
+                    
+                </button>  */}
+                {/* { <button className='botonVolumen' onClick={onVolumenIconClick}>
+                
+                </button>
+                <Icon name='volume down' className='iconVolumen' onClick={onVolumenIconClick} />
+                <Icon name='volume up' className='iconVolumen' onClick={onVolumenIconClick} /> } */}
+               
+                    
+                { <VolumeBtns setMute={setMute}/> }
+                <input
+                    // label={<Icon name='volume up' className='iconVolumen' />}
                     type='range'
                     min={0}
                     max={1}
                     step={0.01}
                     value={volumen}
-                    onChange={(_, data) => setVolumen(Number(data.value))}
+                    // onChange={(_, data) => setVolumen(Number(data.value))}
+                    onChange={event => setVolumen(Number(event.target.value))}
                 />
             </div>
         </div>
