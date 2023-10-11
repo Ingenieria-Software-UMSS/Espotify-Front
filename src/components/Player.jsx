@@ -17,6 +17,7 @@ const Player = (props) => {
   const [showCurrentSeconds, setShowCurrentSeconds] = useState(0);
 
   const [totalCancionDB, setTotalCancionDB] = useState('00:00');
+  const [bloqueo,SetBloqueo] = useState(true);
   //console.log(cancion);
   
   useEffect(() => {
@@ -50,11 +51,16 @@ const Player = (props) => {
     setCurrentSeconds(data.playedSeconds);
 
     obtainTotalCancion();
+    desbloquearBotonPlay();
     //console.log(data);
   }
 
   const obtainTotalCancion= ()=>{
     setTotalCancionDB(cancion.duracion);
+  }
+
+  const desbloquearBotonPlay = ()=>{
+    SetBloqueo(false);
   }
 
   const formatear = (tiempo) => {
@@ -68,7 +74,7 @@ const Player = (props) => {
 
   return (
     <div className='player'>
-      <Icon name={play ? "pause circle outline" : "play circle outline"} onClick={play ? pause : resume} />
+      <Icon name={play ? "pause circle outline" : "play circle outline"} onClick={play ? pause : resume} disabled={bloqueo}/>
       <div className='progress'>
 
         <p className='time-left'>{showCurrentSeconds}</p>
