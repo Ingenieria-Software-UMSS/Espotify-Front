@@ -7,6 +7,7 @@ import { set } from 'lodash'
 
 const Player = (props) => {
 
+
   const { cancion, play, pause, resume, volumen } = UsarPlayer();
   //const playing = false;
   const [totalSeconds, setTotalSeconds] = useState(0)
@@ -15,10 +16,14 @@ const Player = (props) => {
   const [showTotalSeconds, setShowTotalSeconds] = useState(0)
   const [showCurrentSeconds, setShowCurrentSeconds] = useState(0);
 
+  const [totalCancionDB, setTotalCancionDB] = useState('00:00');
+  //console.log(cancion);
+  
   useEffect(() => {
 
     setShowCurrentSeconds(formatear(currentSeconds))
     setShowTotalSeconds(formatear(totalSeconds));
+    
   })
 
   //console.log(play);
@@ -44,10 +49,12 @@ const Player = (props) => {
     setTotalSeconds(data.loadedSeconds);
     setCurrentSeconds(data.playedSeconds);
 
-   
-
-
+    obtainTotalCancion();
     //console.log(data);
+  }
+
+  const obtainTotalCancion= ()=>{
+    setTotalCancionDB(cancion.duracion);
   }
 
   const formatear = (tiempo) => {
@@ -66,9 +73,12 @@ const Player = (props) => {
 
         <p className='time-left'>{showCurrentSeconds}</p>
 
+        {/* <Progress progress='value' value={Math.floor(currentSeconds)} total={totalSeconds} size='tiny' className='barraProgreso' /> */}
+
         <Progress progress='value' value={Math.floor(currentSeconds)} total={totalSeconds} size='tiny' className='barraProgreso' />
 
-        <p className='time-right'>{showTotalSeconds}</p>
+        {/* <p className='time-right'>{showTotalSeconds}</p> */}
+        <p className='time-right' >{totalCancionDB}</p>
       </div>
 
       <ReactPlayer url={cancion?.urlCancion} playing={play} height={0} width={0} volume={volumen} onProgress={enProgreso} muted={props.mute} />
