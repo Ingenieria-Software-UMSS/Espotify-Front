@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player'
 import { UsarPlayer } from '../hooks/UsarPlayer'
 import "./Player.css"
 
-const Player = () => {
+const Player = (props) => {
 
   const { cancion, play, pause, resume, volumen } = UsarPlayer();
   //const playing = false;
@@ -53,7 +53,7 @@ const Player = () => {
         <span className='time-right'>{showTotalSeconds}</span>
       </div>
 
-      <ReactPlayer url={cancion?.urlCancion} playing={play} height={0} width={0} volume={volumen} onProgress={enProgreso} />
+      <ReactPlayer url={cancion?.urlCancion} playing={play} height={0} width={0} volume={volumen} onProgress={enProgreso} muted={props.mute}/>
     </div>
   )
 }
