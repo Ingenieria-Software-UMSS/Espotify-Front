@@ -3,7 +3,6 @@ import { Icon, Progress } from 'semantic-ui-react';
 import ReactPlayer from 'react-player';
 import { UsarPlayer } from '../hooks/UsarPlayer';
 import './Player.css';
-import { set } from 'lodash';
 
 const Player = (props) => {
   const { cancion, play, pause, resume, volumen } = UsarPlayer();
@@ -53,7 +52,6 @@ const Player = (props) => {
           <Progress progress="value" value={Math.floor(currentSeconds)} total={totalSeconds} size="tiny" className="barraProgreso" />
           <p className="time-right">{totalCancionDB}</p>
         </div>
-
         <ReactPlayer
             url={cancion?.urlCancion}
             playing={play}
