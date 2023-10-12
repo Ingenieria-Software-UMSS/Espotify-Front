@@ -88,7 +88,6 @@ const ListaCanciones = (props) => {
                                     <Table.Cell>
                                         {cancion.duracion}
                                     </Table.Cell>
-                                   
                                 </Table.Row>
                             ))}
                         </Table.Body>
