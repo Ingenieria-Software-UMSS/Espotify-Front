@@ -1,0 +1,62 @@
+@import '../App.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.logged-layout{
+
+    height: 100vh;
+}
+.contenido {
+    display: flex;
+    height: calc(100% - 100px);
+}
+
+
+.menu-izquierdo{
+    background-color: var(--background-primario);
+    width: 15%;
+    margin-left: 1px solid var(--background-secundario);
+
+
+   
+}
+
+.principal {
+    width: calc(100% - 15%);
+    width: calc(100%);
+    background-color: var(--background-secundario);
+
+}
+
+.principal .barra-superior {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    z-index: 1;
+    background-color: var(--background-secundario);
+    
+    border-bottom: 1px solid var(--background-primario);
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+    color: aliceblue;
+    padding: 0 3rem;
+}
+.principal .barra-superior h3{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+.principal .barra-superior img{
+    border-radius: 10px;
+    /*border-color: brown;
+    border: 2px solid chocolate;*/
+}
+
+.footer {
+    position: relative;
+    background-color: var(--background-secundario);
+    height: 100px;
+    border-top: 1px solid var(--background-primario);
+
+    z-index: 1;
+}

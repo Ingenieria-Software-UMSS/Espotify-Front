@@ -1,0 +1,71 @@
+@import '../App.css';
+
+.imagen-cancion {
+    background-color: var(--blanco);
+    color: var(--background-primario);
+    width: 300px;
+    height: 300px;
+    margin-left: 10%;
+}
+
+.detalles-cancion {
+    /* display: flex; */
+    display: block;
+    background-color: var(--blanco);
+    color: var(--background-primario);
+}
+
+.detalles-cancion p {
+    /* flex-grow: 1; */
+}
+
+
+.boton-regresar {
+    background-color: var(--blanco);
+    color: var(--background-primario);
+}
+
+.boton-contenedor {
+    align-content: center;
+    background: var(--contenedor-color);
+}
+
+.informacion {
+    background-color: var(--blanco);
+    color: var(--background-primario);
+    margin: 5% 10% 10% 10%;
+}
+
+.contenido {
+    background: var(--contenedor-color);
+
+}
+
+.imagen-contenedor {
+    max-width: 250px;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.detalles-cancion {
+    background: var(--contenedor-color);
+    margin: 10% 10% 10% 10%;
+}
+
+.informacion h1,
+.informacion h2,
+.informacion p {
+    font-family: 'Open Sans';
+    color: #000000;
+    font-size: 18px;
+}
+
+.informacion h1 {
+    font-size: 50px;
+    /* font-size: 40px; */
+}
+
+.informacion h2 {
+    font-size: 24px;
+}

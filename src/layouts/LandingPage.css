@@ -1,0 +1,60 @@
+.logo {
+    width: 250px;
+    height: auto;
+}
+.text-container h1.titulo {
+    margin-bottom: 20px;
+}
+.titulo{
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.logo-container {
+    width: 40%;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.row-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 200px;
+    
+    vertical-align: middle;
+}
+
+/* @media (min-width:1000px) {
+    .row-container {
+        margin: 0 20% 0 20%;
+    }
+} */
+
+.text-container {
+    flex-grow: 1;
+    width: 60%;
+    margin-bottom: 3rem;
+    font-size: 30px;
+    line-height: 3rem;
+    padding: 0 50px;
+    text-align: left;
+}
+
+.button-empezar {
+    text-align: center;
+}
+
+.button-empezar .ui.button {
+    font-size: 2rem;
+}
+
+.landingtext-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
