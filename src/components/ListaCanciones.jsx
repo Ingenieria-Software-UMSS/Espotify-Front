@@ -32,15 +32,20 @@ const ListaCanciones = (props) => {
             <div className='list_songs__buttons'>
                 <Button
                     onClick={() => setIsLoNuevoSelected(true)}
-                    inverted={!isLoNuevoSelected}
+                    
+                    className={'botones ' + (isLoNuevoSelected && 'seleccionado') }
                 >
                     Lo nuevo
                 </Button>
                 <Button
                     onClick={() => setIsLoNuevoSelected(false)}
-                    inverted={isLoNuevoSelected}
+                   
+                    className= {'botones ' + (!isLoNuevoSelected && 'seleccionado') }
+                    
+
                 >
                     Ultimos Artistas
+                    
                 </Button>
             </div>
 
@@ -50,11 +55,12 @@ const ListaCanciones = (props) => {
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>#</Table.HeaderCell>
+                                <Table.HeaderCell>Acción</Table.HeaderCell>
                                 <Table.HeaderCell></Table.HeaderCell>
                                 <Table.HeaderCell>Título</Table.HeaderCell>
                                 <Table.HeaderCell>Artista</Table.HeaderCell>
                                 <Table.HeaderCell>Duración</Table.HeaderCell>
-                                <Table.HeaderCell>Acción</Table.HeaderCell>
+                                
                             </Table.Row>
                         </Table.Header>
 
@@ -63,6 +69,12 @@ const ListaCanciones = (props) => {
                                 <Table.Row onClick={onClick(i)} key={i}>
                                     <Table.Cell>
                                         {i + 1}
+                                    </Table.Cell>
+                                    <Table.Cell onClick={(ev) => {
+                                        ev.stopPropagation();
+                                        onPlay(cancion)
+                                    }}>
+                                        <Icon size='large' name='play circle outline' />
                                     </Table.Cell>
                                     <Table.Cell>
                                         <img src={cancion.urlImagen} className='miniatura'></img>
@@ -75,13 +87,6 @@ const ListaCanciones = (props) => {
                                     </Table.Cell>
                                     <Table.Cell>
                                         {cancion.duracion}
-                                    </Table.Cell>
-                                    <Table.Cell onClick={(ev) => {
-                                        ev.stopPropagation();
-                                        onPlay(cancion);
-                                        
-                                    }}>
-                                        <Icon size='large' name='play circle outline'/>
                                     </Table.Cell>
                                 </Table.Row>
                             ))}
