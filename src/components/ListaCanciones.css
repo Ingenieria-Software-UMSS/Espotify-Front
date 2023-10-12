@@ -25,12 +25,10 @@
 }
 
 .ui.table thead{
-    /* background-color: var(--background-secundario); */
     background-color: var(--morado);
 }
 
 .ui.table thead tr:first-child > th {
-    /* background-color: var(--background-secundario); */
     background-color: var(--morado);
     position: sticky !important;
     top: 0;

@@ -9,16 +9,10 @@
 }
 
 .detalles-cancion {
-    /* display: flex; */
     display: block;
     background-color: var(--blanco);
     color: var(--background-primario);
 }
-
-.detalles-cancion p {
-    /* flex-grow: 1; */
-}
-
 
 .boton-regresar {
     background-color: var(--blanco);
@@ -63,7 +57,6 @@
 
 .informacion h1 {
     font-size: 50px;
-    /* font-size: 40px; */
 }
 
 .informacion h2 {
