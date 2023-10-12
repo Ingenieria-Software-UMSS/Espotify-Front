@@ -48,11 +48,6 @@
     
     color: var(--blanco);
 }
-.progress .time-right{
-    position: absolute;
-    right: -10px;
-    top: -8px;
-}
 .botones  { 
     background-color:#fff !important; 
     font-family: 'Montserrat', sans-serif !important;
