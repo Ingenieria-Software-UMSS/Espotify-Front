@@ -48,3 +48,11 @@
     
     color: var(--blanco);
 }
+.botones  { 
+    background-color:#fff !important; 
+    font-family: 'Montserrat', sans-serif !important;
+    border: 0;
+}
+.botones.seleccionado {
+    background-color: #a0a0a0 !important;
+}
