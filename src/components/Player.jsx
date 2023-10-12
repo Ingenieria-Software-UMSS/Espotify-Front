@@ -1,61 +1,71 @@
-import React, { useState } from 'react'
-import { Icon, Progress } from "semantic-ui-react"
-import ReactPlayer from 'react-player'
-import { UsarPlayer } from '../hooks/UsarPlayer'
-import "./Player.css"
+import React, { useEffect, useState } from 'react';
+import { Icon, Progress } from 'semantic-ui-react';
+import ReactPlayer from 'react-player';
+import { UsarPlayer } from '../hooks/UsarPlayer';
+import './Player.css';
+import { set } from 'lodash';
 
-const Player = () => {
-
+const Player = (props) => {
   const { cancion, play, pause, resume, volumen } = UsarPlayer();
-  //const playing = false;
-  const [totalSeconds, setTotalSeconds] = useState(0)
+  const [totalSeconds, setTotalSeconds] = useState(0);
   const [currentSeconds, setCurrentSeconds] = useState(0);
-
-  const [showTotalSeconds, setShowTotalSeconds] = useState(0)
+  const [showTotalSeconds, setShowTotalSeconds] = useState(0);
   const [showCurrentSeconds, setShowCurrentSeconds] = useState(0);
+  const [totalCancionDB, setTotalCancionDB] = useState('00:00');
+  const [bloqueo, SetBloqueo] = useState(true);
 
-  //console.log(play);
+  useEffect(() => {
+    setShowCurrentSeconds(formatear(currentSeconds));
+    setShowTotalSeconds(formatear(totalSeconds));
+  });
+
   const enProgreso = (data) => {
-    
-    const segundos = (Math.round(data.playedSeconds % 0x3C)).toString();
-    const minutos  = (Math.floor(data.playedSeconds / 0x3C ) % 0x3C).toString();
-    let nuevoCurrent = minutos + ':'+ segundos;
-    //console.log(nuevo)
-    const segundosTotal = (Math.round(data.loadedSeconds % 0x3C)).toString();
-    const minutosTotal  = (Math.floor(data.loadedSeconds / 0x3C ) % 0x3C).toString();
-    let nuevoTotal = '0'+minutosTotal + ':'+ segundosTotal;
-    setShowCurrentSeconds(nuevoCurrent);
-    setShowTotalSeconds(nuevoTotal);
-    
-    
-
     setTotalSeconds(data.loadedSeconds);
     setCurrentSeconds(data.playedSeconds);
+    obtainTotalCancion();
+    desbloquearBotonPlay();
+  };
 
-    //console.log(data);
-  }
+  const obtainTotalCancion = () => {
+    setTotalCancionDB(cancion.duracion);
+  };
 
+  const desbloquearBotonPlay = () => {
+    SetBloqueo(false);
+  };
 
-  const convertir = () =>{
-    const segundos = (Math.round(currentSeconds % 0x3C)).toString();
-    const minutos  = (Math.floor(currentSeconds / 0x3C ) % 0x3C).toString();
-    let nuevo = minutos + ':'+ segundos;
-    console.log(nuevo)
-    setCurrentSeconds(nuevo)
+  const formatear = (tiempo) => {
+    const minutos = Math.floor(tiempo / 60) < 10 ? `0${Math.floor(tiempo / 60)}` : Math.floor(tiempo / 60);
+    const segundos = Math.floor(tiempo % 60) < 10 ? `0${Math.floor(tiempo % 60)}` : Math.floor(tiempo % 60);
+    return `${minutos}:${segundos}`;
+  };
+
+  const handleEnded = () => {
+    pause();
+    SetBloqueo(false);
   };
 
   return (
-    <div className='player'>
-      <Icon name={play ? "pause circle outline" : "play circle outline"} onClick={play ? pause : resume} />
-      <div className='progress'>
-        <span className='time-left'>{showCurrentSeconds}</span>
-        <Progress progress='value' value={currentSeconds} total={totalSeconds} size='tiny' width='100px'/>
-        <span className='time-right'>{showTotalSeconds}</span>
+      <div className="player">
+        <Icon name={play ? 'pause circle outline' : 'play circle outline'} onClick={play ? pause : resume} disabled={bloqueo} />
+        <div className="progress">
+          <p className="time-left">{showCurrentSeconds}</p>
+          <Progress progress="value" value={Math.floor(currentSeconds)} total={totalSeconds} size="tiny" className="barraProgreso" />
+          <p className="time-right">{totalCancionDB}</p>
+        </div>
+
+        <ReactPlayer
+            url={cancion?.urlCancion}
+            playing={play}
+            height={0}
+            width={0}
+            volume={volumen}
+            onProgress={enProgreso}
+            muted={props.mute}
+            onEnded={handleEnded}
+        />
       </div>
+  );
+};
 
-      <ReactPlayer url={cancion?.urlCancion} playing={play} height={0} width={0} volume={volumen} onProgress={enProgreso} />
-    </div>
-  )
-}
-
-export default Player
+export default Player;
