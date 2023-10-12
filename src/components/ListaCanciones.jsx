@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Icon, Button } from "semantic-ui-react";
 import "./ListaCanciones.css";
 import { UsarPlayer } from '../hooks/UsarPlayer';
 import { useNavigate } from 'react-router-dom';
+import Player from './Player';
 
 const ListaCanciones = (props) => {
     const { canciones } = props;
     const navigate = useNavigate();
     const { playCancion, play } = UsarPlayer();
     const [isLoNuevoSelected, setIsLoNuevoSelected] = useState(true);
+    
+    
+
 
     const onClick = (i) => () => {
         const song = canciones[i];
@@ -74,9 +78,10 @@ const ListaCanciones = (props) => {
                                     </Table.Cell>
                                     <Table.Cell onClick={(ev) => {
                                         ev.stopPropagation();
-                                        onPlay(cancion)
+                                        onPlay(cancion);
+                                        
                                     }}>
-                                        <Icon size='large' name='play circle outline' />
+                                        <Icon size='large' name='play circle outline'/>
                                     </Table.Cell>
                                 </Table.Row>
                             ))}
