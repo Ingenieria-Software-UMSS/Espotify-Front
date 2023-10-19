@@ -1,6 +1,7 @@
-// App.js
+
 import React from 'react';
-import Aside from './Aside';
+import { Button, Icon } from 'semantic-ui-react';
+
 
 function App() {
     return (
@@ -12,10 +13,12 @@ function App() {
             <nav>
                 {/* Menú de navegación principal */}
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">tu biblioteca</a></li>  
+                    <Button icon>
+                        <Icon name='plus'/>
+                        
+                    </Button>
+
                 </ul>
             </nav>
 
@@ -26,8 +29,6 @@ function App() {
                     <p>Este es el contenido principal de la página.</p>
                 </article>
             </main>
-
-            <Aside />
             
             <footer>
                 <p>Pie de Página &copy; 2023</p>
