@@ -4,6 +4,9 @@ import "./Logueado.css"
 import Footer from '../components/Footer';
 import logo from '../assets/logo.jpg';
 import { Link } from 'react-router-dom';
+import Aside from '../components/Aside';
+import { Divider } from 'semantic-ui-react';
+
 
 const LogeadoLayout = (props) => {
 
