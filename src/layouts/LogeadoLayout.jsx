@@ -3,6 +3,8 @@ import React from 'react'
 import "./Logueado.css"
 import Footer from '../components/Footer';
 import logo from '../assets/logo.jpg'
+import { Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 const LogeadoLayout = (props) => {
@@ -18,8 +20,13 @@ const LogeadoLayout = (props) => {
 
         <div className='principal'>
           <div className='barra-superior'>
+          <Button as={Link} to="/registro" primary>Registrarse</Button>
+          <Button as={Link} to="/login" primary>Iniciar Sesión</Button>
+          
             <h3 className='name'>Espotify</h3>
             <img width={50} src={logo} alt='logo' className='logoLayout'/>
+            
+
           </div>
 
           <div> {children}</div>
