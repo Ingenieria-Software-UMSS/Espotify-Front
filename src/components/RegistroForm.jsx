@@ -1,10 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Form, Icon, Button } from 'semantic-ui-react'
+import { useFormik } from 'formik';
+import { initialValues, validationSchema } from "./RegistroForm.data";
 import "./RegistroForm.css"
 
 const RegistroForm = (props) => {
 
+
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: validationSchema(),
+    onSubmit: (formValue) => {
+      console.log("Registro OK");
+      console.log(formValue);
+    }
+  });
+
+
+  console.log(formik.errors)
 
 
   return (
@@ -12,14 +26,20 @@ const RegistroForm = (props) => {
 
       <h1>DISFRUTA DE TU MÚSICA CON UNA CUENTA GRATIS DE ESPOTIFY</h1>
 
-      <Form>
+      <Form onSubmit={formik.handleSubmit}>
         <Form.Input
+
+          name="email"
           type='text'
           placeholder="Correo electrónico"
           icon="mail outline"
-          
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          error={formik.errors.email}
+
         />
         <Form.Input
+          name="password"
           type='password'
           placeholder="Contraseña"
           icon={
@@ -30,11 +50,18 @@ const RegistroForm = (props) => {
 
             />
           }
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          error={formik.errors.password}
         />
         <Form.Input
+          name="username"
           type='text'
           placeholder='Nombre de Usuario'
           icon="user circle outline"
+          onChange={formik.handleChange}
+          value={formik.values.username}
+          error={formik.errors.username}
         />
 
         <Form.Button type='submit' primary fluid className='boton-crear-cuenta'>
@@ -48,7 +75,7 @@ const RegistroForm = (props) => {
       </div>
 
 
-     
+
 
 
 
