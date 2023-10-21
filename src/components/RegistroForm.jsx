@@ -17,6 +17,7 @@ const RegistroForm = (props) => {
           type='text'
           placeholder="Correo electrónico"
           icon="mail outline"
+          
         />
         <Form.Input
           type='password'

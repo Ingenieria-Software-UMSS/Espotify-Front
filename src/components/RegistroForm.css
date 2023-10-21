@@ -21,6 +21,7 @@
     font-size: 16px;
 }
 
+
 .ui.icon.input>i.icon{
     color: var(--blanco);
 }
@@ -34,11 +35,14 @@
 .ui.icon.input>i.icon{
     font-size: 19px;
 }
-/*
-.ui.form .field .ui.input .error input
-{
-    border-color: 0px 0px 0px 1px blue;
-}*/
+
+.ui.form .field.error .ui.input input{
+    background-color: var(--background-secundario);
+    border: 1px solid textDanger;
+} 
+.ui.form .field.error .ui.input input:focus{
+    background-color: var(--background-secundario);
+}
 
 .ui.form .field .button{
     text-transform: uppercase;
@@ -47,6 +51,7 @@
     padding: 17px 0;
     font-size: 14px;
     letter-spacing: 3px;
+    background-color: var(--verde) !important;
 }
 
 .registro-form-options{
