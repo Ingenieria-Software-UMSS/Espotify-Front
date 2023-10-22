@@ -1,6 +1,8 @@
 import React from 'react';
 import './Informacion.css';
 import { Button } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
+import { Modal } from 'semantic-ui-react';
 import { Link, useLocation } from 'react-router-dom';
 
 import iconoCancion from '../images/iconoCancion.png';
@@ -22,8 +24,13 @@ const Informacion = () => {
                 </Link>
             </div>
             <div className='contenido'>
-                <div className='imagen-contenedor'>
-                    <img src={imageUrl || iconoCancion} alt='Portada de la canción' className='imagen-cancion' />
+                <div className='imagen-botones-contenedor'>
+                    <div className='imagen-contenedor'>
+                        <img src={imageUrl || iconoCancion} alt='Portada de la canción' className='imagen-cancion' />
+                    </div>
+                    <div className='boton-anadirlista'>
+                        <DropdownListaReproduccion />
+                    </div>
                 </div>
                 <div className='detalles-cancion'>
                     <h1>{title}</h1>
@@ -35,5 +42,63 @@ const Informacion = () => {
         </div>
     );
 }
+const DropdownListaReproduccion  = () => {
+    const [modalAgregadoOpen, setModalAgregadoOpen] = React.useState(false);
+    const [listasExistentes, setListasExistentes] = React.useState([
+        {
+            id: 1,
+            nombre: 'Lista 1'
+        },
+        {
+            id: 2,
+            nombre: 'Lista 2'
+        },
+        {
+            id: 3,
+            nombre: 'Lista 3'
+        }
+    ]);
+    const hayListas = listasExistentes.length > 0;
+
+    return (
+        <>
+            {
+                hayListas && (
+                    <Dropdown simple icon='plus'>
+                        <Dropdown.Menu className='dropdownmenu'>
+                            <Dropdown.Header content='Listas exitentes' />
+                            <Dropdown.Divider />
+                            {
+                                listasExistentes.map((listaExistente) => {
+                                    return (
+                                        <Dropdown.Item key={listaExistente.id} text={listaExistente.nombre} onClick={() => {
+                                            console.log('Guardando Lista', listaExistente);
+                                            setModalAgregadoOpen(true);
+                                        }} />
+                                    )
+                                })
+                            }
+                        </Dropdown.Menu>
+                    </Dropdown>)
+            }
+            <ModalAgregadoExito open={modalAgregadoOpen} onClose={() => {
+                setModalAgregadoOpen(false);
+            }} />
+        </>
+    );
+}
+
+const ModalAgregadoExito = (props) => {
+
+    return (
+        <Modal
+            onClose={props.onClose}
+            open={props.open}
+            content='Elemento agregado exitosamente.'
+            actions={[{ key: 'done', content: 'Aceptar', positive: true }]}
+        />
+    )
+}
+
 
 export default Informacion;

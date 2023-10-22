@@ -35,11 +35,44 @@
 
 }
 
-.imagen-contenedor {
+.imagen-botones-contenedor {
     max-width: 250px;
     height: auto;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+/* .imagen-contenedor {
+    max-width: 250px;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+} */
+.ui.simple.dropdown .menu.dropdownmenu {
+    background-color: var(--negro);
+}
+
+.ui.dropdown .menu.dropdownmenu > .header,
+.ui.dropdown .menu.dropdownmenu > .item {
+    color: var(--blanco);
+}
+
+.ui.dropdown .menu.dropdownmenu > .item:hover {
+    color: var(--contenedor-color);
+}
+
+.ui.modal>.content{
+    background-color: var(--background-secundario);
+}
+
+.boton-anadirlista {
+    margin-left: 60%;
+}
+
+.plus {
+    color: var(--negro);
+    height: 50%;
+    width: 50%;
 }
 
 .detalles-cancion {
