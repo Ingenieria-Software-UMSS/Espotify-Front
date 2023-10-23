@@ -3,10 +3,8 @@ import {
   Button,
   Dropdown,
   Form,
-  Grid,
   Header,
   Icon,
-  Image,
   Input,
   Modal,
   Popup,
@@ -31,39 +29,47 @@ export default function PlayList() {
     <>
       <div className="playlist">
         <div className="playlist_banner">
-          <img className="playlist_img" src={logo} alt="playlist_image" />
+          <img
+            className="playlist_img"
+            onClick={handleOpen}
+            src={logo}
+            alt="playlist_image"
+          />
           <div className="song_area" onClick={handleOpen}>
             <Header as="h4">Playlist</Header>
             <Header as="h1">My Playlist #2</Header>
             <Header as="h4">J Carlos</Header>
           </div>
           <div className="add_action">
-            <Popup
-              basic
-              className="popup_style"
-              content="Add users to your feed"
-              position="top right"
+            <Dropdown
+              icon={null}
               trigger={
-                <Dropdown
-                  icon={null}
+                <Popup
+                  basic
+                  className="popup_style"
+                  content="Add users to your feed"
+                  position="top right"
                   trigger={
-                    <Button className="custom_icon_button" circular color="black" icon="ellipsis horizontal" />
+                    <Button
+                      className="custom_icon_button"
+                      circular
+                      color="black"
+                      icon="ellipsis horizontal"
+                    />
                   }
-                  direction="left"
-                >
-                  <Dropdown.Menu>
-                    <Dropdown.Item text="Editar" />
-                    <Dropdown.Item text="Eliminar" />
-                    <Dropdown.Item text="Aniadir" />
-                  </Dropdown.Menu>
-                </Dropdown>
+                />
               }
-            />
+              direction="left"
+            >
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={handleOpen} text="Editar" />
+                <Dropdown.Item text="Eliminar" />
+                {/* <Dropdown.Item text="Aniadir" /> */}
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
         </div>
-        <div className="list_songs">
-          List Songs
-        </div>
+        <div className="list_songs"></div>
       </div>
       <Modal
         open={open}
@@ -75,23 +81,28 @@ export default function PlayList() {
         <Modal.Content className="sw_modal_box">
           <div className="modal_header">
             <Header as="h3">Edit Playlist</Header>
-            <Icon onClick={handleClose} size="large" name="remove"/>
+            <Icon onClick={handleClose} size="large" name="remove" />
           </div>
           <div className="playlist_form">
             <div className="form_image">
               <img width={200} src={logo} alt="paylist_logo" />
               <label className="custom_input">
-                <i className="remove large icon"></i>
-                <input type="file"/>
+                <Icon name="edit" size="big" />
+                <input type="file" />
               </label>
             </div>
             <Form className="form_labels">
-              <Input fluid placeholder='Search...' />
-              <TextArea fluid placeholder='Tell us more' />
+              <Input fluid placeholder="Titulo" />
+              <TextArea fluid placeholder="Descripcion" />
             </Form>
           </div>
 
-          <Button   color="black" onClick={() => setOpen(false)}>
+          <Button
+            className="send_button"
+            color="black"
+            size="large"
+            onClick={() => setOpen(false)}
+          >
             Crear
           </Button>
         </Modal.Content>
