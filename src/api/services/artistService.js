@@ -1,6 +1,6 @@
 import apiService from "./apiService";
 
-const artistEndpoint = "espotify/artist";
+const artistEndpoint = "artist";
 const artistService = apiService("https://espotify.azurewebsites.net", artistEndpoint);
 
 export async function addArtist(artistData) {
