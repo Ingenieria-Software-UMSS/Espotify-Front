@@ -1,40 +1,71 @@
-
 import React from 'react';
-import { Button, Icon } from 'semantic-ui-react';
-
+import { Button, Icon, List, Popup } from 'semantic-ui-react';
+import './Aside.css';
+import logo from '../assets/logo.jpg';
 
 function App() {
-    return (
-        <div>
-            <header>
-                <h1>Título de la Página</h1>
-            </header>
-            
-            <nav>
-                {/* Menú de navegación principal */}
-                <ul>
-                    <li><a href="#">tu biblioteca</a></li>  
-                    <Button icon>
-                        <Icon name='plus'/>
-                        
-                    </Button>
-
-                </ul>
-            </nav>
-
-            <main>
-                {/* Contenido principal de la página */}
-                <article>
-                    <h2>Artículo Principal</h2>
-                    <p>Este es el contenido principal de la página.</p>
-                </article>
-            </main>
-            
-            <footer>
-                <p>Pie de Página &copy; 2023</p>
-            </footer>
+  return (
+    <div>
+      <nav>
+        {/* Menú de navegación principal */}
+        <ul>
+          
+          <Button className='superior' fluid>
+            <Icon name='home' /> Inicio
+          </Button>
+          <Button className='superior' fluid>
+            <Icon name='search' /> Buscar
+          </Button>
+          <Button className='superior' fluid>
+            <Icon name='list' /> Lista de Canciones 
+          </Button>
+        </ul>
+      </nav>
+      <aside>
+        {/* Componente Aside */}
+        <div className="spotify-aside">
+          <Popup content='contraer' trigger={
+            <Button icon name="book">Tu Biblioteca</Button>
+            }
+            />
+          <Popup content='crear nueva lista' trigger={
+            <Button icon='add'/>}
+            />
+          
+          <h3>Tus Canciones</h3>
+          <List divided relaxed>
+            <List.Item>
+              <List.Icon>
+                <img width={200} src={logo} alt="playlist_logo" />
+              </List.Icon>
+              <List.Content>
+                <List.Header as='a'>lista 1</List.Header>
+                <List.Description as='a'>descripcion</List.Description>
+              </List.Content>
+            </List.Item>
+            <List.Item>
+              <List.Icon>
+                <img width={200} src={logo} alt="playlist_logo" />
+              </List.Icon>
+              <List.Content>
+                <List.Header as='a'>lista 2</List.Header>
+                <List.Description as='a'>descripcion</List.Description>
+              </List.Content>
+            </List.Item>
+            <List.Item>
+              <List.Icon>
+                <img width={200} src={logo} alt="playlist_logo" />
+              </List.Icon>
+              <List.Content>
+                <List.Header as='a'>lista 3</List.Header>
+                <List.Description as='a'>descripcion</List.Description>
+              </List.Content>
+            </List.Item>
+          </List>
         </div>
-    );
+      </aside>
+    </div>
+  );
 }
 
 export default App;
