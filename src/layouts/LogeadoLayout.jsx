@@ -16,12 +16,7 @@ const LogeadoLayout = (props) => {
 
       <div className='contenido'>
          <div className='menu-izquierdo'>
-          <p>hola
-            
-            </p> 
-            <Divider/>
             <Aside>
-              hola
             </Aside>
 
         </div> 

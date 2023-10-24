@@ -1,76 +1,32 @@
-@import '../App';
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: white;
-    margin: 0;
-    padding: 0;
+button {
+  border-radius: 20px; 
+  background-color: #FFF;
+  color: #00000099; 
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: rgba(219, 22, 22, 0.087); /* Fondo blanco con opacidad 0.087 al pasar el cursor */
+  }
 }
 
-header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
+/* Estilo para el aside */
+.spotify-aside {
+  background-color: #252323; /* Fondo blanco */
+  padding: 10px;
+  color: #ffffff; /* Texto negro */
+  border-radius: 20px; /* Bordes redondeados */
+  
+  margin: 10px 0;
 }
 
-nav {
-    background-color: #444;
-    padding: 1rem;
+/* Estilo para la imagen */
+.spotify-aside img {
+  max-width: 100%; /* Asegura que la imagen se ajuste dentro del contenedor */
+  height: auto;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav li {
-    margin: 0.5rem 0;
-}
-
-nav a {
-    text-decoration: none;
-    color: white;
-}
-
-main {
-    display: flex;
-}
-
-main article {
-    flex: 2;
-    padding: 1rem;
-}
-
-aside {
-    flex: 1;
-    background-color: #444;
-    padding: 1rem;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-aside h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-aside ul {
-    list-style: none;
-    padding: 0;
-}
-
-aside li {
-    margin: 0.5rem 0;
-}
-
-aside a {
-    text-decoration: none;
-    color: white;
+/* Estilo para los títulos y descripciones */
+.spotify-aside .list.header,
+.spotify-aside .list.description {
+  color: #ffffff; /* Texto negro */
 }
