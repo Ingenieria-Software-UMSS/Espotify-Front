@@ -13,9 +13,6 @@ const RegistroForm = (props) => {
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     onSubmit: (formValue) => {
-      console.log("Registro OK");
-      console.log(formValue);
-
       request('POST',
           '/register',
           { 
