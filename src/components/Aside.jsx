@@ -1,66 +1,85 @@
-import React from 'react';
-import { Button, Icon, List, Popup } from 'semantic-ui-react';
+import React, { useEffect, useState } from 'react';
+import { Button, Header, List, Menu, Popup } from 'semantic-ui-react';
 import './Aside.css';
-import logo from '../assets/logo.jpg';
+import request, { getOptions } from '../utils/request';
+import { Link } from 'react-router-dom';
 
 function App() {
+  const activeItem = 'home';
+  const [list, setList] = useState([]);
+
+  const handleItemClick = () => {
+  }
+
+  useEffect(() => {
+    initalRequest();
+  }, []);
+
+  const initalRequest = async () => {
+    try {
+      const options = getOptions();
+      const uri = '/play-list';
+
+      const list = await request(uri, options);
+
+      setList(list)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
-      <nav>
-        {/* Menú de navegación principal */}
-        <ul>
-          
-          <Button className='superior' fluid>
-            <Icon name='home' /> Inicio
-          </Button>
-          <Button className='superior' fluid>
-            <Icon name='search' /> Buscar
-          </Button>
-          <Button className='superior' fluid>
-            <Icon name='list' /> Lista de Canciones 
-          </Button>
-        </ul>
+      <nav style={{borderRadius: 15, overflow: 'hidden', margin: '20px 0' }}>
+        <Menu inverted vertical fluid>
+          <Menu.Item
+            name='Inicio'
+            active={activeItem === 'home'}
+            onClick={handleItemClick}
+            icon="home"
+          />
+          <Menu.Item
+            name='Buscar'
+            icon="search"
+            active={activeItem === 'messages'}
+            onClick={handleItemClick}
+          />
+          <Menu.Item
+            name='Lista de Canciones'
+            active={activeItem === 'friends'}
+            onClick={handleItemClick}
+          />
+        </Menu>
       </nav>
       <aside>
         {/* Componente Aside */}
-        <div className="spotify-aside">
-          <Popup content='contraer' trigger={
-            <Button icon name="book">Tu Biblioteca</Button>
-            }
-            />
-          <Popup content='crear nueva lista' trigger={
-            <Button icon='add'/>}
-            />
+        <div className="spotify-aside" style={{backgroundColor: '#1B1C1D', minHeight: 500}}>
+          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+            <Header inverted as="h3" className='m-0'>Tu Biblioteca</Header>
+            <Popup content='crear nueva lista' trigger={
+              <Link to={'/playlist/create'} style={{color: '#fff'}}>
+                <Button circular size='small' inverted icon='add'/>
+              </Link>
+            } />
+          </div>
           
-          <h3>Tus Canciones</h3>
-          <List divided relaxed>
-            <List.Item>
-              <List.Icon>
-                <img width={200} src={logo} alt="playlist_logo" />
-              </List.Icon>
-              <List.Content>
-                <List.Header as='a'>lista 1</List.Header>
-                <List.Description as='a'>descripcion</List.Description>
-              </List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Icon>
-                <img width={200} src={logo} alt="playlist_logo" />
-              </List.Icon>
-              <List.Content>
-                <List.Header as='a'>lista 2</List.Header>
-                <List.Description as='a'>descripcion</List.Description>
-              </List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Icon>
-                <img width={200} src={logo} alt="playlist_logo" />
-              </List.Icon>
-              <List.Content>
-                <List.Header as='a'>lista 3</List.Header>
-                <List.Description as='a'>descripcion</List.Description>
-              </List.Content>
-            </List.Item>
+          <List divided relaxed inverted size='large'>
+            {list.map(item => (
+              <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
+                <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
+                  <div style={{height: 50, width: 50}}>
+                    <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
+                  </div>
+                  <List.Content>
+                    <List.Header>
+                      <Header as="h3" inverted>{item.playListName}</Header>
+                    </List.Header>
+                    <List.Description>{item.playListDescription}</List.Description>
+                  </List.Content>
+                </List.Item>
+              </Link>
+            ))}
+
           </List>
         </div>
       </aside>
