@@ -1,15 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { Await, Link } from 'react-router-dom';
-import { Form, Icon, Button } from 'semantic-ui-react'
+import { Form, Icon, Button } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from "./RegistroForm.data";
-import {Auth} from '../api/Auth'
-
-import "./RegistroForm.css"
-
-const auth = new Auth;
-
-
+import "./RegistroForm.css";
+import { request, setAuthToken } from '../api/axios_helper';
 
 const RegistroForm = (props) => {
 
@@ -17,17 +12,18 @@ const RegistroForm = (props) => {
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
-    onSubmit: async (formValue) => {
-
-      try {
-        await auth.register(formValue.email, formValue.password);
-        alert("Usuario Creado Satisfactoriamente");
-      } catch (error) {
-        console.error(error);
-      }
-
-
-
+    onSubmit: (formValue) => {
+      request('POST',
+          '/register',
+          { 
+            userName: formValue.username,
+            email: formValue.email,
+            password: formValue.password
+          }).then((response) => {
+            setAuthToken(response.data.token)
+          }).catch((error) => {
+            console.log(error);
+          })
     }
   });
 

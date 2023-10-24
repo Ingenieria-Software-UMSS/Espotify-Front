@@ -5,6 +5,8 @@ import { useFormik } from 'formik';
 import { initialValues, validationSchema } from "./IniciarSesionForm.data"
 import "./IniciarSesionForm.css"
 
+import { request, setAuthToken } from '../api/axios_helper';
+
 const IniciarSesionForm = () => {
 
   const formik = useFormik({
@@ -12,15 +14,17 @@ const IniciarSesionForm = () => {
     validationSchema: validationSchema(),
     onSubmit: async (formValue) => {
 
-      console.log("formulario enviado ....");
-      console.log(formValue);
-      // try {
-      //   await auth.register(formValue.email, formValue.password);
-      //   alert("Usuario Creado Satisfactoriamente");
-      // } catch (error) {
-      //   console.error(error);
-      // }
-
+      request('POST',
+          '/login',
+          {
+            email: formValue.email,
+            password: formValue.password
+          }).then((response) => {
+            console.log(response);
+            setAuthToken(response.data.token);
+          }).catch((error) => {
+            console.log(error);
+          });
 
     }
   });
