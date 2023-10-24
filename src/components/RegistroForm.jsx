@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Await, Link } from 'react-router-dom';
 import { Form, Icon, Button } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from "./RegistroForm.data";
@@ -77,7 +77,7 @@ const RegistroForm = (props) => {
           error={formik.errors.username}
         />
 
-        <Form.Button type='submit' primary fluid className='boton-crear-cuenta'>
+        <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='boton-crear-cuenta'>
           Crear Cuenta
         </Form.Button>
       </Form>
