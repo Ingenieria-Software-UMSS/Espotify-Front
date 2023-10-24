@@ -6,7 +6,6 @@ import { initialValues, validationSchema } from "./IniciarSesionForm.data"
 import "./IniciarSesionForm.css"
 
 import { request, setAuthToken } from '../api/axios_helper';
-import { response } from 'express';
 
 const IniciarSesionForm = () => {
 
