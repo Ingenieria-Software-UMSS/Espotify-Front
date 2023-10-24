@@ -15,16 +15,18 @@ const IniciarSesionForm = () => {
     onSubmit: async (formValue) => {
 
       request('POST',
-          '/login',
-          {
-            email: formValue.email,
-            password: formValue.password
-          }).then((response) => {
-            console.log(response);
-            setAuthToken(response.data.token);
-          }).catch((error) => {
-            console.log(error);
-          });
+        '/login',
+        {
+          email: formValue.email,
+          password: formValue.password
+        }).then((response) => {
+          console.log(response);
+          setAuthToken(response.data.token);
+          
+
+        }).catch((error) => {
+          console.log(error);
+        });
 
     }
   });
@@ -34,7 +36,7 @@ const IniciarSesionForm = () => {
 
   return (
     <div className='login-form'>
-      
+
       <h1>MÚSICA GRATIS ONLINE</h1>
 
 
@@ -48,7 +50,7 @@ const IniciarSesionForm = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
           error={formik.errors.email}
-          
+
         />
         <Form.Input
           name="password"
@@ -65,9 +67,9 @@ const IniciarSesionForm = () => {
           onChange={formik.handleChange}
           value={formik.values.password}
           error={formik.errors.password}
-          
+
         />
-      
+
 
         <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='boton-iniciar-sesion'>
           INICIAR SESIÓN
@@ -76,9 +78,9 @@ const IniciarSesionForm = () => {
 
       <div className='login-form-options'>
         <p> <Button as={Link} to="/home">Volver</Button></p>
-        
+
       </div>
-{/* 
+      {/* 
       <Button as={Link} to="/registro">Crear Cuenta</Button>
       <Button as={Link} to="/home">Volver</Button> */}
     </div>
