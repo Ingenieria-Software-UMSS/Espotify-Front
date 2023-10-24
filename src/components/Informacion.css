@@ -49,20 +49,41 @@
     margin-bottom: auto;
 } */
 .ui.simple.dropdown .menu.dropdownmenu {
-    background-color: var(--negro);
+    background-color: #3f3f3f;
 }
 
-.ui.dropdown .menu.dropdownmenu > .header,
-.ui.dropdown .menu.dropdownmenu > .item {
+.ui.dropdown .menu.dropdownmenu>.header,
+.ui.dropdown .menu.dropdownmenu>.item {
     color: var(--blanco);
 }
 
-.ui.dropdown .menu.dropdownmenu > .item:hover {
+.ui.modal .content.modalExito_contenido {
+    background: #3f3f3f;
+    padding-left: 2rem;
+    
+    /* color: var(--blanco); */
+}
+
+.ui.modal .modal_botonAceptar {
+    display: block;
+    margin-top: 2rem;
+    margin-left: auto;
+}
+
+.ui.dropdown .menu.dropdownmenu>.item:hover {
     color: var(--contenedor-color);
 }
 
-.ui.modal>.content{
-    background-color: var(--background-secundario);
+/* .ui.modal.transition.visible.active>.content { */
+.ui.modal .modalExito .content {
+
+    /* background: #3f3f3f; */
+    background: var(--background-primario);
+    color: var(--blanco);
+}
+
+.ui.modal.transition.visible.active .actions {
+    background: var(--background-secundario);
 }
 
 .boton-anadirlista {
