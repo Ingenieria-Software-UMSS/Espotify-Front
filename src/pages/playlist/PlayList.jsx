@@ -1,44 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
+  Dimmer,
   Dropdown,
-  Form,
   Header,
-  Icon,
-  Input,
-  Modal,
+  Loader,
   Popup,
-  TextArea,
 } from "semantic-ui-react";
 import "./playlist.css";
 
 import logo from "../../assets/logo.jpg";
+import request, { getOptions } from "../../utils/request";
+import PlayListForm from "../../components/PlayListForm";
+import { useParams } from "react-router-dom";
+
+const initialForm = {
+  playListName: "Mi Playlist",
+  playListDescription: "Description",
+  thumbnail: {
+    thumbnailUrl: logo,
+  } 
+};
 
 export default function PlayList() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useState(initialForm);
+  const [loading, setLoading] = useState(false);
+  const params = useParams();
 
   const handleOpen = () => {
     setOpen(true);
   };
 
+  useEffect(() => {
+    initialRequest();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.id]);
+
+  const initialRequest = async () => {
+    setLoading(true);
+
+    try {
+      const options = getOptions();
+      const uri = '/play-list/' + params.id;
+
+      const paylist = await request(uri, options);
+
+      setState({
+        playListId: paylist.playListId,
+        playListName: paylist.playListName,
+        playListDescription: paylist.playListDescription,
+        thumbnail: paylist?.thumbnail,
+      })
+    } catch (error) {
+      console.log(error);
+    }
+
+    setLoading(false);
+  };
+
   return (
     <>
       <div className="playlist">
+        <Dimmer active={loading}>
+          <Loader />
+        </Dimmer>
         <div className="playlist_banner">
           <img
             className="playlist_img"
             onClick={handleOpen}
-            src={logo}
+            src={state.thumbnail.thumbnailUrl}
             alt="playlist_image"
           />
           <div className="song_area" onClick={handleOpen}>
             <Header as="h4">Playlist</Header>
-            <Header as="h1">My Playlist #2</Header>
-            <Header as="h4">J Carlos</Header>
+            <Header as="h1">{state.playListName}</Header>
+            <Header as="h4">{state.playListDescription}</Header>
           </div>
           <div className="add_action">
             <Dropdown
@@ -47,7 +84,7 @@ export default function PlayList() {
                 <Popup
                   basic
                   className="popup_style"
-                  content="Add users to your feed"
+                  content="Agregar/Editar playlist"
                   position="top right"
                   trigger={
                     <Button
@@ -64,49 +101,13 @@ export default function PlayList() {
               <Dropdown.Menu>
                 <Dropdown.Item onClick={handleOpen} text="Editar" />
                 <Dropdown.Item text="Eliminar" />
-                {/* <Dropdown.Item text="Aniadir" /> */}
               </Dropdown.Menu>
             </Dropdown>
           </div>
         </div>
         <div className="list_songs"></div>
       </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        size="tiny"
-        className="sw_modal"
-      >
-        <Modal.Content className="sw_modal_box">
-          <div className="modal_header">
-            <Header as="h3">Edit Playlist</Header>
-            <Icon onClick={handleClose} size="large" name="remove" />
-          </div>
-          <div className="playlist_form">
-            <div className="form_image">
-              <img width={200} src={logo} alt="paylist_logo" />
-              <label className="custom_input">
-                <Icon name="edit" size="big" />
-                <input type="file" />
-              </label>
-            </div>
-            <Form className="form_labels">
-              <Input fluid placeholder="Titulo" />
-              <TextArea fluid placeholder="Descripcion" />
-            </Form>
-          </div>
-
-          <Button
-            className="send_button"
-            color="black"
-            size="large"
-            onClick={() => setOpen(false)}
-          >
-            Crear
-          </Button>
-        </Modal.Content>
-      </Modal>
+      {open && <PlayListForm {...{setOpen, setState, state}} />}
     </>
   );
 }
