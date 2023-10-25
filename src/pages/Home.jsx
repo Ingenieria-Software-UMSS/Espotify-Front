@@ -3,15 +3,15 @@ import {Cancion} from "../api/Cancion";
 import "./Home.css";
 import ListaCanciones from '../components/ListaCanciones';
 import CampoBusqueda from '../components/CampoBusqueda';
-import {getSongList} from "../api/services/songService";
 import { Button } from 'semantic-ui-react';
 
 const cancionController = new Cancion();
 
-export default function Home() {
+export default function Home () {
     const [canciones, setCanciones] = useState([]);
     const [busquedaResults, setBusquedaResults] = useState([]);
     const [busquedaCanciones, setBusquedaCanciones] = useState([]);
+
     useEffect(() =>{
       (async () => {
         try {
