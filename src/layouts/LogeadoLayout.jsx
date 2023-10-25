@@ -4,6 +4,9 @@ import "./Logueado.css"
 import Footer from '../components/Footer';
 import logo from '../assets/logo.jpg';
 import { Link } from 'react-router-dom';
+import Aside from '../components/Aside';
+import { Divider } from 'semantic-ui-react';
+
 
 const LogeadoLayout = (props) => {
 
@@ -12,9 +15,11 @@ const LogeadoLayout = (props) => {
     <div className='logged-layout'>
 
       <div className='contenido'>
-        {/* <div className='menu-izquierdo'>
-          <p>Menu</p> 
-        </div> */}
+         <div className='menu-izquierdo'>
+            <Aside>
+            </Aside>
+
+        </div> 
 
         <div className='principal'>
           <Link to='/'>

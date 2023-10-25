@@ -1,0 +1,32 @@
+.m-0 {
+  margin: 0 !important;
+}
+
+button {
+  border-radius: 20px; 
+  background-color: #FFF;
+  color: #00000099; 
+  transition: background-color 0.3s;
+}
+
+/* Estilo para el aside */
+.spotify-aside {
+  background-color: #252323; /* Fondo blanco */
+  padding: 10px;
+  color: #ffffff; /* Texto negro */
+  border-radius: 20px; /* Bordes redondeados */
+  
+  margin: 10px 0;
+}
+
+/* Estilo para la imagen */
+.spotify-aside img {
+  height: 100%;
+  width: 100%;
+}
+
+/* Estilo para los títulos y descripciones */
+.spotify-aside .list.header,
+.spotify-aside .list.description {
+  color: #ffffff; /* Texto negro */
+}
