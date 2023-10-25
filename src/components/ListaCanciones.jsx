@@ -9,16 +9,13 @@ const ListaCanciones = (props) => {
     const navigate = useNavigate();
     const { playCancion, play } = UsarPlayer();
     const [isLoNuevoSelected, setIsLoNuevoSelected] = useState(true);
-    
-    
-
 
     const onClick = (i) => () => {
         const song = canciones[i];
-        const description = `Disfruta de '${song.nombre}', interpretada por ${song.artista}.
+        const description = `Disfruta de '${song.songTitle}', interpretada por ${song.artist.artistName}.
         Una canción que te atrapará con su ritmo y letras.
-        ¡Reproduce y déjate llevar durante ${song.duracion} minutos de pura magia musical!`;
-        const url = `/cancion?title=${encodeURIComponent(song.nombre)}&artist=${encodeURIComponent(song.artista)}&duration=${encodeURIComponent(song.duracion)}&description=${encodeURIComponent(description)}&image=${encodeURIComponent(song.urlImagen)}`;
+        ¡Reproduce y déjate llevar durante ${song.songDuration} minutos de pura magia musical!`;
+        const url = `/cancion?title=${encodeURIComponent(song.songTitle)}&artist=${encodeURIComponent(song.artist.artistName)}&duration=${encodeURIComponent(song.songDuration)}&description=${encodeURIComponent(description)}&image=${encodeURIComponent(song.thumbnail.thumbnailUrl)}`;
         navigate(url);
     }
 
@@ -27,30 +24,25 @@ const ListaCanciones = (props) => {
     }
 
     return (
-        <div className='list_songs_container' >
+        <div className='list_songs_container'>
             <div className='list_songs__buttons'>
                 <Button
                     onClick={() => setIsLoNuevoSelected(true)}
-                    
-                    className={'botones ' + (isLoNuevoSelected && 'seleccionado') }
+                    className={'botones ' + (isLoNuevoSelected && 'seleccionado')}
                 >
                     Lo nuevo
                 </Button>
                 <Button
                     onClick={() => setIsLoNuevoSelected(false)}
-                   
-                    className= {'botones ' + (!isLoNuevoSelected && 'seleccionado') }
-                    
-
+                    className={'botones ' + (!isLoNuevoSelected && 'seleccionado')}
                 >
                     Ultimos Artistas
-                    
                 </Button>
             </div>
 
             <div className='tabla'>
-                {isLoNuevoSelected ? (
-                    <Table inverted className='lista-canciones' >
+                {canciones.length > 0 ? (
+                    <Table inverted className='lista-canciones'>
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>#</Table.HeaderCell>
@@ -59,7 +51,6 @@ const ListaCanciones = (props) => {
                                 <Table.HeaderCell>Título</Table.HeaderCell>
                                 <Table.HeaderCell>Artista</Table.HeaderCell>
                                 <Table.HeaderCell>Duración</Table.HeaderCell>
-                                
                             </Table.Row>
                         </Table.Header>
 
@@ -76,16 +67,16 @@ const ListaCanciones = (props) => {
                                         <Icon size='large' name='play circle outline' />
                                     </Table.Cell>
                                     <Table.Cell>
-                                        <img src={cancion.urlImagen} className='miniatura'></img>
+                                        <img src={cancion.thumbnail.thumbnailUrl} className='miniatura' alt={cancion.songTitle}></img>
                                     </Table.Cell>
                                     <Table.Cell>
-                                        {cancion.nombre}
+                                        {cancion.songTitle}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        {cancion.artista}
+                                        {cancion.artist.artistName}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        {cancion.duracion}
+                                        {cancion.songDuration}
                                     </Table.Cell>
                                 </Table.Row>
                             ))}
