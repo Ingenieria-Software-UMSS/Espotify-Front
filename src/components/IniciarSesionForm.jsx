@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Icon, Button } from 'semantic-ui-react'
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from "./IniciarSesionForm.data"
@@ -8,6 +8,8 @@ import "./IniciarSesionForm.css"
 import { request, setAuthToken } from '../api/axios_helper';
 
 const IniciarSesionForm = () => {
+
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -22,7 +24,9 @@ const IniciarSesionForm = () => {
         }).then((response) => {
           console.log(response);
           setAuthToken(response.data.token);
-          
+          // this.setState({componentToSHow: "messages"});
+          navigate('/principal');
+          console.log("holaaa")
 
         }).catch((error) => {
           console.log(error);

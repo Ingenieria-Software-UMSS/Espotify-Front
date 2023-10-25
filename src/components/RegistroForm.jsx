@@ -1,5 +1,5 @@
 import React from 'react';
-import { Await, Link } from 'react-router-dom';
+import { Await, Link, useNavigate } from 'react-router-dom';
 import { Form, Icon, Button } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from "./RegistroForm.data";
@@ -8,7 +8,7 @@ import { request, setAuthToken } from '../api/axios_helper';
 
 const RegistroForm = (props) => {
 
-
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
@@ -21,6 +21,9 @@ const RegistroForm = (props) => {
             password: formValue.password
           }).then((response) => {
             setAuthToken(response.data.token)
+
+            navigate('/principal');
+
           }).catch((error) => {
             console.log(error);
           })
