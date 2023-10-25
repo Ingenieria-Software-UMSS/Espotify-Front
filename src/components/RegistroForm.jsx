@@ -21,6 +21,7 @@ const RegistroForm = (props) => {
             password: formValue.password
           }).then((response) => {
             setAuthToken(response.data.token)
+            console.log("Usuario Creado Satisfactoriamente");
 
             navigate('/principal');
 

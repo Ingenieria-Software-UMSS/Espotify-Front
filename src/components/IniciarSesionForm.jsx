@@ -26,7 +26,6 @@ const IniciarSesionForm = () => {
           setAuthToken(response.data.token);
           // this.setState({componentToSHow: "messages"});
           navigate('/principal');
-          console.log("holaaa")
 
         }).catch((error) => {
           console.log(error);
