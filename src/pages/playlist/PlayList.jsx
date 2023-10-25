@@ -15,8 +15,8 @@ import PlayListForm from "../../components/PlayListForm";
 import { useParams } from "react-router-dom";
 
 const initialForm = {
-  playListName: "Mi Playlist",
-  playListDescription: "Description",
+  playListName: "Nuevo Playlist",
+  playListDescription: "Description del nuevo playlist",
   thumbnail: {
     thumbnailUrl: logo,
   } 
@@ -24,7 +24,7 @@ const initialForm = {
 
 export default function PlayList() {
   const [open, setOpen] = useState(false);
-  const [state, setState] = useState(initialForm);
+  const [state, setState] = useState({...initialForm});
   const [loading, setLoading] = useState(false);
   const params = useParams();
 
@@ -33,12 +33,15 @@ export default function PlayList() {
   };
 
   useEffect(() => {
-    initialRequest();
+    if(params.id === 'create') {
+      setState({...initialForm});
+    } else {
+      initialRequest();
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
   const initialRequest = async () => {
-    if(params.id === 'create') return; 
 
     setLoading(true);
 

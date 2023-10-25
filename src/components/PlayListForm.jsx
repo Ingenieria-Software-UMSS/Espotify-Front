@@ -61,7 +61,6 @@ export default function PlayListForm({setOpen, state, setState}) {
       if(currentImage) {
         const image = await uploadImage();
 
-        console.log(image);
         thumbnailId = image.thumbnailId;
       } else {
         thumbnailId = form?.thumbnail?.thumbnailId;
