@@ -1,0 +1,82 @@
+@import '../App.css';
+
+.registro-form{
+    margin-top: 50px;
+}
+
+.registro-form h1{
+    color: var(--blanco);
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+
+.ui.form .field .ui.input input{
+    background-color: var(--background-secundario);
+    border-color: var(--background-secundario);
+    color: var(--blanco);
+
+    /**/
+    font-size: 16px;
+}
+
+
+.ui.icon.input>i.icon{
+    color: var(--blanco);
+}
+
+/*  */
+.ui.form .field .ui.input{
+    margin-bottom: 5px;
+}
+
+
+.ui.icon.input>i.icon{
+    font-size: 19px;
+}
+
+.ui.form .field.error .ui.input input{
+    background-color: var(--background-secundario);
+    border: 1px solid textDanger;
+} 
+.ui.form .field.error .ui.input input:focus{
+    background-color: var(--background-secundario);
+}
+
+.ui.form .field .button{
+    text-transform: uppercase;
+    margin-top: 10px;
+    border-radius: 50px;
+    padding: 17px 0;
+    font-size: 14px;
+    letter-spacing: 3px;
+    background-color: var(--verde) !important;
+}
+
+.registro-form-options{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+
+.registro-form-options p .ui.button{
+    text-transform: uppercase;
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--blanco);
+    padding: 0px 5px;
+    margin-bottom: 20px;
+}
+
+.registro-form-options .tengo-cuenta{
+    color: gray;
+}
+.registro-form-options .tengo-cuenta .ui.button{
+    text-decoration: underline;
+}
+
+    

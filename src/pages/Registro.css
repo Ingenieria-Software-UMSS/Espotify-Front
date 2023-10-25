@@ -1,0 +1,23 @@
+@import '../App.css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+
+.contenedor{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor .contenedor-formulario-registro{
+    width: 500px;
+    border-radius: 18px;
+    background-color: var(--background-primario);
+    padding: 30px 70px;
+}
+
+.contenedor .contenedor-formulario-registro .logo{
+    width: 100px;
+    margin: 0 auto;
+}
