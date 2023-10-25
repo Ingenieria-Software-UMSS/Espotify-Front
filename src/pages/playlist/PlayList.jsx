@@ -38,12 +38,13 @@ export default function PlayList() {
   }, [params.id]);
 
   const initialRequest = async () => {
+    if(params.id === 'create') return; 
+
     setLoading(true);
 
     try {
       const options = getOptions();
       const uri = '/play-list/' + params.id;
-
       const paylist = await request(uri, options);
 
       setState({

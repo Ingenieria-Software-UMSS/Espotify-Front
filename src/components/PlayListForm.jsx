@@ -12,6 +12,7 @@ import {
 } from "semantic-ui-react";
 
 import request, { postOptions, postOptionsFormData, putOptions } from "../utils/request";
+import { useNavigate } from "react-router-dom";
 
 const initialForm = {
   playListName: "",
@@ -23,6 +24,7 @@ export default function PlayListForm({setOpen, state, setState}) {
   const [form, setForm] = useState({...initialForm, ...state});
   const [imageUri, setImageUri] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     currentImage = null;
@@ -57,7 +59,6 @@ export default function PlayListForm({setOpen, state, setState}) {
       let thumbnailId;
 
       if(currentImage) {
-        console.log(currentImage);
         const image = await uploadImage();
 
         console.log(image);
@@ -84,13 +85,14 @@ export default function PlayListForm({setOpen, state, setState}) {
 
         options = putOptions(body);
       }
-      console.log(body);
 
       const paylist = await request(uri, options);
 
       paylist.thumbnail.thumbnailUrl = imageUri ?? form.thumbnail.thumbnailUrl; 
 
       setState({...paylist});
+
+      navigate('/playlist/' + paylist.playListId);
     } catch (error) {
       console.log(error);
     }
