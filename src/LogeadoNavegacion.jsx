@@ -7,6 +7,7 @@ import LandingPageLayout from './layouts/LandingPageLayout'
 import Registro from './pages/Registro';
 import Login from './pages/Login';
 import HomeLogeado from './pages/HomeLogeado';
+import PlayList from './pages/playlist/PlayList';
 const LogeadoNavegacion = () => {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ const LogeadoNavegacion = () => {
           <Route path='/registro' element={<Registro/>} />
           <Route path='/home' element={<LogeadoLayout><Home /></LogeadoLayout>} />
           <Route path='/principal' element={<HomeLogeado />} />
+          <Route path='/playlist/:id' element={<LogeadoLayout><PlayList /></LogeadoLayout>} />
           <Route path="cancion" element={<LogeadoLayout><Informacion /></LogeadoLayout>} />
         </Routes>
   

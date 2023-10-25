@@ -12,7 +12,8 @@ const Player = (props) => {
   const [showCurrentSeconds, setShowCurrentSeconds] = useState(0);
   const [totalCancionDB, setTotalCancionDB] = useState('00:00');
   const [bloqueo, SetBloqueo] = useState(true);
-
+  //console.log(cancion);
+  
   useEffect(() => {
     setShowCurrentSeconds(formatear(currentSeconds));
     setShowTotalSeconds(formatear(totalSeconds));
@@ -25,13 +26,13 @@ const Player = (props) => {
     desbloquearBotonPlay();
   };
 
-  const obtainTotalCancion = () => {
-    setTotalCancionDB(cancion.duracion);
-  };
-
   const desbloquearBotonPlay = () => {
     SetBloqueo(false);
   };
+
+  const obtainTotalCancion= ()=>{
+    setTotalCancionDB(cancion.duracion);
+  }
 
   const formatear = (tiempo) => {
     const minutos = Math.floor(tiempo / 60) < 10 ? `0${Math.floor(tiempo / 60)}` : Math.floor(tiempo / 60);
