@@ -12,9 +12,9 @@ const LogeadoLayout = (props) => {
     <div className='logged-layout'>
 
       <div className='contenido'>
-        {/* <div className='menu-izquierdo'>
+        <div className='menu-izquierdo'>
           <p>Menu</p> 
-        </div> */}
+        </div>
 
         <div className='principal'>
           <Link to='/'>
