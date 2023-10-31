@@ -12,6 +12,7 @@ const RegistroForm = (props) => {
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
+    validateOnChange: false,
     onSubmit: (formValue) => {
       request('POST',
           '/register',

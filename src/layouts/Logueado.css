@@ -60,3 +60,7 @@
 
     z-index: 1;
 }
+
+.barra-superior .ui.primary.button, .ui.primary.buttons .button{
+    background-color: var(--morado);
+}
