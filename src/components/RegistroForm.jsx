@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Await, Link, useNavigate } from 'react-router-dom';
 import { Form, Icon, Button } from 'semantic-ui-react';
 import { useFormik } from 'formik';
@@ -7,6 +7,12 @@ import "./RegistroForm.css";
 import { request, setAuthToken } from '../api/axios_helper';
 
 const RegistroForm = (props) => {
+
+  const [mostrarPassword, setMostrarPassword] =  useState(false);
+
+  const mostrarOcultarPass = () =>{
+    setMostrarPassword(prevState => !prevState);
+  }
 
   const navigate = useNavigate();
   const formik = useFormik({
@@ -22,12 +28,13 @@ const RegistroForm = (props) => {
             password: formValue.password
           }).then((response) => {
             setAuthToken(response.data.token)
-            console.log("Usuario Creado Satisfactoriamente");
+            alert("Usuario Creado Satisfactoriamente");
 
             navigate('/principal');
 
           }).catch((error) => {
             console.log(error);
+            alert("No se pudo crear el usuario");
           })
     }
   });
@@ -55,13 +62,13 @@ const RegistroForm = (props) => {
         />
         <Form.Input
           name="password"
-          type='password'
+          type={mostrarPassword ? "text" : "password"}
           placeholder="Contraseña"
           icon={
             <Icon
-              name='eye'
+              name={mostrarPassword ? "eye slash": "eye"}
               link
-              onClick={() => console.log("Show Password")}
+              onClick={mostrarOcultarPass}
 
             />
           }
@@ -79,7 +86,7 @@ const RegistroForm = (props) => {
           error={formik.errors.username}
         />
 
-        <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='boton-crear-cuenta'>
+        <Form.Button type='submit' primary fluid /*loading={formik.isSubmitting}*/ className='boton-crear-cuenta'>
           Crear Cuenta
         </Form.Button>
       </Form>
