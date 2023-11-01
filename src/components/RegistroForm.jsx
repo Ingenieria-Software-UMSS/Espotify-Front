@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Await, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Icon, Button } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from "./RegistroForm.data";
@@ -26,14 +26,15 @@ const RegistroForm = (props) => {
             userName: formValue.username,
             email: formValue.email,
             password: formValue.password
+
           }).then((response) => {
             setAuthToken(response.data.token)
             alert("Usuario Creado Satisfactoriamente");
 
-            navigate('/principal');
+            navigate('/home');
 
           }).catch((error) => {
-            console.log(error);
+            console.log(error.response.data);
             alert("No se pudo crear el usuario");
           })
     }

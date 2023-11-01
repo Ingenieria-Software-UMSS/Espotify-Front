@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Icon, Button } from 'semantic-ui-react'
 import { useFormik } from 'formik';
@@ -8,17 +8,28 @@ import "./IniciarSesionForm.css"
 import { request, setAuthToken } from '../api/axios_helper';
 import Error from './Error';
 
+
+
 const IniciarSesionForm = () => {
 
   const [error, setError] = useState(false);
-
   const navigate = useNavigate();
+  const [usuario,setUsuario]= useState([]);
 
   const [mostrarPassword, setMostrarPassword] = useState(false);
 
   const mostrarOcultarPass = () => {
     setMostrarPassword(prevState => !prevState);
   }
+
+  useEffect(() => {
+
+    if (window.localStorage.getItem('auth_token') != 'null') {
+      navigate('/home');
+      return;
+    }
+
+  }, []);
 
 
 
@@ -34,26 +45,28 @@ const IniciarSesionForm = () => {
           email: formValue.email,
           password: formValue.password
         }).then((response) => {
-          console.log(response);
+
+
           setAuthToken(response.data.token);
+          
+
+          // console.log(JSON.stringify(response.data));
+
           // this.setState({componentToSHow: "messages"});
-          navigate('/principal');
+          navigate('/home');
 
         }).catch((error) => {
           setError(true);
           console.log(error);
 
         });
-
-      //setError(false);
-
     }
   });
 
 
   let usuarioError;
   if (error) {
-    usuarioError = <Error mensaje='!Usuario Incorrecto¡' />
+    usuarioError = <Error mensaje='Usuario Incorrecto' />
   }
 
 
@@ -97,7 +110,7 @@ const IniciarSesionForm = () => {
         </dir>
 
         <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='boton-iniciar-sesion'>
-          INICIAR SESIÓNn
+          INICIAR SESIÓN
         </Form.Button>
       </Form>
 
