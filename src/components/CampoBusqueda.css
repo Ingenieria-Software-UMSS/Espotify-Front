@@ -1,0 +1,7 @@
+.ui.search .prompt,
+.ui.focus.search .prompt{
+    background-color: #3f3f3f;
+    color: white;
+    width: 45vh;
+    display: flex;
+}
