@@ -1,0 +1,17 @@
+#contenedor-resultados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; /* Ajusta la altura según tus necesidades */
+    background-color: #222; /* Color de fondo opcional */
+}
+
+.message {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 45vh;
+}

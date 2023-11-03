@@ -10,6 +10,7 @@ import iconoCancion from '../images/iconoCancion.png';
 const Informacion = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
+    const id = queryParams.get('id') || 'Unknown ID';
     const title = queryParams.get('title') || 'Unknown Title';
     const artist = queryParams.get('artist') || 'Unknown Artist';
     const duration = queryParams.get('duration') || 'Unknown Duration';
@@ -29,7 +30,7 @@ const Informacion = () => {
                         <img src={imageUrl || iconoCancion} alt='Portada de la canción' className='imagen-cancion' />
                     </div>
                     <div className='boton-anadirlista'>
-                        <DropdownListaReproduccion />
+                        <DropdownListaReproduccion songId={id} />
                     </div>
                 </div>
                 <div className='detalles-cancion'>
@@ -42,14 +43,20 @@ const Informacion = () => {
         </div>
     );
 }
-const DropdownListaReproduccion = () => {
+const DropdownListaReproduccion = (props) => {
     const [modalAgregadoOpen, setModalAgregadoOpen] = React.useState(false);
-    // const listas = fetch("https://espotify.azurewebsites.net/play-list")
-    //     .then((res) => res.json())
-    //     .then((json) => {
-    //         console.log(json[0].playListName);
-    //         return json
-    //     })
+    const [modalRepetidoOpen, setModalRepetidoOpen] = React.useState(false);
+    const [nombreLista, setNombreLista] = React.useState("");
+    const [listas, setListas] = React.useState([]);
+
+    React.useEffect(() => {
+        fetch("https://espotify.azurewebsites.net/play-list")
+        // fetch("http://localhost:8080/play-list")
+            .then((res) => res.json())
+            .then((json) => {
+                setListas(json);
+            });
+    }, [setListas]);
 
     const [listasExistentes, setListasExistentes] = React.useState([
         {
@@ -67,22 +74,87 @@ const DropdownListaReproduccion = () => {
     ]);
     const hayListas = listasExistentes.length > 0;
     const navigate = useNavigate();
+    const [idLista, setIdLista] = React.useState(null);
+
+    const anadirPlayList = (playListId) => {
+        // return fetch("http://localhost:8080/play-list-song", {
+            return fetch("https://espotify.azurewebsites.net/play-list-song", {
+
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                playList: {
+                    playListId: parseInt(playListId)
+                },
+                song: {
+                    songId: parseInt(props.songId)
+                }
+            }),
+        })
+    };
 
     return (
         <>
             {
                 hayListas && (
-                    <Dropdown simple icon='plus'>
+                    // y esta logeado
+                    <Dropdown icon='plus large'>
                         <Dropdown.Menu className='dropdownmenu'>
                             <Dropdown.Header content='Listas exitentes' />
                             <Dropdown.Divider />
                             {
-                                listasExistentes.map((listaExistente) => {
+                                // listasExistentes.map((listaExistente) => {
+                                listas.map((listaExistente) => {
                                     return (
-                                        <Dropdown.Item key={listaExistente.id} text={listaExistente.nombre} onClick={() => {
-                                            console.log('Guardando Lista', listaExistente);
-                                            setModalAgregadoOpen(true);
-                                        }} />
+
+                                        <Dropdown.Item
+                                            key={listaExistente.playListId}
+                                            text={listaExistente.playListName}
+                                            onClick={() => {
+                                                console.log("listas existentes", listaExistente);
+                                                console.log("listas", listas);
+                                                
+                                                // comprobar si ya existe en la playlist
+                                                const playListSongList = listaExistente.playListSongList;
+                                                let ocurrencias = 0;
+                                                for (let i = 0; i < playListSongList.length; i++) {
+
+                                                    if (playListSongList[i].song.songId === parseInt(props.songId)) {
+                                                        ocurrencias++;
+                                                    }
+                                                }
+                                                if (ocurrencias === 0) {
+                                                    //añade
+
+                                                    anadirPlayList(listaExistente.playListId).then((res) => {
+                                                        if (res.ok) {
+                                                            setModalAgregadoOpen(true);
+                                                            setIdLista(listaExistente.playListId);
+                                                        } else {
+                                                            console.log(idLista, "else");
+                                                        }
+                                                    })
+
+
+                                                }
+                                                if (ocurrencias === 1) {
+                                                    //modal
+                                                    setModalRepetidoOpen(true);
+                                                    setIdLista(listaExistente.playListId);
+                                                    setNombreLista(listaExistente.playListName);
+
+                                                }
+
+                                                if (ocurrencias >= 2) {
+                                                    alert("elemento  existente")
+                                                }
+
+                                            }}
+                                        />
                                     )
                                 })
                             }
@@ -90,29 +162,53 @@ const DropdownListaReproduccion = () => {
                     </Dropdown>)
             }
             <ModalAgregadoExito
-                open={modalAgregadoOpen} onClose={() => {
+                open={modalAgregadoOpen} 
+                onClose={() => {
                     setModalAgregadoOpen(false);
-                    const url = "/playlist";
+                }}
+                onAccept={() => {
+
+                    setModalAgregadoOpen(false);
+                    const url = `/playlist/${idLista}`;
                     navigate(url);
                 }}>
             </ModalAgregadoExito>
+
+            <ModalAgregadoRepetido
+                open={modalRepetidoOpen}
+                nombreLista={nombreLista}
+                onClose={() => {
+                    setModalRepetidoOpen(false);
+                }}
+                onAgregarDTM ={() => {
+                    anadirPlayList(idLista).then((res) => {
+                        if (res.ok) {
+                            setModalAgregadoOpen(true);
+                            } else {
+                            console.log(idLista, "else");
+                        }
+                    })
+                }}
+            />
         </>
     );
 }
 
 const ModalAgregadoExito = (props) => {
-    const [modalAgregadoOpen, setModalAgregadoOpen] = React.useState(false);
+    // const [modalAgregadoOpen, setModalAgregadoOpen] = React.useState(false);
 
     return (
         <>
             <Modal
                 open={props.open}
+                onClose={props.onClose}
+                size='tiny'
             >
                 <Modal.Content className='modalExito_contenido'>
                     <div className='mensaje'>
                         <h1>Elemento agregado exitosamente.</h1>
                     </div>
-                    <Button onClick={props.onClose} className='modal_botonAceptar' color='black'>
+                    <Button onClick={props.onAccept} className='modal_botonAceptar' color='black'>
                         Aceptar
                     </Button>
                 </Modal.Content>
@@ -127,36 +223,18 @@ const ModalAgregadoRepetido = (props) => {
         <>
             <Modal
                 open={props.open}
+                onClose={props.onClose}
             >
                 <Modal.Content className='modalRepetido_contenido'>
                     <div className='mensaje'>
-                        <h1>El elemento ya agregado en la play "nombre de lista".</h1>
+                        <h1>El elemento ya está agregado en la playlist "{props.nombreLista}".</h1>
                     </div>
-                    <Button onClick={props.onClose} className='modal_botonAgregarDTM' color='gray' >
+                    <Button onClick={props.onAgregarDTM} className='modal_botonAgregarDTM' color='gray' >
                         Agregar de todos modos
                     </Button>
                     <Button onClick={props.onClose} className='modal_botonNoAgregar' color='black'>
                         No agregar
                     </Button>
-                </Modal.Content>
-            </Modal>
-        </>
-    )
-}
-
-const ModalEliminar = (props) => {
-    return (
-        <>
-            <Modal
-                open={props.open}
-            >
-                <Modal.Content className='modalEliminar_contenedor'>
-                    <div className='mensaje'>
-                        <h1>¿Estas seguro que deseas eliminar?</h1>
-                    </div>
-                    <Button onClick={props.onClose} className='modal_botonAceptar' color='red'>Aceptar</Button>
-                    <Button onClick={props.onClose} className='modal_botonCancelar' color='black'>Cancelar</Button>
-
                 </Modal.Content>
             </Modal>
         </>

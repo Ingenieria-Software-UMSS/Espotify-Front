@@ -10,12 +10,10 @@ import UsuarioLogueado from '../components/UsuarioLogueado';
 import UsuarioNoLogueado from '../components/UsuarioNoLogueado';
 import { Axios } from 'axios';
 import { set } from 'lodash';
-
-// 
-
-
-
+import CampoBusqueda from '../components/CampoBusqueda';
 const LogeadoLayout = (props) => {
+  const [busquedaResults, setBusquedaResults] = React.useState([]);
+  const searchRef = React.useRef(null);
 
   const [logueado, setLogueado] = useState(false);
   // const [cargandoUsuario, setCargandoUsuario] = useState(true);
@@ -57,17 +55,22 @@ const LogeadoLayout = (props) => {
     <div className='logged-layout'>
 
       <div className='contenido'>
-        <div className='menu-izquierdo'>
-          <Aside>
-          </Aside>
+         <div className='menu-izquierdo'>
+            <Aside onSearchFocus={() => searchRef.current.focus()}>
+            </Aside>
 
         </div>
 
         <div className='principal'>
 
           <div className='barra-superior'>
+            <CampoBusqueda
+              id='campo-busqueda'
+              ref={searchRef}
+              busquedaResults={busquedaResults}
+              setBusquedaResults={setBusquedaResults}
+            />
             {botonesUsuario}
-
           </div>
 
           <div> {children}</div>
