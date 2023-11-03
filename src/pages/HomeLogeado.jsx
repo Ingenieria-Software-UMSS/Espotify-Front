@@ -8,7 +8,7 @@ const HomeLogeado = () => {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    if(window.localStorage.getItem('auth_token')===null || window.localStorage.getItem('auth_token')==="null"){
+    if(window.localStorage.getItem('auth_token')===null){
 
       console.log("dentro el if")
       navigate('/login');
@@ -25,6 +25,7 @@ const HomeLogeado = () => {
       <Button onClick={()=>{
         // localStorage.removeItem('token')
         window.localStorage.setItem('auth_token',null);
+        navigate('/login');
       }}>Cerrar Sesión</Button>
     </div>
   )

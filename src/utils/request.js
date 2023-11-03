@@ -2,7 +2,10 @@
 // import {ReduxStore} from '../redux-config/reducer-store';
 // import {logout} from '@redux/actions/auth';
 
-const BACK_URL = 'https://espotify.azurewebsites.net';
+const BACK_URL = 'https://espotifys.azurewebsites.net';
+// const BACK_URL = 'http://localhost:8080';
+
+
 
 export default async function request(url, opt) {
   if (!url.match(/^https?:\/\/([a-z]\.?)+/)) {

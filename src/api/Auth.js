@@ -1,15 +1,15 @@
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+// import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 
 
-export class Auth {
+// export class Auth {
 
-    async register ( email, password){
+//     async register ( email, password){
 
-        try {
-            const auth = getAuth();
-            await createUserWithEmailAndPassword(auth, email, password);
-        } catch (error) {
-            throw error;
-        }
-    }
-}
+//         try {
+//             const auth = getAuth();
+//             await createUserWithEmailAndPassword(auth, email, password);
+//         } catch (error) {
+//             throw error;
+//         }
+//     }
+// }
