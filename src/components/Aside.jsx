@@ -3,6 +3,7 @@ import { Button, Header, List, Menu, Popup } from 'semantic-ui-react';
 import './Aside.css';
 import request, { getOptions } from '../utils/request';
 import { Link } from 'react-router-dom';
+import logo from '../assets/bg.png';
 
 function App() {
   const activeItem = 'home';
@@ -26,6 +27,13 @@ function App() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  const handleClieck = () => {
+    setList([
+      {playListName: 'Nuevo Playlist', playListDescription: 'Description del nuevo playlist', thumbnail: {thumbnailUrl: logo}},
+      ...list
+    ]);
   }
 
   return (
@@ -58,7 +66,7 @@ function App() {
             <Header inverted as="h3" className='m-0'>Tu Biblioteca</Header>
             <Popup content='crear nueva lista' trigger={
               <Link to={'/playlist/create'} style={{color: '#fff'}}>
-                <Button circular size='small' inverted icon='add'/>
+                <Button onClick={handleClieck} circular size='small' inverted icon='add'/>
               </Link>
             } />
           </div>
@@ -87,4 +95,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;
