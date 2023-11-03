@@ -28,7 +28,7 @@ function App() {
       console.log(error);
     }
   }
-
+  /*orden de crear de lista*/
   const handleClieck = () => {
     setList([
       {playListName: 'Nuevo Playlist', playListDescription: 'Description del nuevo playlist', thumbnail: {thumbnailUrl: logo}},
@@ -46,6 +46,7 @@ function App() {
             onClick={handleItemClick}
             icon="home"
           />
+          
           <Menu.Item
             name='Buscar'
             icon="search"
