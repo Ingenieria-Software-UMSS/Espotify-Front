@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Button,
+  Confirm,
   Dimmer,
   Dropdown,
   Header,
@@ -26,6 +27,7 @@ export default function PlayList() {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState({...initialForm});
   const [loading, setLoading] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const params = useParams();
 
   const handleOpen = () => {
@@ -62,6 +64,10 @@ export default function PlayList() {
 
     setLoading(false);
   };
+
+  const handleConfirm = () => {
+
+  }
 
   return (
     <>
@@ -104,12 +110,23 @@ export default function PlayList() {
             >
               <Dropdown.Menu>
                 <Dropdown.Item onClick={handleOpen} text="Editar" />
-                <Dropdown.Item text="Eliminar" />
+                <Dropdown.Item onClick={setShowDelete.bind(null, true)} text="Eliminar" />
+                <Dropdown.Item onClick={() => {}} text="Añadir" />
               </Dropdown.Menu>
             </Dropdown>
           </div>
         </div>
         <div className="list_songs"></div>
+        <Confirm
+          open={showDelete}
+          cancelButton='Cancelar'
+          confirmButton="Aceptar"
+          size="mini"
+          
+          content='Estas seguro de eliminar la list?'
+          onCancel={setShowDelete.bind(null, false)}
+          onConfirm={handleConfirm}
+        />
       </div>
       {open && <PlayListForm {...{setOpen, setState, state}} />}
     </>
