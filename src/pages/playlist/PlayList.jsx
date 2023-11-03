@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import "./playlist.css";
 
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/bg.png";
 import request, { getOptions } from "../../utils/request";
 import PlayListForm from "../../components/PlayListForm";
 import { useParams } from "react-router-dom";
