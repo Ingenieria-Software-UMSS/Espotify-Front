@@ -18,7 +18,7 @@ const ListaCanciones = (props) => {
         const description = `Disfruta de '${song.nombre}', interpretada por ${song.artista}.
         Una canción que te atrapará con su ritmo y letras.
         ¡Reproduce y déjate llevar durante ${song.duracion} minutos de pura magia musical!`;
-        const url = `/cancion?title=${encodeURIComponent(song.nombre)}&artist=${encodeURIComponent(song.artista)}&duration=${encodeURIComponent(song.duracion)}&description=${encodeURIComponent(description)}&image=${encodeURIComponent(song.urlImagen)}`;
+        const url = `/cancion?id=${encodeURIComponent(song.id)}&title=${encodeURIComponent(song.nombre)}&artist=${encodeURIComponent(song.artista)}&duration=${encodeURIComponent(song.duracion)}&description=${encodeURIComponent(description)}&image=${encodeURIComponent(song.urlImagen)}`;
         navigate(url);
     }
 

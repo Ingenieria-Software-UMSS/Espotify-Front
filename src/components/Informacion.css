@@ -48,7 +48,7 @@
     margin-top: auto;
     margin-bottom: auto;
 } */
-.ui.simple.dropdown .menu.dropdownmenu {
+.ui.dropdown .menu.dropdownmenu {
     background-color: #3f3f3f;
 }
 
@@ -68,6 +68,7 @@
     display: block;
     margin-top: 2rem;
     margin-left: auto;
+    margin: 0% 0% 0% 40%;
 }
 
 .ui.dropdown .menu.dropdownmenu>.item:hover {
