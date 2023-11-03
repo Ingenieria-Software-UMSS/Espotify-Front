@@ -148,3 +148,8 @@ button.ui.button.custom_icon_button {
   margin-top: 2rem;
   margin-left: auto;
 }
+
+.ui.modal>.content {
+  background-color: var(--background-secundario) !important;
+  color: #fff;
+}
