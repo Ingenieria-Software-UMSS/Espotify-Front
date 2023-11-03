@@ -153,3 +153,43 @@ button.ui.button.custom_icon_button {
   background-color: var(--background-secundario) !important;
   color: #fff;
 }
+
+.tabla.tabla-playlist {
+  width: 100%;
+}
+
+.botones_contenedor {
+  display: flex;
+  align-items: center;
+  /* position: relative; */
+  padding-right: 35%;
+
+}
+
+.ui.modal>.content.modalEliminar_contenedor {
+  background: #3f3f3f;
+  padding-left: 2rem;
+
+  color: var(--blanco);
+}
+
+.boton-contenedor {
+  align-content: center;
+  background: var(--contenedor-color);
+  margin-bottom: auto;
+}
+
+.playlist-titulo {
+  display: flex;
+}
+
+.playlist-titulo-botones {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 50px;
+  gap: 15px;
+}
+
+.cantidadCanciones {
+  margin-bottom: 10px;
+}
