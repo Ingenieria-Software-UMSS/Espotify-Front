@@ -26,8 +26,9 @@ function ResultadoBusqueda(){
             const res = [];
             if(params.get('tipo') === 'cancion'){
                 const id = params.get('id');
-                const url = `http://localhost:8080/song/${id}`; //Version pruebas
-                // const url = `https://espotify.azurewebsites.net/song/${id}`;//Version deploy
+                // const url = `http://localhost:8080/song/${id}`; //Version pruebas
+                // const url = `http://192.168.0.104:8080/song/${id}`;
+                const url = `https://espotify.azurewebsites.net/song/${id}`;//Version deploy
                 fetch(url)
                 .then((res) => res.json())
                 .then((data) => {
@@ -35,7 +36,10 @@ function ResultadoBusqueda(){
                         urlImagen: data.thumbnail.thumbnailUrl,
                         nombre: data.songTitle, 
                         artista: data.artist.artistName, 
-                        duracion: data.songDuration 
+                        duracion: data.songDuration ,
+                        id: data.songId,
+                        urlCancion: data.songUrl,
+                        album: data.songAlbum 
                     });
                     setInicio(false);
                     setListaVacia(false);
@@ -44,8 +48,9 @@ function ResultadoBusqueda(){
                 .catch((err) => console.error(err));
             }else if(params.get('tipo') === 'artista'){
                 const id = params.get('id');
-                const url = `http://localhost:8080/artist/${id}`; //Version pruebas
-                // const url = `https://espotify.azurewebsites.net/artist/${id}`;//Version deploy
+                // const url = `http://localhost:8080/artist/${id}`; //Version pruebas
+                // const url = `http://192.168.0.104:8080/artist/${id}`; //Version pruebas
+                const url = `https://espotify.azurewebsites.net/artist/${id}`;//Version deploy
                 fetch(url)
                 .then((res) => res.json())
                 .then((data) => {
@@ -55,7 +60,10 @@ function ResultadoBusqueda(){
                             urlImagen: data.songList[i].thumbnail.thumbnailUrl,
                             nombre: data.songList[i].songTitle, 
                             artista: data.artistName, 
-                            duracion: data.songList[i].songDuration 
+                            duracion: data.songList[i].songDuration ,
+                            id: data.songList[i].songId,
+                            urlCancion: data.songList[i].songUrl,
+                            album: data.songList[i].songAlbum 
                         });
                     }
                     setInicio(false);

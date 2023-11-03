@@ -17,6 +17,7 @@ const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaRes
 
     React.useEffect(() => {
         fetch('https://espotify.azurewebsites.net/artist') //Version deploy
+        // fetch('http://192.168.0.104:8080/artist')
         // fetch('http://localhost:8080/artist') //Version de prueba
         .then((res) => res.json())
         .then((dataArtistas) => {
@@ -25,6 +26,7 @@ const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaRes
         .catch((err) => console.error(err));
 
         fetch('https://espotify.azurewebsites.net/song') //Version deploy
+        // fetch('http://192.168.0.104:8080/song')
         // fetch('http://localhost:8080/song') //Version de prueba
         .then((res) => res.json())
         .then((dataCanciones) => {
