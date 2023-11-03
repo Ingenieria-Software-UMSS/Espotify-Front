@@ -1,23 +1,18 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {Cancion} from "../api/Cancion";
 import "./Home.css";
 import ListaCanciones from '../components/ListaCanciones';
-import CampoBusqueda from '../components/CampoBusqueda';
-import { Button } from 'semantic-ui-react';
 
 const cancionController = new Cancion();
 
 export default function Home () {
-    const [canciones, setCanciones] = useState([]);
-    const [busquedaResults, setBusquedaResults] = useState([]);
-    const [busquedaCanciones, setBusquedaCanciones] = useState([]);
+  const [canciones, setCanciones] = React.useState([]);
 
     useEffect(() =>{
       (async () => {
         try {
           const response = await cancionController.obtenerTodas();
           setCanciones(response);
-          setBusquedaCanciones(response);
           console.log(response);
         } catch (error) {
           console.error(error);
@@ -28,17 +23,12 @@ export default function Home () {
     return (
       <Fragment>
         <div>
-          <CampoBusqueda
-            busquedaResults={busquedaResults}
-            setBusquedaResults={setBusquedaResults}
-            setBusquedaCanciones={setBusquedaCanciones}
-            canciones={canciones}
-          />
+          
         </div>
         <div className='canciones'>
 
           <h1>Lista de canciones</h1>
-          <ListaCanciones canciones={busquedaCanciones}/>
+          <ListaCanciones canciones={canciones}/>
         </div>
       </Fragment>
     )

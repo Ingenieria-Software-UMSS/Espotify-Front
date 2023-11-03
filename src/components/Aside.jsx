@@ -4,7 +4,7 @@ import './Aside.css';
 import request, { getOptions } from '../utils/request';
 import { Link } from 'react-router-dom';
 
-function App() {
+function Aside(props) {
   const activeItem = 'home';
   const [list, setList] = useState([]);
 
@@ -42,7 +42,7 @@ function App() {
             name='Buscar'
             icon="search"
             active={activeItem === 'messages'}
-            onClick={handleItemClick}
+            onClick={props.onSearchFocus}
           />
           <Menu.Item
             name='Lista de Canciones'
@@ -87,4 +87,4 @@ function App() {
   );
 }
 
-export default App;
+export default Aside;

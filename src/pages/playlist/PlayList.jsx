@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Button,
+  Confirm,
   Dimmer,
   Dropdown,
   Header,
@@ -9,14 +10,14 @@ import {
 } from "semantic-ui-react";
 import "./playlist.css";
 
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/bg.png";
 import request, { getOptions } from "../../utils/request";
 import PlayListForm from "../../components/PlayListForm";
 import { useParams } from "react-router-dom";
 
 const initialForm = {
-  playListName: "Mi Playlist",
-  playListDescription: "Description",
+  playListName: "Nuevo Playlist",
+  playListDescription: "Description del nuevo playlist",
   thumbnail: {
     thumbnailUrl: logo,
   } 
@@ -24,8 +25,9 @@ const initialForm = {
 
 export default function PlayList() {
   const [open, setOpen] = useState(false);
-  const [state, setState] = useState(initialForm);
+  const [state, setState] = useState({...initialForm});
   const [loading, setLoading] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const params = useParams();
 
   const handleOpen = () => {
@@ -33,12 +35,15 @@ export default function PlayList() {
   };
 
   useEffect(() => {
-    initialRequest();
+    if(params.id === 'create') {
+      setState({...initialForm});
+    } else {
+      initialRequest();
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
   const initialRequest = async () => {
-    if(params.id === 'create') return; 
 
     setLoading(true);
 
@@ -59,6 +64,10 @@ export default function PlayList() {
 
     setLoading(false);
   };
+
+  const handleConfirm = () => {
+
+  }
 
   return (
     <>
@@ -101,12 +110,23 @@ export default function PlayList() {
             >
               <Dropdown.Menu>
                 <Dropdown.Item onClick={handleOpen} text="Editar" />
-                <Dropdown.Item text="Eliminar" />
+                <Dropdown.Item onClick={setShowDelete.bind(null, true)} text="Eliminar" />
+                <Dropdown.Item onClick={() => {}} text="Añadir" />
               </Dropdown.Menu>
             </Dropdown>
           </div>
         </div>
         <div className="list_songs"></div>
+        <Confirm
+          open={showDelete}
+          cancelButton='Cancelar'
+          confirmButton="Aceptar"
+          size="mini"
+          
+          content='Estas seguro de eliminar la list?'
+          onCancel={setShowDelete.bind(null, false)}
+          onConfirm={handleConfirm}
+        />
       </div>
       {open && <PlayListForm {...{setOpen, setState, state}} />}
     </>

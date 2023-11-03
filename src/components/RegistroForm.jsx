@@ -1,5 +1,5 @@
-import React from 'react';
-import { Await, Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Icon, Button } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from "./RegistroForm.data";
@@ -8,10 +8,17 @@ import { request, setAuthToken } from '../api/axios_helper';
 
 const RegistroForm = (props) => {
 
+  const [mostrarPassword, setMostrarPassword] =  useState(false);
+
+  const mostrarOcultarPass = () =>{
+    setMostrarPassword(prevState => !prevState);
+  }
+
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
+    validateOnChange: false,
     onSubmit: (formValue) => {
       request('POST',
           '/register',
@@ -19,14 +26,16 @@ const RegistroForm = (props) => {
             userName: formValue.username,
             email: formValue.email,
             password: formValue.password
+
           }).then((response) => {
             setAuthToken(response.data.token)
-            console.log("Usuario Creado Satisfactoriamente");
+            alert("Usuario Creado Satisfactoriamente");
 
-            navigate('/principal');
+            navigate('/home');
 
           }).catch((error) => {
-            console.log(error);
+            console.log(error.response.data);
+            alert("No se pudo crear el usuario");
           })
     }
   });
@@ -54,13 +63,13 @@ const RegistroForm = (props) => {
         />
         <Form.Input
           name="password"
-          type='password'
+          type={mostrarPassword ? "text" : "password"}
           placeholder="Contraseña"
           icon={
             <Icon
-              name='eye'
+              name={mostrarPassword ? "eye slash": "eye"}
               link
-              onClick={() => console.log("Show Password")}
+              onClick={mostrarOcultarPass}
 
             />
           }
@@ -78,7 +87,7 @@ const RegistroForm = (props) => {
           error={formik.errors.username}
         />
 
-        <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='boton-crear-cuenta'>
+        <Form.Button type='submit' primary fluid /*loading={formik.isSubmitting}*/ className='boton-crear-cuenta'>
           Crear Cuenta
         </Form.Button>
       </Form>

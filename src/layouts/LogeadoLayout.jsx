@@ -1,36 +1,78 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Logueado.css"
 import Footer from '../components/Footer';
-import logo from '../assets/logo.jpg';
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import Aside from '../components/Aside';
 import { Divider } from 'semantic-ui-react';
-
-
+import UsuarioLogueado from '../components/UsuarioLogueado';
+import UsuarioNoLogueado from '../components/UsuarioNoLogueado';
+import { Axios } from 'axios';
+import { set } from 'lodash';
+import CampoBusqueda from '../components/CampoBusqueda';
 const LogeadoLayout = (props) => {
+  const [busquedaResults, setBusquedaResults] = React.useState([]);
+  const searchRef = React.useRef(null);
+
+  const [logueado, setLogueado] = useState(false);
+  // const [cargandoUsuario, setCargandoUsuario] = useState(true);
+  // const [usuario, setUsuario] = useState(null);
 
   const { children } = props;
+
+
+
+  //let tokenExiste = window.localStorage.getItem('auth_token')
+  useEffect(() => {
+    if (window.localStorage.getItem('auth_token') === 'null') {
+      console.log(window.localStorage.getItem('auth_token'))
+      console.log('token nuloo')
+      setLogueado(false);
+    } else {
+      console.log(window.localStorage.getItem('auth_token'))
+      console.log('con tokennn')
+      setLogueado(true)
+    }
+  }, [])
+
+  
+
+
+  let botonesUsuario;
+  if (logueado) {
+    botonesUsuario = <UsuarioLogueado nombreUsuario='IsraelP' />
+
+  } else {
+    botonesUsuario = <UsuarioNoLogueado />
+  }
+
+
+
   return (
+
+
     <div className='logged-layout'>
 
       <div className='contenido'>
          <div className='menu-izquierdo'>
-            <Aside>
+            <Aside onSearchFocus={() => searchRef.current.focus()}>
             </Aside>
 
-        </div> 
+        </div>
 
         <div className='principal'>
 
           <div className='barra-superior'>
-            <Button as={Link} to="/registro" primary>Registrarse</Button>
-            <Button as={Link} to="/login" primary>Iniciar Sesión</Button>
-
-            <h3 className='name'>Espotify</h3>
-            <img width={50} src={logo} alt='logo' className='logoLayout' />
+            <CampoBusqueda
+              id='campo-busqueda'
+              ref={searchRef}
+              busquedaResults={busquedaResults}
+              setBusquedaResults={setBusquedaResults}
+            />
+            {botonesUsuario}
           </div>
+
           <div> {children}</div>
 
         </div>
