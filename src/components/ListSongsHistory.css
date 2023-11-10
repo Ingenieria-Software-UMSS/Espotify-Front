@@ -1,6 +1,35 @@
 @import '../App.css';
 
+
+.tabla-contenedor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
 .no-songs{
     text-align: center;
     margin-top: 50px;
 }
+
+.ui.table.inverted.list-songs{
+
+    background-color: transparent;
+}
+
+/* .ui.table.inverted.list-songs th{
+    background-color: transparent;
+} */
+
+.ui.table.inverted.list-songs tr:hover{
+    cursor: pointer;
+    color: var(--morado);
+}
+
+.tabla-historial{
+   
+    width: 90%;
+    height: 300px;
+    overflow-y: auto;
+}
+
