@@ -184,7 +184,7 @@ export default function PlayList() {
           <img
             className="playlist_img"
             onClick={handleOpen}
-            src={state.thumbnail.thumbnailUrl}
+            src={state.thumbnail?.thumbnailUrl}
             alt="playlist_image"
           />
           <div className="song_area" onClick={handleOpen}>
@@ -211,7 +211,7 @@ export default function PlayList() {
             </div>
 
             <div className="cantidadCanciones">
-              <p>Cantidad de canciones en la playlist {canciones.length}</p>
+              <p>Cantidad de canciones en la playlist {canciones?.length}</p>
             </div>
             <Header as="h4">{state.playListDescription}</Header>
           </div>
