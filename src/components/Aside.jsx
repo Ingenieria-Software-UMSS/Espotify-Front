@@ -5,7 +5,7 @@ import request, { getOptions } from '../utils/request';
 import { Link } from 'react-router-dom';
 import logo from '../assets/bg.png';
 
-function App() {
+function Aside(props) {
   const activeItem = 'home';
   const [list, setList] = useState([]);
 
@@ -51,7 +51,7 @@ function App() {
             name='Buscar'
             icon="search"
             active={activeItem === 'messages'}
-            onClick={handleItemClick}
+            onClick={props.onSearchFocus}
           />
           <Menu.Item
             name='Lista de Canciones'
@@ -77,7 +77,7 @@ function App() {
               <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
                 <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
                   <div style={{height: 50, width: 50}}>
-                    <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
+                    <img height="100%" width="100%" src={item.thumbnail?.thumbnailUrl} alt="playlist_logo" />
                   </div>
                   <List.Content>
                     <List.Header>
@@ -88,7 +88,6 @@ function App() {
                 </List.Item>
               </Link>
             ))}
-
           </List>
         </div>
       </aside>
@@ -96,4 +95,4 @@ function App() {
   );
 }
 
-export default App;
+export default Aside;

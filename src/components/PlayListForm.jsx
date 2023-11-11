@@ -24,11 +24,16 @@ export default function PlayListForm({setOpen, state, setState}) {
   const [form, setForm] = useState({...initialForm, ...state});
   const [imageUri, setImageUri] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [mostarMensage, setMostarMensage] = useState(false);
   const navigate = useNavigate();
 
   const handleClose = () => {
-    currentImage = null;
-    setOpen(false);
+    if(!mostarMensage) {
+      setMostarMensage(true);
+    } else {
+      currentImage = null;
+      setOpen(false);
+    }
   };
 
   const handleOpen = () => {
@@ -45,6 +50,17 @@ export default function PlayListForm({setOpen, state, setState}) {
   };
 
   const handleChange = (event) => {
+    const name = event.target.name; 
+    const value = event.target.value; 
+
+    if(name === 'playListName' && (value.length > 50 || !value.match(/^([a-z\sA-Z]?)+$/))) {
+      return; 
+    }
+
+    if(name === 'playListDescription' && (value.length > 120 || !value.match(/^([a-z\sA-Z]?)+$/))) {
+      return; 
+    }
+
     setForm({
       ...form,
       [event.target.name]: event.target.value,
@@ -96,7 +112,8 @@ export default function PlayListForm({setOpen, state, setState}) {
       console.log(error);
     }
 
-    handleClose();
+    currentImage = null;
+    setOpen(false);
   };
 
   const uploadImage = () => {
@@ -128,7 +145,11 @@ export default function PlayListForm({setOpen, state, setState}) {
           <Loader />
         </Dimmer>
         <div className="modal_header">
-          <Header as="h3">Edit Playlist</Header>
+          {mostarMensage ? (
+            <Header as="h3">
+              Pulsa Guardar para conservar los cambios que has hecho
+            </Header>
+          ) : <span></span>}
           <Icon onClick={handleClose} size="large" name="remove" />
         </div>
         <Form onSubmit={handleSubmit} className="playlist_form">
@@ -145,15 +166,10 @@ export default function PlayListForm({setOpen, state, setState}) {
               required
               value={form.playListName}
               name="playListName"
-              min={2}
-              max={50}
               onChange={handleChange}
               placeholder="Titulo"
             />
             <TextArea
-              required
-              min={2}
-              max={200}
               value={form.playListDescription}
               onChange={handleChange}
               name="playListDescription"
