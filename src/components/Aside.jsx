@@ -22,7 +22,7 @@ function App() {
       const uri = '/play-list';
 
       const list = await request(uri, options);
-
+``
       setList(list)
     } catch (error) {
       console.log(error);
