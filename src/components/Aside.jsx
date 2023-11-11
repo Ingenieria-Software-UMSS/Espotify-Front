@@ -65,6 +65,7 @@ function Aside(props) {
           
           <List divided relaxed inverted size='large'>
             {list.map(item => (
+<<<<<<< Updated upstream
                 <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
                   <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
                     <div style={{height: 50, width: 50}}>
@@ -82,6 +83,21 @@ function Aside(props) {
                     </List.Content>
                   </List.Item>
                 </Link>
+=======
+              <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
+                <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
+                  <div style={{height: 50, width: 50}}>
+                    <img height="100%" width="100%" src={item.thumbnail?.thumbnailUrl} alt="playlist_logo" />
+                  </div>
+                  <List.Content>
+                    <List.Header>
+                      <Header as="h3" inverted>{item.playListName}</Header>
+                    </List.Header>
+                    <List.Description>{item.playListDescription}</List.Description>
+                  </List.Content>
+                </List.Item>
+              </Link>
+>>>>>>> Stashed changes
             ))}
           </List>
         </div>
