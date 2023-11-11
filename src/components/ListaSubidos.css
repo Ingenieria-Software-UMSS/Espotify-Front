@@ -1,0 +1,68 @@
+h1.ui.header {
+    color: white;
+    padding: 30px;
+    display: flex;
+    height: 1px;
+}
+
+.contenedor-icono-subir{
+    padding-left: 90%;
+    color: white;;
+}
+
+.contenedor-lista-canciones-subidas{
+    padding: 3.5%;
+}
+
+.modal-subir-cancion {
+    /* max-width: 600px; */
+    margin: 0 auto;
+}
+
+.formulario-modal-subir-cancion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #3f3f3f;
+}
+
+.form-container {
+    width: 100%; 
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    flex: 1;
+    margin-right:10px;
+}
+
+.formulario-modal-subir-cancion label {
+    margin-bottom: 8px;
+}
+
+.formulario-modal-subir-cancion input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.formulario-modal-subir-cancion .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.formulario-modal-subir-cancion .modal-actions button {
+    margin-left: 8px;
+}
+
+.container-botones{
+    display: inline-flex;
+}

@@ -9,10 +9,23 @@ function App(props) {
   const activeItem = 'home';
   const [list, setList] = useState([]);
   const navigate = useNavigate();
+  const [disabledd,setDisabled] = useState(false);//borrar
+
+  
+  const handleInicio = () => {
+    navigate('/home');
+    setDisabled(false);//borrar
+  }
 
   const handleItemClick = () => {
   }
   
+
+  const handleMisCanciones = () => {
+    navigate('/mis-canciones');
+    setDisabled(true);//borrar
+  }
+
   useEffect(() => {
     initalRequest();
   }, []);
@@ -44,7 +57,7 @@ function App(props) {
           <Menu.Item
             name='Inicio'
             active={activeItem === 'home'}
-            onClick={handleItemClick}
+            onClick={handleInicio}
             icon="home"
           />
           
@@ -62,6 +75,13 @@ function App(props) {
             active={activeItem === 'friends'}
             onClick={handleItemClick}
           />
+          <Menu.Item
+            name='Mis canciones'
+            // active={activeItem === 'friends'}
+            onClick={handleMisCanciones}
+            icon='song'
+            disabled={disabledd}//borrar
+          />
         </Menu>
       </nav>
       <aside>
@@ -77,19 +97,37 @@ function App(props) {
           
           <List divided relaxed inverted size='large'>
             {list.map(item => (
+              // <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
+              //   <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
+              //     <div style={{height: 50, width: 50}}>
+              //       <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
+              //     </div>
+              //     <List.Content>
+              //       <List.Header>
+              //         <Header as="h3" inverted>{item.playListName}</Header>
+              //       </List.Header>
+              //       <List.Description>{item.playListDescription}</List.Description>
+              //     </List.Content>
+              //   </List.Item>
+              // </Link>
+              
               <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
-                <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
-                  <div style={{height: 50, width: 50}}>
-                    <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
-                  </div>
-                  <List.Content>
-                    <List.Header>
-                      <Header as="h3" inverted>{item.playListName}</Header>
-                    </List.Header>
-                    <List.Description>{item.playListDescription}</List.Description>
-                  </List.Content>
-                </List.Item>
-              </Link>
+              <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
+                <div style={{height: 50, width: 50}}>
+                  {item.thumbnail?.thumbnailUrl ? (
+                      <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
+                  ) : (
+                      <img height="100%" width="100%" alt="playlist_logo" />
+                  )}
+                </div>
+                <List.Content>
+                  <List.Header>
+                    <Header as="h3" inverted>{item.playListName}</Header>
+                  </List.Header>
+                  <List.Description>{item.playListDescription}</List.Description>
+                </List.Content>
+              </List.Item>
+            </Link>
             ))}
 
           </List>
