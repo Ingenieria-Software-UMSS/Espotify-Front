@@ -20,8 +20,6 @@ function App(props) {
     navigate('/mis-canciones');
   }
 
-  
-
   useEffect(() => {
     initalRequest();
   }, []);
@@ -44,7 +42,6 @@ function App(props) {
       ...list
     ]);
   }
-
 
   return (
 
