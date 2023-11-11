@@ -3,14 +3,15 @@ import { Button, Header, List, Menu, Popup } from 'semantic-ui-react';
 import './Aside.css';
 import request, { getOptions } from '../utils/request';
 import { Link } from 'react-router-dom';
+import logo from '../assets/bg.png';
 
-function Aside(props) {
+function App() {
   const activeItem = 'home';
   const [list, setList] = useState([]);
 
   const handleItemClick = () => {
   }
-
+  
   useEffect(() => {
     initalRequest();
   }, []);
@@ -27,6 +28,13 @@ function Aside(props) {
       console.log(error);
     }
   }
+  /*orden de crear de lista*/
+  const handleClieck = () => {
+    setList([
+      {playListName: 'Nuevo Playlist', playListDescription: 'Description del nuevo playlist', thumbnail: {thumbnailUrl: logo}},
+      ...list
+    ]);
+  }
 
   return (
     <div>
@@ -38,11 +46,12 @@ function Aside(props) {
             onClick={handleItemClick}
             icon="home"
           />
+          
           <Menu.Item
             name='Buscar'
             icon="search"
             active={activeItem === 'messages'}
-            onClick={props.onSearchFocus}
+            onClick={handleItemClick}
           />
           <Menu.Item
             name='Lista de Canciones'
@@ -58,7 +67,7 @@ function Aside(props) {
             <Header inverted as="h3" className='m-0'>Tu Biblioteca</Header>
             <Popup content='crear nueva lista' trigger={
               <Link to={'/playlist/create'} style={{color: '#fff'}}>
-                <Button circular size='small' inverted icon='add'/>
+                <Button onClick={handleClieck} circular size='small' inverted icon='add'/>
               </Link>
             } />
           </div>
@@ -68,7 +77,7 @@ function Aside(props) {
               <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
                 <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
                   <div style={{height: 50, width: 50}}>
-                    <img height="100%" width="100%" src={item.thumbnail?.thumbnailUrl} alt="playlist_logo" />
+                    <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
                   </div>
                   <List.Content>
                     <List.Header>
@@ -79,6 +88,7 @@ function Aside(props) {
                 </List.Item>
               </Link>
             ))}
+
           </List>
         </div>
       </aside>
@@ -86,4 +96,4 @@ function Aside(props) {
   );
 }
 
-export default Aside;
+export default App;
