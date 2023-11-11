@@ -5,13 +5,13 @@ import request, { getOptions } from '../utils/request';
 import { Link } from 'react-router-dom';
 import logo from '../assets/bg.png';
 
-function Aside(props) {
+function App() {
   const activeItem = 'home';
   const [list, setList] = useState([]);
 
   const handleItemClick = () => {
   }
-
+  
   useEffect(() => {
     initalRequest();
   }, []);
@@ -51,7 +51,7 @@ function Aside(props) {
             name='Buscar'
             icon="search"
             active={activeItem === 'messages'}
-            onClick={props.onSearchFocus}
+            onClick={handleItemClick}
           />
           <Menu.Item
             name='Lista de Canciones'
@@ -77,7 +77,7 @@ function Aside(props) {
               <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
                 <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
                   <div style={{height: 50, width: 50}}>
-                    <img height="100%" width="100%" src={item.thumbnail?.thumbnailUrl} alt="playlist_logo" />
+                    <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
                   </div>
                   <List.Content>
                     <List.Header>
@@ -88,6 +88,7 @@ function Aside(props) {
                 </List.Item>
               </Link>
             ))}
+
           </List>
         </div>
       </aside>
@@ -95,4 +96,4 @@ function Aside(props) {
   );
 }
 
-export default Aside;
+export default App;
