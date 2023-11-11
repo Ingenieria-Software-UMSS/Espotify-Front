@@ -23,9 +23,9 @@ button {
 }
 
 .spotify-aside::-webkit-scrollbar-thumb {
-  background-color: rgb(29, 29, 196);
-  border-radius: 20px;       
-  border: 10px solid pink; 
+  background-color: rgb(0, 0, 0);
+  border-radius: 10px;       
+  border: 10px solid rgb(70, 27, 34); 
 }
 
 /* Estilo para la imagen */
