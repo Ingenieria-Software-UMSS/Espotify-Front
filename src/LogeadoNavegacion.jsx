@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import HomeLogeado from './pages/HomeLogeado';
 import PlayList from './pages/playlist/PlayList';
 import ResultadoBusqueda from './components/ResultadoBusqueda';
+import ListaSubidos from './components/ListaSubidos';
 const LogeadoNavegacion = () => {
   return (
     <BrowserRouter>
@@ -22,6 +23,8 @@ const LogeadoNavegacion = () => {
           <Route path='/playlist/:id' element={<LogeadoLayout><PlayList /></LogeadoLayout>} />
           <Route path='/results' element={<LogeadoLayout><ResultadoBusqueda /></LogeadoLayout>} />
           <Route path="cancion" element={<LogeadoLayout><Informacion /></LogeadoLayout>} />
+          <Route path="/mis-canciones" element={<LogeadoLayout><ListaSubidos /></LogeadoLayout>} />
+          
         </Routes>
   
     </BrowserRouter>
