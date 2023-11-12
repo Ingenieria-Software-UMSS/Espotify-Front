@@ -7,6 +7,7 @@ import {
   Icon,
   Input,
   Loader,
+  Message,
   Modal,
   TextArea,
 } from "semantic-ui-react";
@@ -24,12 +25,12 @@ export default function PlayListForm({setOpen, state, setState}) {
   const [form, setForm] = useState({...initialForm, ...state});
   const [imageUri, setImageUri] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [mostarMensage, setMostarMensage] = useState(false);
+  const [mostarMensage, setMostarMensage] = useState('');
   const navigate = useNavigate();
 
   const handleClose = () => {
     if(!mostarMensage) {
-      setMostarMensage(true);
+      setMostarMensage('Pulsa Guardar para conservar los cambios que has hecho');
     } else {
       currentImage = null;
       setOpen(false);
@@ -41,9 +42,24 @@ export default function PlayListForm({setOpen, state, setState}) {
   };
 
   const onChangeImage = (event) => {
-    const files = event.target.files;
+    const file = event.target.files[0];
+    const fileType = file.type;
 
-    currentImage = files[0];
+    if(
+      !fileType.includes('svg') &&
+      !fileType.includes('png') &&
+      !fileType.includes('jpeg') &&
+      !fileType.includes('jpg')
+    ) {
+      setMostarMensage('Los formatos validos son SVG, PNG o JPG.');
+
+      return;
+    } else {
+      setMostarMensage('');
+    }
+
+    currentImage = file;
+
     const uri = URL.createObjectURL(currentImage);
 
     setImageUri(uri);
@@ -69,6 +85,7 @@ export default function PlayListForm({setOpen, state, setState}) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     setLoading(true);
 
     try {
@@ -146,15 +163,13 @@ export default function PlayListForm({setOpen, state, setState}) {
         </Dimmer>
         <div className="modal_header">
           {mostarMensage ? (
-            <Header as="h3">
-              Pulsa Guardar para conservar los cambios que has hecho
-            </Header>
+            <Message style={{margin: 0, maxHeight: 50, padding: 10}} color='red'>{mostarMensage}</Message>
           ) : <span></span>}
           <Icon onClick={handleClose} size="large" name="remove" />
         </div>
         <Form onSubmit={handleSubmit} className="playlist_form">
           <div className="form_image">
-            <img width={200} src={imageUri ?? form.thumbnail.thumbnailUrl} alt="paylist_logo" />
+            <img width={200} src={imageUri ?? form.thumbnail.thumbnailUrl} alt="" />
             <label className="custom_input">
               <Icon name="edit" size="big" />
               <input onChange={onChangeImage} type="file" />
@@ -178,7 +193,6 @@ export default function PlayListForm({setOpen, state, setState}) {
             <Button
               className="send_button"
               color="black"
-              size="large"
               type="submit"
             >
               Guardar
