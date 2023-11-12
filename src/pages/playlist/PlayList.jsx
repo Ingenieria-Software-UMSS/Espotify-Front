@@ -26,7 +26,7 @@ const initialForm = {
   playListName: "Nuevo Playlist",
   playListDescription: "Description del nuevo playlist",
   thumbnail: {
-    thumbnailUrl: logo,
+    thumbnailUrl: null,
   } 
 };
 
@@ -197,7 +197,7 @@ export default function PlayList() {
             className="playlist_img"
             onClick={handleOpen}
             src={state.thumbnail?.thumbnailUrl}
-            alt="playlist_image"
+            alt=""
           />
           <div className="song_area" onClick={handleOpen}>
             <Header as="h4">Playlist</Header>
