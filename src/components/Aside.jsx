@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Button, Header, List, Menu, Popup } from 'semantic-ui-react';
 import './Aside.css';
 import request, { getOptions } from '../utils/request';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Aside(props) {
   const activeItem = 'home';
   const [list, setList] = useState([]);
+  const navigate = useNavigate();
 
   const handleItemClick = () => {
   }
@@ -42,7 +43,10 @@ function Aside(props) {
             name='Buscar'
             icon="search"
             active={activeItem === 'messages'}
-            onClick={props.onSearchFocus}
+            onClick={() => {
+              navigate('/genders')
+              props.onSearchFocus()
+            }}
           />
           <Menu.Item
             name='Lista de Canciones'
