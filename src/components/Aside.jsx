@@ -62,7 +62,7 @@ function App() {
       </nav>
       <aside>
         {/* Componente Aside */}
-        <div className="spotify-aside" style={{backgroundColor: '#1B1C1D', minHeight: 500}}>
+        <div className="spotify-aside" style={{backgroundColor: '#1B1C1D'}}>
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <Header inverted as="h3" className='m-0'>Tu Biblioteca</Header>
             <Popup content='crear nueva lista' trigger={
@@ -77,7 +77,7 @@ function App() {
               <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
                 <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
                   <div style={{height: 50, width: 50}}>
-                    <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
+                    <img height="100%" width="100%" src={item.thumbnail?.thumbnailUrl} alt="playlist_logo" />
                   </div>
                   <List.Content>
                     <List.Header>
