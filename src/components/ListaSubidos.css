@@ -1,4 +1,4 @@
-h1.ui.header {
+ h1.ui.header {
     color: white;
     padding: 30px;
     display: flex;
@@ -13,9 +13,9 @@ h1.ui.header {
 .contenedor-lista-canciones-subidas{
     padding: 3.5%;
 }
-
+/*
 .modal-subir-cancion {
-    /* max-width: 600px; */
+    //max-width: 600px;
     margin: 0 auto;
 }
 
@@ -28,7 +28,7 @@ h1.ui.header {
 }
 
 .form-container {
-    width: 100%; 
+    
     text-align: center;
 }
 
@@ -65,4 +65,85 @@ h1.ui.header {
 
 .container-botones{
     display: inline-flex;
+}
+
+
+.formulario-modal-editar-cancion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 100%; 
+    
+}
+
+.playlist-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-image {
+    text-align: center;
+}
+
+.form-image img {
+    margin-bottom: 10px;
+}
+
+.custom-input {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.form-labels {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.small-input {
+    width: 150px; 
+ */
+
+div{
+    /* border: red 2px solid; */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-labels {
+    display: flex;
+}
+
+.imagen-contenedor {
+    /* width: 100px; */
+    height: 200px;
+    text-align: center;
+}
+.imagen {
+    width: 200px;
+    height: 200px;
 }
