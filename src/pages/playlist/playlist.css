@@ -102,7 +102,7 @@ button.ui.button.custom_icon_button {
 .playlist_form .form_image {
   width: 150px;
   height: 150px;
-  background-color: #3f3f3f;
+  background-color: #ccc;
   position: relative;
 }
 .playlist_form {
