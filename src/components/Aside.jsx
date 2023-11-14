@@ -3,7 +3,6 @@ import { Button, Header, List, Menu, Popup } from 'semantic-ui-react';
 import './Aside.css';
 import request, { getOptions } from '../utils/request';
 import { Link, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import logo from '../assets/bg.png';
 
 function App() {
