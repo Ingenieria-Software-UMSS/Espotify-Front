@@ -4,14 +4,15 @@ import "./ListaCanciones.css";
 import { UsarPlayer } from '../hooks/UsarPlayer';
 import { useNavigate } from 'react-router-dom';
 import Player from './Player';
+import Slider from './Slider';
 
 const ListaCanciones = (props) => {
     const { canciones } = props;
     const navigate = useNavigate();
     const { playCancion, play } = UsarPlayer();
     const [isLoNuevoSelected, setIsLoNuevoSelected] = useState(true);
-    
-    
+
+
 
     const onClick = (i) => () => {
         const song = canciones[i];
@@ -31,20 +32,20 @@ const ListaCanciones = (props) => {
             <div className='list_songs__buttons'>
                 <Button
                     onClick={() => setIsLoNuevoSelected(true)}
-                    
-                    className={'botones ' + (isLoNuevoSelected && 'seleccionado') }
+
+                    className={'botones ' + (isLoNuevoSelected && 'seleccionado')}
                 >
                     Lo nuevo
                 </Button>
                 <Button
                     onClick={() => setIsLoNuevoSelected(false)}
-                   
-                    className= {'botones ' + (!isLoNuevoSelected && 'seleccionado') }
-                    
+
+                    className={'botones ' + (!isLoNuevoSelected && 'seleccionado')}
+
 
                 >
                     Ultimos Artistas
-                    
+
                 </Button>
             </div>
 
@@ -59,7 +60,7 @@ const ListaCanciones = (props) => {
                                 <Table.HeaderCell>Título</Table.HeaderCell>
                                 <Table.HeaderCell>Artista</Table.HeaderCell>
                                 <Table.HeaderCell>Duración</Table.HeaderCell>
-                                
+
                             </Table.Row>
                         </Table.Header>
 
@@ -95,7 +96,11 @@ const ListaCanciones = (props) => {
                     <p className='noCanciones'>No se encontraron canciones</p>
                 )}
             </div>
+
+
         </div>
+
+
     )
 }
 
