@@ -9,12 +9,10 @@ function App() {
   const activeItem = 'home';
   const [list, setList] = useState([]);
   const navigate = useNavigate();
-  const [disabledd,setDisabled] = useState(false);//borrar
 
   
   const handleInicio = () => {
     navigate('/home');
-    setDisabled(false);//borrar
   }
 
   const handleItemClick = () => {
@@ -23,7 +21,6 @@ function App() {
 
   const handleMisCanciones = () => {
     navigate('/mis-canciones');
-    setDisabled(true);//borrar
   }
 
   useEffect(() => {
@@ -42,7 +39,6 @@ function App() {
       console.log(error);
     }
   }
-  /*orden de crear de lista*/
   const handleClieck = () => {
     setList([
       {playListName: 'Nuevo Playlist', playListDescription: 'Description del nuevo playlist', thumbnail: {thumbnailUrl: logo}},
@@ -74,15 +70,12 @@ function App() {
           />
           <Menu.Item
             name='Mis canciones'
-            // active={activeItem === 'friends'}
             onClick={handleMisCanciones}
             icon='song'
-            disabled={disabledd}//borrar
           />
         </Menu>
       </nav>
       <aside>
-        {/* Componente Aside */}
         <div className="spotify-aside" style={{backgroundColor: '#1B1C1D', minHeight: 500}}>
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <Header inverted as="h3" className='m-0'>Tu Biblioteca</Header>
@@ -95,20 +88,6 @@ function App() {
           
           <List divided relaxed inverted size='large'>
             {list.map(item => (
-              // <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
-              //   <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
-              //     <div style={{height: 50, width: 50}}>
-              //       <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
-              //     </div>
-              //     <List.Content>
-              //       <List.Header>
-              //         <Header as="h3" inverted>{item.playListName}</Header>
-              //       </List.Header>
-              //       <List.Description>{item.playListDescription}</List.Description>
-              //     </List.Content>
-              //   </List.Item>
-              // </Link>
-              
               <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
               <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
                 <div style={{height: 50, width: 50}}>
