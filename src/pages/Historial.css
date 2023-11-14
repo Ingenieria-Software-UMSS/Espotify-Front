@@ -1,0 +1,15 @@
+@import '../App.css';
+
+
+.historial-page{
+    margin: 20px 40px;
+
+}
+
+.historial-page h1{
+    /* color: var(--blanco);
+    font-size:  90px;
+    margin: 0; */
+    /* border-bottom: 1px solid gray; */
+   
+}

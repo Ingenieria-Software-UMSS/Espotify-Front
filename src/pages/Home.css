@@ -1,6 +1,11 @@
 @import '../App.css';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
+
+.contenedor-canciones-slide{
+
+}
+
 .canciones h1{ 
   color: var(--blanco);
   padding: 2rem 3rem;
@@ -9,5 +14,10 @@
 }
 
 .canciones{ 
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+}
+
+.historial-slider{
+  text-align: right;
+  width:70%;
 }

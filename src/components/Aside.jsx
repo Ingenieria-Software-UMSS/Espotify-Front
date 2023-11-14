@@ -9,15 +9,12 @@ function App(props) {
   const activeItem = 'home';
   const [list, setList] = useState([]);
   const navigate = useNavigate();
+  const {pathname} = useNavigate();
 
   
   const handleInicio = () => {
     navigate('/home');
   }
-
-  const handleItemClick = () => {
-  }
-  
 
   const handleMisCanciones = () => {
     navigate('/mis-canciones');
@@ -47,6 +44,7 @@ function App(props) {
   }
 
   return (
+
     <div>
       <nav style={{borderRadius: 15, overflow: 'hidden', margin: '20px 0' }}>
         <Menu inverted vertical fluid>
@@ -67,9 +65,11 @@ function App(props) {
             }}
           />
           <Menu.Item
-            name='Lista de Canciones'
-            active={activeItem === 'friends'}
-            onClick={handleItemClick}
+            as={Link}
+            to="/Historial"
+            name='Historial'i
+            active={pathname === '/historial'}
+            onClick={props.onSearchFocus}
           />
           <Menu.Item
             name='Mis canciones'

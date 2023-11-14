@@ -33,4 +33,15 @@ export class Cancion {
             throw error
         }
     }
+    // canciones del historial
+    async getHistorial(){
+        try {
+            
+            
+        } catch (error) {
+            throw error;
+        }
+
+    }
+
 }
