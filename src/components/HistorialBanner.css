@@ -1,0 +1,40 @@
+@import '../App.css';
+
+
+.historial-banner{
+
+    position: relative;
+    margin-top: -20px;
+
+}
+
+.historial-banner .historial-banner-image{
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 50px;
+    padding-left: 50px;
+}
+
+.historial-banner .historial-banner-image h1{
+    font-size: 70px;
+    margin: 0;
+    color: #fff;
+}
+
+.historial-banner .historial-banner-gradient{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 40%,
+        var(--background-primario) 100%
+    );
+}

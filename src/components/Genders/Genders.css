@@ -1,0 +1,48 @@
+
+
+/* Genders.css */
+
+.genders-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .artist-button {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .pop-button {
+    background-color: #00b516;
+  }
+  
+  .rock-button {
+    background-color: #00b5ad;
+  }
+  
+  .reggaeton-button {
+    background-color: #673079;
+  }
+  
+  .cumbia-button {
+    background-color: #21ba45;
+  }
+  
+  .salsa-button {
+    background-color: #00b5ad;
+  }
+  
+  .merengue-button {
+    background-color: #00b5ad;
+  }
+  
+  .metal-button {
+    background-color: #00b5ad;
+  }
+  

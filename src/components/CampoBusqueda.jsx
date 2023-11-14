@@ -38,7 +38,6 @@ const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaRes
     const buscarResults = (valor) => {
         let res = [];
         for (let i = 0; i < listaArtistas.length; i++) {
-            // if(valor.toLowerCase() === listaArtistas[i].artistName.toLowerCase()){
             if(listaArtistas[i].artistName.toLowerCase().includes(valor.toLowerCase())){
                 setId(listaArtistas[i].artistId);
                 setTipo('artista');
@@ -47,12 +46,6 @@ const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaRes
         }
         if(res.length === 0){
             for (let i = 0; i < listaCanciones.length; i++) {
-                // if(valor.toLowerCase() === listaCanciones[i].songTitle.toLowerCase()){
-                // if(listaCanciones[i].songTitle.toLowerCase().includes(valor.toLowerCase())){
-                //     setId(listaCanciones[i].songId);
-                //     setTipo('cancion');
-                //     res.push({title: listaCanciones[i].songTitle, description: 'Cancion'});
-                // }
                 const songTitle = listaCanciones[i].songTitle.toLowerCase();
                 if (songTitle.includes(valor.toLowerCase()) && !res.some(item => item.title === songTitle)) {
                     setId(listaCanciones[i].songId);

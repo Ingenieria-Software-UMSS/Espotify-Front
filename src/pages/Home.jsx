@@ -1,12 +1,15 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Cancion} from "../api/Cancion";
 import "./Home.css";
+import { map } from 'lodash';
 import ListaCanciones from '../components/ListaCanciones';
+import Slider from '../components/Slider';
 
 const cancionController = new Cancion();
 
 export default function Home () {
   const [canciones, setCanciones] = React.useState([]);
+  const [cancionesHistorial,setCancionesHistorial] = React.useState([]);
 
     useEffect(() =>{
       (async () => {
@@ -19,17 +22,41 @@ export default function Home () {
         }
       })();
     },[]);
+    /**e aqui obtener el historial */
+    useEffect(() =>{
+      (async () => {
+        try {
+          let data = [];
+          const result = await cancionController.obtenerTodas();
+          // const dataTemp = map(result, (dataSong) =>({
+          //   ...dataSong,
+          // }))
+          // data.push(...dataTemp);
+          // console.log(data);
+
+          setCancionesHistorial(result);
+          console.log(cancionesHistorial);
+        } catch (error) {
+          console.error(error);
+        }
+      })();
+    },[]);
 
     return (
-      <Fragment>
-        <div>
-          
-        </div>
+      <div className='contenedor-canciones-slider'>
+       
         <div className='canciones'>
 
           <h1>Lista de canciones</h1>
           <ListaCanciones canciones={canciones}/>
         </div>
-      </Fragment>
+
+        <div className='historial-slider'>
+          {/* <Slider data={cancionesHistorial}> */}
+          <Slider data={cancionesHistorial}/>
+        </div>
+
+
+      </div>
     )
   }
