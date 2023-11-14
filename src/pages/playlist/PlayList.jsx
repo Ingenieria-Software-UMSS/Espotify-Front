@@ -14,7 +14,7 @@ import {
 import "./playlist.css";
 
 import logo from "../../assets/bg.png";
-import request, { getOptions } from "../../utils/request";
+import request, { deleteOptions, getOptions } from "../../utils/request";
 import PlayListForm from "../../components/PlayListForm";
 import { useParams } from "react-router-dom";
 
@@ -26,7 +26,7 @@ const initialForm = {
   playListName: "Nuevo Playlist",
   playListDescription: "Description del nuevo playlist",
   thumbnail: {
-    thumbnailUrl: logo,
+    thumbnailUrl: null,
   } 
 };
 
@@ -51,7 +51,6 @@ export default function PlayList() {
   }, [params.id]);
 
   const initialRequest = async () => {
-
     setLoading(true);
 
     try {
@@ -72,6 +71,22 @@ export default function PlayList() {
     setLoading(false);
   };
 
+  const handleConfirm = async () => {
+    setShowDelete(false);
+    setLoading(true);
+
+    try {
+      const options = deleteOptions();
+      const uri = '/play-list/' + params.id;
+      await request(uri, options);
+
+    } catch (error) {
+      console.log(error);
+    }
+
+    navigate('/home');
+  }
+
   const [fecha, setFecha] = useState([]);
   
   const navigate = useNavigate();
@@ -80,7 +95,7 @@ export default function PlayList() {
     const description = `Disfruta de '${song.songTitle}', interpretada por ${song.artist}.
       Una canción que te atrapará con su ritmo y letras.
       ¡Reproduce y déjate llevar durante ${song.songDuration} minutos de pura magia musical!`;
-    const url = `/cancion?id=${encodeURIComponent(song.songId)}&title=${encodeURIComponent(song.songTitle)}&artist=${encodeURIComponent(song.artist)}&duration=${encodeURIComponent(song.songDuration)}&description=${encodeURIComponent(description)}&image=${encodeURIComponent(song.thumbnail.thumbnailUrl)}`;
+    const url = `/cancion?id=${encodeURIComponent(song.songId)}&title=${encodeURIComponent(song.songTitle)}&artist=${encodeURIComponent(song.artist)}&duration=${encodeURIComponent(song.songDuration)}&description=${encodeURIComponent(description)}&image=${encodeURIComponent(song.thumbnail?.thumbnailUrl)}`;
     navigate(url);
   }
   const { playCancion, play } = UsarPlayer();
@@ -93,7 +108,7 @@ export default function PlayList() {
       "album": item.songAlbum,
       "duracion": item.songDuration,
       "nombre": item.songTitle,
-      "urlImagen": item.thumbnail.thumbnailUrl
+      "urlImagen": item.thumbnail?.thumbnailUrl
     });
   }
   const [canciones, setCanciones] = React.useState([]);
@@ -181,8 +196,8 @@ export default function PlayList() {
           <img
             className="playlist_img"
             onClick={handleOpen}
-            src={state.thumbnail.thumbnailUrl}
-            alt="playlist_image"
+            src={state.thumbnail?.thumbnailUrl}
+            alt=""
           />
           <div className="song_area" onClick={handleOpen}>
             <Header as="h4">Playlist</Header>
@@ -208,7 +223,7 @@ export default function PlayList() {
             </div>
 
             <div className="cantidadCanciones">
-              <p>Cantidad de canciones en la playlist {canciones.length}</p>
+              <p>Cantidad de canciones en la playlist {canciones?.length}</p>
             </div>
             <Header as="h4">{state.playListDescription}</Header>
           </div>
@@ -242,6 +257,15 @@ export default function PlayList() {
           </div>
         </div>
 
+        <Confirm
+          open={showDelete}
+          cancelButton='Cancelar'
+          confirmButton="Aceptar"
+          size="mini"
+          content='Estas seguro de eliminar la list?'
+          onCancel={setShowDelete.bind(null, false)}
+          onConfirm={handleConfirm}
+        />
 
         <div className='tabla tabla-playlist'>
           {hayCanciones ? (
@@ -274,7 +298,7 @@ export default function PlayList() {
                     </Table.Cell>
 
                     <Table.Cell>
-                      <img src={cancion.song.thumbnail.thumbnailUrl} className='miniatura'></img>
+                      <img src={cancion.song.thumbnail?.thumbnailUrl} className='miniatura'></img>
                     </Table.Cell>
 
                     <Table.Cell>

@@ -3,8 +3,10 @@ import { Button, Header, List, Menu, Popup } from 'semantic-ui-react';
 import './Aside.css';
 import request, { getOptions } from '../utils/request';
 import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import logo from '../assets/bg.png';
 
-function Aside(props) {
+function App() {
   const activeItem = 'home';
   const [list, setList] = useState([]);
   const navigate = useNavigate();
@@ -41,6 +43,13 @@ function Aside(props) {
       console.log(error);
     }
   }
+  /*orden de crear de lista*/
+  const handleClieck = () => {
+    setList([
+      {playListName: 'Nuevo Playlist', playListDescription: 'Description del nuevo playlist', thumbnail: {thumbnailUrl: logo}},
+      ...list
+    ]);
+  }
 
   return (
     <div>
@@ -52,11 +61,12 @@ function Aside(props) {
             onClick={handleInicio}
             icon="home"
           />
+          
           <Menu.Item
             name='Buscar'
             icon="search"
             active={activeItem === 'messages'}
-            onClick={props.onSearchFocus}
+            onClick={handleItemClick}
           />
           <Menu.Item
             name='Lista de Canciones'
@@ -79,7 +89,7 @@ function Aside(props) {
             <Header inverted as="h3" className='m-0'>Tu Biblioteca</Header>
             <Popup content='crear nueva lista' trigger={
               <Link to={'/playlist/create'} style={{color: '#fff'}}>
-                <Button circular size='small' inverted icon='add'/>
+                <Button onClick={handleClieck} circular size='small' inverted icon='add'/>
               </Link>
             } />
           </div>
@@ -126,4 +136,4 @@ function Aside(props) {
   );
 }
 
-export default Aside;
+export default App;
