@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./App.css"
 import LogeadoNavegacion from './LogeadoNavegacion'
 import { PlayerProvider } from './context/PlayerContext'
 
 const App = () => {
+
+  
   return (
     <PlayerProvider>
       <LogeadoNavegacion />

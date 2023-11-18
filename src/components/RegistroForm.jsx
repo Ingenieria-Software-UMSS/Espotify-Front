@@ -8,6 +8,8 @@ import { request, setAuthToken } from '../api/axios_helper';
 
 const RegistroForm = (props) => {
 
+
+
   const [mostrarPassword, setMostrarPassword] =  useState(false);
 
   const mostrarOcultarPass = () =>{
@@ -15,6 +17,7 @@ const RegistroForm = (props) => {
   }
 
   const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
@@ -29,9 +32,11 @@ const RegistroForm = (props) => {
 
           }).then((response) => {
             setAuthToken(response.data.token)
+
+
             alert("Usuario Creado Satisfactoriamente");
 
-            navigate('/home');
+            navigate('/home',{ state: {userData: response.data.userName} });
 
           }).catch((error) => {
             console.log(error.response.data);

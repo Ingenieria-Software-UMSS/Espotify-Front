@@ -10,11 +10,10 @@ const HomeLogeado = () => {
   useEffect(()=>{
     if(window.localStorage.getItem('auth_token')===null){
 
-      console.log("dentro el if")
+      // console.log("dentro el if")
       navigate('/login');
-      console.log("saliendo del if")
+      // console.log("saliendo del if")
       // navigate('/home');
-
     }
   },[])
 

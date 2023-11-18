@@ -1,5 +1,23 @@
 @import '../App.css';
 
+.perfilUsuario{
+    display: flex;
+}
+
+.perfilUsuario .user-image{
+    display: flex;
+    justify-content: center;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.perfilUsuario .user-image .icono-usuario{
+    width: 20px;
+    height: 20px;
+    
+}
+
 .perfilUsuario span{
     margin-right: 20px;
 }
+

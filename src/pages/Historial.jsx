@@ -4,11 +4,16 @@ import {Cancion as CancionController} from "../api/Cancion"
 import "./Historial.css"
 import HistorialBanner from '../components/HistorialBanner';
 import ListSongsHistory from '../components/ListSongsHistory';
+import { useLocation } from 'react-router-dom';
 
 const cancionController = new CancionController();
 
 
 const Historial = () => {
+
+  
+
+
 
     const [songs, setSongs] = useState(null);
 

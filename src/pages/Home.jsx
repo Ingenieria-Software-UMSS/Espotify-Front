@@ -4,12 +4,29 @@ import "./Home.css";
 import { map } from 'lodash';
 import ListaCanciones from '../components/ListaCanciones';
 import Slider from '../components/Slider';
+import { useLocation } from 'react-router-dom';
 
 const cancionController = new Cancion();
 
 export default function Home () {
   const [canciones, setCanciones] = React.useState([]);
   const [cancionesHistorial,setCancionesHistorial] = React.useState([]);
+
+  const { state } = useLocation();
+  const [usuario,setUsuario] = useState(undefined);
+
+  useEffect(() => {
+    if(state!=null){
+      const { userData } = state;
+      setUsuario(userData);
+    }
+    
+  }, [])
+
+  // const {state} = useLocation();
+  // const {userData} = state
+  // console.log("usuario en HOMEEEE");
+  // console.log(userData);
 
     useEffect(() =>{
       (async () => {
