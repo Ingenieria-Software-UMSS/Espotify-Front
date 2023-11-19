@@ -9,9 +9,11 @@ import "./Slider.css"
 const settings = {
   dots: false,
   infinite: true,
+  speed: 500,
   slidesToShow: 5,
-  swipeToSlide: true,
-  centerMode: true,
+  sliderToScroll: 1,
+  // swipeToSlide: true,
+  // centerMode: true,
 }
 
 const Slider = (props) => {
