@@ -26,6 +26,7 @@ const ListSongsHistory = (props) => {
                         <Table.Row>
                             <Table.HeaderCell />
                             <Table.HeaderCell>Titulo</Table.HeaderCell>
+                            <Table.HeaderCell></Table.HeaderCell>
                         </Table.Row>
                     </TableHeader>
 
@@ -37,6 +38,18 @@ const ListSongsHistory = (props) => {
                                 </Table.Cell>
 
                                 <TableCell>{song.nombre}</TableCell>
+
+                                <Table.Cell onClick={(ev) =>{
+                                    ev.stopPropagation();
+                                    // onPlay(cancion)
+                                    console.log('eliminandoCancion')
+                                }}>
+                    
+                                    <Icon size='large'  onClick={console.log("eliminar Cancion de Historial")} name='trash' />
+                                </Table.Cell>
+                                
+
+
                             </Table.Row>
                         ))}
                     </TableBody>
