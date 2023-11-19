@@ -27,6 +27,11 @@ const ListaCanciones = (props) => {
         playCancion(item);
     }
 
+    const agregarHistorial = (item) =>{
+        console.log("agregando al Hsitorial");
+        console.log(item);
+    }
+
     return (
         <div className='list_songs_container' >
             <div className='list_songs__buttons'>
@@ -72,7 +77,9 @@ const ListaCanciones = (props) => {
                                     </Table.Cell>
                                     <Table.Cell onClick={(ev) => {
                                         ev.stopPropagation();
-                                        onPlay(cancion)
+                                        onPlay(cancion);
+                                        agregarHistorial(cancion);
+
                                     }}>
                                         <Icon size='large' name='play circle outline' />
                                     </Table.Cell>
