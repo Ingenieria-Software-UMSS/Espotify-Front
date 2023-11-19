@@ -268,6 +268,7 @@ export default function PlayList() {
         />
 
         <div className='tabla tabla-playlist'>
+
           {hayCanciones ? (
             <Table inverted className='lista-canciones' >
               <Table.Header>

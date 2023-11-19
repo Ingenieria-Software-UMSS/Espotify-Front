@@ -18,9 +18,8 @@ button {
   overflow-y: auto;
   overflow-x: hidden;
   margin: 10px 0;
-  height: calc(100vh - 280px);
+  height: calc(100vh - 310px);
 }
-
 
 .spotify-aside::-webkit-scrollbar-thumb {
   background-color: rgb(0, 0, 0);

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Informacion.css';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { Dropdown } from 'semantic-ui-react';
 import { Modal } from 'semantic-ui-react';
 import { Link, json, useLocation, useNavigate } from 'react-router-dom';
@@ -16,6 +16,17 @@ const Informacion = () => {
     const duration = queryParams.get('duration') || 'Unknown Duration';
     const description = queryParams.get('description') || 'No description available.';
     const imageUrl = queryParams.get('image');
+
+    const [contadorManosArriba, setContadorManosArriba] = useState(0);
+    const [contadorManosAbajo, setContadorManosAbajo] = useState(0);
+
+    const incrementarManosArriba = () => {
+        setContadorManosArriba(contadorManosArriba + 1);
+    };
+
+    const incrementarManosAbajo = () => {
+        setContadorManosAbajo(contadorManosAbajo + 1);
+    };
 
     return (
         <div className='informacion'>
@@ -38,6 +49,28 @@ const Informacion = () => {
                     <h2>{artist}</h2>
                     <p>{duration}</p>
                     <p>{description}</p>
+                    
+                    {/* Icono de corazón (me gusta) */}
+                    <Icon name='heart' color='red' size='large' />
+
+                    {/* Icono de mano arriba */}
+                    <Icon   
+                        name='thumbs up'
+                        size='large'
+                        onClick={incrementarManosArriba}
+                        style={{ cursor: 'pointer' }}
+                    />
+                    <span>{contadorManosArriba}</span>
+
+                    {/* Icono de mano abajo */}
+                    <Icon
+                        name='thumbs down'
+                        size='large'
+                        onClick={incrementarManosAbajo}
+                        style={{ cursor: 'pointer' }}
+                    />
+                    <span>{contadorManosAbajo}</span>
+
                 </div>
             </div>
         </div>

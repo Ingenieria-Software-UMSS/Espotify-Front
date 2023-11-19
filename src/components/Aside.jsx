@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Button, Header, List, Menu, Popup } from 'semantic-ui-react';
 import './Aside.css';
 import request, { getOptions } from '../utils/request';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/bg.png';
+
 
 function App() {
   const activeItem = 'home';
   const [list, setList] = useState([]);
+  const navigate = useNavigate()
 
-  const handleItemClick = () => {
+  const handleItemClick = (ruta) => {
+    navigate(ruta)
   }
   
   useEffect(() => {
@@ -43,7 +46,7 @@ function App() {
           <Menu.Item
             name='Inicio'
             active={activeItem === 'home'}
-            onClick={handleItemClick}
+            onClick={navigate.bind(null,'/home')}
             icon="home"
           />
           
@@ -51,12 +54,18 @@ function App() {
             name='Buscar'
             icon="search"
             active={activeItem === 'messages'}
-            onClick={handleItemClick}
+            onClick={navigate.bind(null, '/')}
           />
           <Menu.Item
             name='Lista de Canciones'
             active={activeItem === 'friends'}
-            onClick={handleItemClick}
+            onClick={navigate.bind(null, '/prinpial')}
+          />
+          <Menu.Item
+            name='Favorite'
+            active={activeItem === 'favorite'}
+            onClick={navigate.bind(null, '/favorite')}  // Define una función para manejar los clics en "Favoritos"
+            icon="star"  // Puedes ajustar el icono a tu preferencia
           />
         </Menu>
       </nav>
@@ -77,7 +86,7 @@ function App() {
               <Link to={'/playlist/' + item.playListId} style={{color: '#fff'}}>
                 <List.Item style={{display: 'flex', gap: 10, alignItems: 'center'}}>
                   <div style={{height: 50, width: 50}}>
-                    <img height="100%" width="100%" src={item.thumbnail?.thumbnailUrl} alt="playlist_logo" />
+                    <img height="100%" width="100%" src={item.thumbnail.thumbnailUrl} alt="playlist_logo" />
                   </div>
                   <List.Content>
                     <List.Header>
