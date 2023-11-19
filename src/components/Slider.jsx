@@ -4,6 +4,7 @@ import Slick from "react-slick"
 import { map } from 'lodash'
 import { Link } from 'react-router-dom'
 import "./Slider.css"
+import { UsarPlayer } from '../hooks/UsarPlayer'
 
 
 const settings = {
@@ -17,13 +18,16 @@ const settings = {
 }
 
 const Slider = (props) => {
+  
   const { data } = props;
+
+  const {playCancion} = UsarPlayer();
 
   return (
     <Slick {...settings} className="slider">
       {map(data, (item) => {
         return (
-          <div key={item.id} className='slider-item' onClick={() => console.log("reproducir cancion")}>
+          <div key={item.id} className='slider-item' onClick={()=>playCancion(item)}>
             <div className='slide-item-block-play'>
               <Image src={item.urlImagen} alt={item.nombre}/>
               <Icon name='play circle outline' />
