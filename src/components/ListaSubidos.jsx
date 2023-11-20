@@ -88,7 +88,7 @@ const ListaSubidos = () => {
     return (
         <div className='contenedor-lista' style={{ color: '#fff' }}>
             <div className='container-lista-baner'>
-                <Header as='h1'>Lista de canciones subidas</Header>
+                <Header className='listaenhome' as='h1'>Lista de canciones subidas</Header>
                 <div className='container-botones'>
                     <div className='contenedor-icono-subir'>
                         <Popup className='icono-subir' content='Subir cancion' trigger={<Icon onClick={handleOpenSubirCancion} size='big' name='cloud upload' />} />
