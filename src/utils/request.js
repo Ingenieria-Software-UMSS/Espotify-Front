@@ -92,10 +92,13 @@ export function deleteOptions(body = {}) {
   };
 }
 
-const formDataOptions = (token) =>{
+const formDataOptions = () =>{
   const options = {
     method: 'POST',
+    headers: { }
   };
+
+  const token = localStorage.getItem('auth_token');
 
   if (token) {
     options.headers.Authorization = `Bearer ${token}`;
@@ -104,7 +107,7 @@ const formDataOptions = (token) =>{
   return options;
 }
 
-const httpOptions = (method = 'GET', token) => {
+const httpOptions = (method = 'GET') => {
   const options = {
     method,
     headers: {
@@ -112,6 +115,8 @@ const httpOptions = (method = 'GET', token) => {
       Accept: '*/*',
     },
   };
+
+  const token = localStorage.getItem('auth_token');
 
   if (token) {
     options.headers.Authorization = `Bearer ${token}`;
