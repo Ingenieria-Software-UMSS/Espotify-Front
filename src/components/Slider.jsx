@@ -9,7 +9,7 @@ import { UsarPlayer } from '../hooks/UsarPlayer'
 
 const settings = {
   dots: false,
-  infinite: true,
+  infinite: false,
   speed: 500,
   slidesToShow: 5,
   sliderToScroll: 1,
@@ -21,7 +21,15 @@ const Slider = (props) => {
   
   const { data } = props;
 
+  console.log("EN EL SLIDER");
+  console.log(data);
+
+
   const {playCancion} = UsarPlayer();
+
+
+ 
+
 
   return (
     <Slick {...settings} className="slider">

@@ -5,6 +5,7 @@ import { UsarPlayer } from '../hooks/UsarPlayer';
 import { useNavigate } from 'react-router-dom';
 import Player from './Player';
 import Slider from './Slider';
+import { Cancion } from '../api/Cancion';
 
 const ListaCanciones = (props) => {
     const { canciones } = props;
@@ -12,6 +13,7 @@ const ListaCanciones = (props) => {
     const { playCancion, play } = UsarPlayer();
     const [isLoNuevoSelected, setIsLoNuevoSelected] = useState(true);
 
+    const cancionController = new Cancion();
 
 
     const onClick = (i) => () => {
@@ -30,6 +32,12 @@ const ListaCanciones = (props) => {
     const agregarHistorial = (item) =>{
         console.log("agregando al Hsitorial");
         console.log(item);
+        console.log(item.id);
+        const songToHistory = {
+            "songId": item.id
+        }
+        cancionController.saveSongHistorial(songToHistory);
+        
     }
 
     return (

@@ -6,7 +6,9 @@ import "./ListSongsHistory.css"
 
 const ListSongsHistory = (props) => {
 
+    
     const { songs } = props;
+    
     const {playCancion} = UsarPlayer();
 
     const onPlay=(item)=>{
@@ -39,7 +41,7 @@ const ListSongsHistory = (props) => {
 
                                 <TableCell>{song.nombre}</TableCell>
 
-                                <Table.Cell onClick={(ev) =>{
+                                <Table.Cell style={{"text-align":"right"}} onClick={(ev) =>{
                                     ev.stopPropagation();
                                     // onPlay(cancion)
                                     console.log('eliminandoCancion')

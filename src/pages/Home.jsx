@@ -10,10 +10,24 @@ const cancionController = new Cancion();
 
 export default function Home() {
   const [canciones, setCanciones] = React.useState([]);
-  const [cancionesHistorial, setCancionesHistorial] = React.useState([]);
+  const [cancionesHistorial, setCancionesHistorial] = useState(null);
 
   const { state } = useLocation();
   const [usuario, setUsuario] = useState(undefined);
+
+  const obtenerCanciones = (canciones) => {
+    return canciones.map((item) => {
+      return {
+        "artista": item.song.artistName,
+        "id": item.song.songId,
+        "urlCancion": item.song.songUrl,
+        "album": item.song.songAlbum,
+        "duracion": item.song.songDuration,
+        "nombre": item.song.songTitle,
+        "urlImagen": item.song.thumbnailUrl
+      };
+    });
+  }
 
   useEffect(() => {
     if (state != null) {
@@ -40,24 +54,31 @@ export default function Home() {
     })();
   }, []);
   /**e aqui obtener el historial */
+
+
   useEffect(() => {
     (async () => {
       try {
         let data = [];
-        const result = await cancionController.obtenerTodas();
+
+        // const result = await cancionController.obtenerTodas();
+        const response = await cancionController.getHistorial();
+
+        
         // const dataTemp = map(result, (dataSong) =>({
         //   ...dataSong,
         // }))
         // data.push(...dataTemp);
         // console.log(data);
 
-        setCancionesHistorial(result);
+        setCancionesHistorial(obtenerCanciones(response));
+        console.log("CANCIONES EN EL HOMEEEE");
         console.log(cancionesHistorial);
       } catch (error) {
         console.error(error);
       }
     })();
-  }, []);
+  }, [cancionesHistorial]);
 
   return (
     <div className='contenedor-canciones-slider'>
