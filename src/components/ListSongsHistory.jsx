@@ -3,10 +3,12 @@ import { Table, Icon, TableHeader, TableBody, TableCell } from 'semantic-ui-reac
 import { size, map } from 'lodash';
 import { UsarPlayer } from '../hooks/UsarPlayer';
 import "./ListSongsHistory.css"
+import { Cancion } from '../api/Cancion';
 
 const ListSongsHistory = (props) => {
 
-    
+    const cancionController = new Cancion();
+
     const { songs } = props;
     
     const {playCancion} = UsarPlayer();
@@ -19,6 +21,17 @@ const ListSongsHistory = (props) => {
         return <p className='no-songs'>No hay canciones en el historial</p>;
     }
 
+    const eliminarCancion =(cancion)=>{
+        console.log("eliminandoooooo");
+        console.log(cancion.id);
+        try {
+            cancionController.deleteSongHistorial(cancion.id);
+            
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
 
     return (
         <div className='tabla-contenedor'>
@@ -44,10 +57,10 @@ const ListSongsHistory = (props) => {
                                 <Table.Cell style={{"text-align":"right"}} onClick={(ev) =>{
                                     ev.stopPropagation();
                                     // onPlay(cancion)
-                                    console.log('eliminandoCancion')
+                                    eliminarCancion(song);
                                 }}>
                     
-                                    <Icon size='large'  onClick={console.log("eliminar Cancion de Historial")} name='trash' />
+                                    <Icon size='large'   name='trash' />
                                 </Table.Cell>
                                 
 

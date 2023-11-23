@@ -49,10 +49,13 @@ export class Cancion {
             const promise = axios.get('https://espotify.azurewebsites.net/play-history', {
                 headers: {
                     'Authorization': `Bearer ${token}`
+                },
+                data: {
+                    
                 }
             })
 
-            const dataPromise = promise.then((response)=>response.data);
+            const dataPromise = promise.then((response) => response.data);
 
             return dataPromise;
 
@@ -63,15 +66,40 @@ export class Cancion {
 
     async saveSongHistorial(data) {
         try {
-            
+
 
             const token = window.localStorage.getItem("auth_token"); // Awaiting getToken() to execute and return value before executing the next line
 
-            const promise = axios.post('https://espotify.azurewebsites.net/play-history',data, {
+            const promise = axios.post('https://espotify.azurewebsites.net/play-history', data, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             })
+
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async deleteSongHistorial(id) {
+        try {
+            console.log(typeof (id));
+
+            const token = window.localStorage.getItem("auth_token"); // Awaiting getToken() to execute and return value before executing the next line
+
+            const promise = axios.delete(`https://espotify.azurewebsites.net/play-history/${id}`, {
+                headers: {
+
+                    'Authorization': `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                params:{
+                    id:id
+                }
+
+
+
+            }).then(res => console.log("eliminado!!", res)).catch(err => console.log(err));
 
         } catch (error) {
             throw error;
