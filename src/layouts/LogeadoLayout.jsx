@@ -11,19 +11,29 @@ import UsuarioNoLogueado from '../components/UsuarioNoLogueado';
 import { Axios } from 'axios';
 import { set } from 'lodash';
 import CampoBusqueda from '../components/CampoBusqueda';
+import { useLocation } from 'react-router-dom';
+
+
 const LogeadoLayout = (props) => {
+
+  // const { state } = useLocation();
+  // const { userData } = state
+  
+  const { state } = useLocation();
+  const [usuario,setUsuario] = useState(undefined);
+
+
+
   const [busquedaResults, setBusquedaResults] = React.useState([]);
   const searchRef = React.useRef(null);
 
   const [logueado, setLogueado] = useState(false);
-  // const [cargandoUsuario, setCargandoUsuario] = useState(true);
-  // const [usuario, setUsuario] = useState(null);
+
 
   const { children } = props;
 
 
 
-  //let tokenExiste = window.localStorage.getItem('auth_token')
   useEffect(() => {
     if (window.localStorage.getItem('auth_token') === 'null') {
       console.log(window.localStorage.getItem('auth_token'))
@@ -36,12 +46,22 @@ const LogeadoLayout = (props) => {
     }
   }, [])
 
-  
+  useEffect(() => {
+    if(state!=null){
+      const { userData } = state;
+      setUsuario(userData);
+    }
+    
+  }, [])
+
+
+
 
 
   let botonesUsuario;
   if (logueado) {
-    botonesUsuario = <UsuarioLogueado nombreUsuario='IsraelP' />
+    
+    botonesUsuario = <UsuarioLogueado nombreUsuario={usuario} />
 
   } else {
     botonesUsuario = <UsuarioNoLogueado />
@@ -55,9 +75,9 @@ const LogeadoLayout = (props) => {
     <div className='logged-layout'>
 
       <div className='contenido'>
-         <div className='menu-izquierdo'>
-            <Aside onSearchFocus={() => searchRef.current.focus()}>
-            </Aside>
+        <div className='menu-izquierdo'>
+          <Aside onSearchFocus={() => searchRef.current.focus()}>
+          </Aside>
 
         </div>
 

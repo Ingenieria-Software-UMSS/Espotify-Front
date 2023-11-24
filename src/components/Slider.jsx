@@ -4,24 +4,38 @@ import Slick from "react-slick"
 import { map } from 'lodash'
 import { Link } from 'react-router-dom'
 import "./Slider.css"
+import { UsarPlayer } from '../hooks/UsarPlayer'
 
 
 const settings = {
   dots: false,
-  infinite: true,
+  infinite: false,
+  speed: 500,
   slidesToShow: 5,
-  swipeToSlide: true,
-  centerMode: true,
+  sliderToScroll: 1,
+  // swipeToSlide: true,
+  // centerMode: true,
 }
 
 const Slider = (props) => {
+  
   const { data } = props;
+
+  console.log("EN EL SLIDER");
+  console.log(data);
+
+
+  const {playCancion} = UsarPlayer();
+
+
+ 
+
 
   return (
     <Slick {...settings} className="slider">
       {map(data, (item) => {
         return (
-          <div key={item.id} className='slider-item' onClick={() => console.log("reproducir cancion")}>
+          <div key={item.id} className='slider-item' onClick={()=>playCancion(item)}>
             <div className='slide-item-block-play'>
               <Image src={item.urlImagen} alt={item.nombre}/>
               <Icon name='play circle outline' />

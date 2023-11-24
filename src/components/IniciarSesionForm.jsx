@@ -14,7 +14,6 @@ const IniciarSesionForm = () => {
 
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const [usuario,setUsuario]= useState([]);
 
   const [mostrarPassword, setMostrarPassword] = useState(false);
 
@@ -32,6 +31,8 @@ const IniciarSesionForm = () => {
   }, []);
 
 
+ 
+
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -39,27 +40,21 @@ const IniciarSesionForm = () => {
     validateOnChange: false,
     onSubmit: async (formValue) => {
 
-      request('POST',
-        '/login',
-        {
-          email: formValue.email,
-          password: formValue.password
-        }).then((response) => {
-
-
+      try {
+  
+        await request('POST','/login',{email: formValue.email, password: formValue.password}).then((response)=>{
+         
           setAuthToken(response.data.token);
+          console.log(response.data);
           
-
-          // console.log(JSON.stringify(response.data));
-
-          // this.setState({componentToSHow: "messages"});
-          navigate('/home');
-
-        }).catch((error) => {
-          setError(true);
-          console.log(error);
-
+          navigate('/home',{ state: {userData: response.data.userName} });
         });
+
+      } catch (error) {
+        setError(true);
+        console.log(error);
+      }
+
     }
   });
 
@@ -118,9 +113,7 @@ const IniciarSesionForm = () => {
         <p> <Button as={Link} to="/home">Volver</Button></p>
 
       </div>
-      {/* 
-      <Button as={Link} to="/registro">Crear Cuenta</Button>
-      <Button as={Link} to="/home">Volver</Button> */}
+
     </div>
   )
 }

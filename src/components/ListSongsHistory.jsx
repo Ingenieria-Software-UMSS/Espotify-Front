@@ -3,10 +3,14 @@ import { Table, Icon, TableHeader, TableBody, TableCell } from 'semantic-ui-reac
 import { size, map } from 'lodash';
 import { UsarPlayer } from '../hooks/UsarPlayer';
 import "./ListSongsHistory.css"
+import { Cancion } from '../api/Cancion';
 
 const ListSongsHistory = (props) => {
 
+    const cancionController = new Cancion();
+
     const { songs } = props;
+    
     const {playCancion} = UsarPlayer();
 
     const onPlay=(item)=>{
@@ -17,6 +21,17 @@ const ListSongsHistory = (props) => {
         return <p className='no-songs'>No hay canciones en el historial</p>;
     }
 
+    const eliminarCancion =(cancion)=>{
+        console.log("eliminandoooooo");
+        console.log(cancion.id);
+        try {
+            cancionController.deleteSongHistorial(cancion.id);
+            
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
 
     return (
         <div className='tabla-contenedor'>
@@ -26,6 +41,7 @@ const ListSongsHistory = (props) => {
                         <Table.Row>
                             <Table.HeaderCell />
                             <Table.HeaderCell>Titulo</Table.HeaderCell>
+                            <Table.HeaderCell></Table.HeaderCell>
                         </Table.Row>
                     </TableHeader>
 
@@ -37,6 +53,18 @@ const ListSongsHistory = (props) => {
                                 </Table.Cell>
 
                                 <TableCell>{song.nombre}</TableCell>
+
+                                <Table.Cell style={{"text-align":"right"}} onClick={(ev) =>{
+                                    ev.stopPropagation();
+                                    // onPlay(cancion)
+                                    eliminarCancion(song);
+                                }}>
+                    
+                                    <Icon size='large'   name='trash' />
+                                </Table.Cell>
+                                
+
+
                             </Table.Row>
                         ))}
                     </TableBody>

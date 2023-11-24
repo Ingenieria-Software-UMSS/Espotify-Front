@@ -14,10 +14,18 @@
 }
 
 .canciones{ 
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+
+
 }
 
+
 .historial-slider{
-  text-align: right;
-  width:70%;
+  height: 310px;
+  background-color: var(--background-secundario);
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  
+  color: #fff;
 }
