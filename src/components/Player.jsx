@@ -47,7 +47,12 @@ const Player = (props) => {
 
   return (
       <div className="player">
-        <Icon name={play ? 'pause circle outline' : 'play circle outline'} onClick={play ? pause : resume} disabled={bloqueo} />
+        <div className="icons-container">
+          <Icon name={'step backward'} onClick={play ? pause : resume} disabled={bloqueo} />
+          <Icon name={play ? 'pause circle outline' : 'play circle outline'} onClick={play ? pause : resume} disabled={bloqueo} />
+          <Icon name={'step forward'} onClick={play ? pause : resume} disabled={bloqueo} />
+          <Icon name={'redo alternate'} onClick={play ? pause : resume} disabled={bloqueo} />
+        </div>
         <div className="progress">
           <p className="time-left">{showCurrentSeconds}</p>
           <Progress progress="value" value={Math.floor(currentSeconds)} total={totalSeconds} size="tiny" className="barraProgreso" />
