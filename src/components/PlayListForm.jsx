@@ -66,6 +66,8 @@ export default function PlayListForm({setOpen, state, setState}) {
   };
 
   const handleChange = (event) => {
+    setMostarMensage('');
+
     const name = event.target.name; 
     const value = event.target.value; 
 
@@ -85,6 +87,10 @@ export default function PlayListForm({setOpen, state, setState}) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if(form.playListName.length < 2) {
+      return setMostarMensage('El titulo como mínimo debe tener 2 caracteres');
+    } 
 
     setLoading(true);
 

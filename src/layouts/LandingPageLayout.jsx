@@ -4,7 +4,9 @@ import { Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 
+
 const LandingPageLayout = () => {
+
     return (
         <div className='landingtext-container'>
             <h1 className='titulo'>Bienvenidos a Espotify: Tu Experiencia Musical Perfecta</h1>
@@ -38,7 +40,7 @@ const LandingPageLayout = () => {
 }
 
 const ButtonEmpezar = () => {
-    return <Button as={Link} to="home" >Empezar</Button>
+    return <Button as={Link} to="/home" >Empezar</Button>
 }
 
 export default LandingPageLayout

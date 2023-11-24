@@ -2,21 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 .logged-layout{
-
     height: 100vh;
 }
 .contenido {
     display: flex;
     height: calc(100% - 100px);
-    overflow: scroll;
+    /* overflow: scroll; */
+    overflow-y: scroll;
 }
-
 
 .menu-izquierdo{
     background-color: var(--background-primario);
     width: 15%;
     margin-left: 1px solid var(--background-secundario);
-
+    height: 147%;
 
    
 }

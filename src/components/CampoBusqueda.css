@@ -4,4 +4,5 @@
     color: white;
     width: 45vh;
     display: flex;
+    z-index: 4;
 }
