@@ -55,7 +55,7 @@ function ResultadoBusqueda(){
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data)
-                    for(let i = 0 ; i < data.songList.length ; i++){
+                    for(let i = 0 ; i < data.songList.length; i++){
                         res.push({
                             urlImagen: data.songList[i].thumbnail?.thumbnailUrl,
                             nombre: data.songList[i].songTitle, 
