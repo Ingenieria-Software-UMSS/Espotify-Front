@@ -1,10 +1,12 @@
 .playlist {
   padding: 2rem;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .playlist .playlist_banner h4,
 .playlist .playlist_banner h1 {
   color: #fff;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .playlist .list_songs {
@@ -21,6 +23,7 @@
   gap: 2rem;
   border-radius: 20px;
   margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif !important;
 }
 .playlist .playlist_banner .song_area {
   align-self: center;
@@ -32,11 +35,13 @@
 .playlist h1.ui.header {
   margin-top: 0.2rem;
   font-size: 4rem;
+  font-family: 'Montserrat', sans-serif !important;
 }
 .playlist  h4.ui.header {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .playlist .playlist_img {
@@ -61,10 +66,12 @@
   padding: 1rem 0;
   color: #fff;
   margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
 }
 .ui.modal .modal_header .header{
   color: #fff;
   margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
 }
 .ui.modal .modal_header > i.icon{
   margin: 0;
@@ -77,6 +84,7 @@
 
 .ui.modal.sw_modal .ui.header {
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .ui.modal .content.sw_modal_box{
@@ -113,12 +121,15 @@ button.ui.button.custom_icon_button {
 .playlist_form .form_labels textarea {
   background-color: #fff2 !important;
   color: #fff !important;
+  font-family: 'Montserrat', sans-serif !important;
 }
 .playlist_form .form_labels textarea {
   margin-top: 1rem !important;
+  font-family: 'Montserrat', sans-serif !important;
 }
 .playlist_form .form_labels {
   flex-grow: 1;
+  font-family: 'Montserrat', sans-serif !important;
 }
 .playlist_form .form_image img:hover + .custom_input,
 .playlist_form .custom_input:hover {
@@ -152,6 +163,7 @@ button.ui.button.custom_icon_button {
 .ui.modal>.content {
   background-color: var(--background-secundario) !important;
   color: #fff;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .tabla.tabla-playlist {
@@ -171,6 +183,7 @@ button.ui.button.custom_icon_button {
   padding-left: 2rem;
 
   color: var(--blanco);
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .boton-contenedor {
