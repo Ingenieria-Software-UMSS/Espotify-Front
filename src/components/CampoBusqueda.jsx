@@ -3,12 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import { Search } from 'semantic-ui-react'
 import "./CampoBusqueda.css"
 
+import borrarIcono from '../images/borrar-icono.png';
+
 const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaResults}, ref){
     const [entradaBuscador, setEntradaBuscador] = React.useState('');
     const [listaArtistas,setListaArtistas] = React.useState([]);
     const [listaCanciones,setListaCanciones] = React.useState([]);
     const [loading,setLoading] = React.useState(false);
     const [enterDown,setEnterDown] = React.useState(false);
+    // const [mostrarHistorial, setMostrarHistorial] = React.useState(false);
+    const [historial, setHistorial] = React.useState(() => {
+        const historialAlmacenado = localStorage.getItem('historial');
+        return historialAlmacenado ? JSON.parse(historialAlmacenado) : [];
+    });
     
     const [id,setId] = React.useState('');
     const [tipo,setTipo] = React.useState('');
@@ -35,9 +42,14 @@ const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaRes
         .catch((err) => console.error(err));
     },[setListaArtistas,setListaCanciones]);
 
+    React.useEffect(() => {
+        localStorage.setItem('historial', JSON.stringify(historial));
+      }, [historial]);
+
     const buscarResults = (valor) => {
+        setLoading(true);
         let res = [];
-        for (let i = 0; i < listaArtistas.length; i++) {
+        for (let i = 0; i < listaArtistas.length && res.length < 10; i++) {
             if(listaArtistas[i].artistName.toLowerCase().includes(valor.toLowerCase())){
                 setId(listaArtistas[i].artistId);
                 setTipo('artista');
@@ -45,7 +57,7 @@ const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaRes
             }
         }
         if(res.length === 0){
-            for (let i = 0; i < listaCanciones.length; i++) {
+            for (let i = 0; i < listaCanciones.length && res.length < 10 ; i++) {
                 const songTitle = listaCanciones[i].songTitle.toLowerCase();
                 if (songTitle.includes(valor.toLowerCase()) && !res.some(item => item.title === songTitle)) {
                     setId(listaCanciones[i].songId);
@@ -64,16 +76,30 @@ const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaRes
     };
 
     const handleChange = (value) => {
-        setLoading(!loading);
         setEntradaBuscador(value);
-        buscarResults(value);
+        if(entradaBuscador === ''){
+            // setMostrarHistorial(true);
+			setBusquedaResults(historial);
+        }else{
+            buscarResults(value);
+        }
     };
 
     const selectecResult = (data) => {
         if (data && data.title) {
             const selectedItem = data.title;
+			let flag = false;
+			for(let i = 0 ; i < historial.length && !flag ; i++){
+				if(historial[i].title === selectedItem){
+					flag = true;
+				}
+			}
+			if(!flag){
+				console.log(borrarIcono)
+				setHistorial((prevHistorial) => [...prevHistorial, {title: selectedItem, image: borrarIcono}])
+			}
             handleChange(selectedItem);
-        }
+          }
     };
 
     const keyDown = (e) => {
@@ -104,5 +130,4 @@ const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaRes
         </div>
     );
 });
-
 export default CampoBusqueda;

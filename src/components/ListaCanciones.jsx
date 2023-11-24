@@ -6,15 +6,22 @@ import { useNavigate } from 'react-router-dom';
 import Player from './Player';
 import Slider from './Slider';
 import { Cancion } from '../api/Cancion';
+import './ResultadoBusqueda.css';
 
 const ListaCanciones = (props) => {
     const { canciones } = props;
     const navigate = useNavigate();
     const { playCancion, play } = UsarPlayer();
     const [isLoNuevoSelected, setIsLoNuevoSelected] = useState(true);
-
+    const [isOnline,setIsOnline] = React.useState(true);
     const cancionController = new Cancion();
+    window.addEventListener('online', function () {
+        setIsOnline(true);
+    });
 
+    window.addEventListener('offline', function () {
+        setIsOnline(false);
+    });
 
     const onClick = (i) => () => {
         const song = canciones[i];
@@ -41,24 +48,20 @@ const ListaCanciones = (props) => {
     }
 
     return (
-        <div className='list_songs_container' >
+        isOnline ? (
+            <div className='list_songs_container' >
             <div className='list_songs__buttons'>
                 <Button
                     onClick={() => setIsLoNuevoSelected(true)}
-
                     className={'botones ' + (isLoNuevoSelected && 'seleccionado')}
                 >
                     Lo nuevo
                 </Button>
                 <Button
                     onClick={() => setIsLoNuevoSelected(false)}
-
                     className={'botones ' + (!isLoNuevoSelected && 'seleccionado')}
-
-
                 >
                     Ultimos Artistas
-
                 </Button>
             </div>
 
@@ -89,7 +92,7 @@ const ListaCanciones = (props) => {
                                         agregarHistorial(cancion);
 
                                     }}>
-                                        <Icon size='large' name='play circle outline' />
+                                        <Icon size='big' name='play circle outline' />
                                     </Table.Cell>
                                     <Table.Cell>
                                         <img src={cancion.urlImagen} className='miniatura'></img>
@@ -111,11 +114,15 @@ const ListaCanciones = (props) => {
                     <p className='noCanciones'>No se encontraron canciones</p>
                 )}
             </div>
-
-
         </div>
-
-
+        )
+        :
+        (
+            <div className='message'>
+                <Icon name='wifi' size='massive'/>
+                <h1 style={{color:'white'}}>Error de conexion. Por favor, verifica tu conexion e intenta nuevamente</h1>
+            </div>    
+        )
     )
 }
 
