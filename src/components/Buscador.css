@@ -1,0 +1,65 @@
+.contenedor-buscador{
+    padding: 20px;
+}
+.buscador{
+    background-color: #3f3f3f;
+    padding: 20px;
+    max-width: 600px;
+    width: 100vh;
+    border: #3f3f3f;
+    border-radius: 60px;
+    font-size: 25px;
+}
+.campo-texto{
+    width: 100vh;
+    max-width: 500px;
+    background-color: #3f3f3f;
+    border: #3f3f3f;
+    outline: none;
+    color: white;
+}
+
+/* Css de la lista de resultados */
+.search-results {
+    list-style: none;
+    max-height: 600px;
+    overflow-y: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    max-width: 600px;
+    width: 100%;
+    background-color: #3f3f3f;
+    z-index: 1;
+    font-family: sans-serif;
+  }
+  
+  /* Estilos para cada ítem de la lista de resultados */
+  .search-results-item {
+    padding: 20px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 20px;
+    display: flex;
+    /* justify-content: space-between; */
+  }
+  .title-result{
+    /* position:relative; */
+    /* padding-right: 24vh; */
+    flex-grow: 1;
+  }
+  
+  /* Estilos cuando se pasa el ratón sobre un ítem de la lista de resultados */
+  .search-results-item:hover {
+    background-color: #2a2929;
+    padding: 20px;
+  }
+  
+  /* Estilos para el mensaje cuando no hay resultados */
+  .no-results-message {
+    padding: 10px;
+    font-family: sans-serif;
+    font-size: 25px;
+  }
+
+/* Aca termina el css de lista de resultados */
