@@ -71,6 +71,36 @@ function ResultadoBusqueda(){
                     setCanciones(res);
                 })
                 .catch((err) => console.error(err));
+            }else if(params.get('tipo') === '-2' && params.get('id') === '-2'){
+                const input = params.get('search');
+                const url = `https://espotify.azurewebsites.net/song`;//Version deploy
+                fetch(url)
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log('data',data)
+                    for(let i = 0 ; i < data.length ; i++){
+                        let song = data[i].songTitle.toLowerCase();
+                        if(song.startsWith(input)){
+                            res.push({
+                                urlImagen: data[i].thumbnail.thumbnailUrl,
+                                nombre: data[i].songTitle, 
+                                artista: data[i].artist.artistName, 
+                                duracion: data[i].songDuration ,
+                                id: data[i].songId,
+                                urlCancion: data[i].songUrl,
+                                album: data[i].songAlbum 
+                            });
+                        }
+                    }
+                    setInicio(false);
+                    if(res.length === 0){
+                        setListaVacia(true);
+                    }else{
+                        setListaVacia(false);
+                    }
+                    setCanciones(res);
+                })
+                .catch((err) => console.error(err));
             }else if(params.get('tipo') === 'none' && params.get('id') === '-1'){
                 setInicio(false);
                 setListaVacia(true);
@@ -81,6 +111,12 @@ function ResultadoBusqueda(){
             console.error(err);
         }
     },[params]);
+
+    React.useEffect(() => {
+        if(canciones.length > 0){
+            onPlay(canciones[0]);
+        }
+    },[canciones,setCanciones])
 
     const onClick = (i) => () => {
         const song = canciones[i];

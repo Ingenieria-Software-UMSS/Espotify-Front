@@ -60,7 +60,7 @@ function App(props) {
             icon="search"
             active={activeItem === 'messages'}
             onClick={() => {
-              navigate('/genders')
+              // navigate('/genders')
               props.onSearchFocus()
             }}
           />

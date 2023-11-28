@@ -99,7 +99,7 @@ const CampoBusqueda = React.forwardRef(function ({busquedaResults,setBusquedaRes
 				setHistorial((prevHistorial) => [...prevHistorial, {title: selectedItem, image: borrarIcono}])
 			}
             handleChange(selectedItem);
-          }
+        }
     };
 
     const keyDown = (e) => {
