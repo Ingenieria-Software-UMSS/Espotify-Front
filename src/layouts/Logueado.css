@@ -41,6 +41,8 @@
     align-items: center;
     color: aliceblue;
     padding: 0 3rem;
+    /* display: flex; */
+    justify-content: space-between;
 }
 .principal .barra-superior h3{
     margin: 0px 10px;

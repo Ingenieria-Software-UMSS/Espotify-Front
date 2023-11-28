@@ -27,12 +27,12 @@ const initialForm = {
   playListDescription: "Description del nuevo playlist",
   thumbnail: {
     thumbnailUrl: null,
-  } 
+  }
 };
 
 export default function PlayList() {
   const [open, setOpen] = useState(false);
-  const [state, setState] = useState({...initialForm});
+  const [state, setState] = useState({ ...initialForm });
   const [loading, setLoading] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const params = useParams();
@@ -42,12 +42,12 @@ export default function PlayList() {
   };
 
   useEffect(() => {
-    if(params.id === 'create') {
-      setState({...initialForm});
+    if (params.id === 'create') {
+      setState({ ...initialForm });
     } else {
       initialRequest();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
   const initialRequest = async () => {
@@ -87,8 +87,6 @@ export default function PlayList() {
     navigate('/home');
   }
 
-  const [fecha, setFecha] = useState([]);
-  
   const navigate = useNavigate();
   const onClick = (song) => {
     // const song = canciones[i];
@@ -101,7 +99,7 @@ export default function PlayList() {
   const { playCancion, play } = UsarPlayer();
 
   const onPlay = (item) => {
-      playCancion({
+    playCancion({
       "artista": item.artist.artistName,
       "id": item.songId,
       "urlCancion": item.songUrl,
@@ -113,13 +111,22 @@ export default function PlayList() {
   }
   const [canciones, setCanciones] = React.useState([]);
   const [hayCanciones, setHayCanciones] = React.useState(false);
-  const [abrir, setAbrir] = useState(false);
   const [cancionEliminar, setCancionEliminar] = useState(null);
 
+  const [activo, setActivo] = useState(false);
+  const handleActivo = () => setActivo(prevActivo => !prevActivo);
 
   const obtenerCanciones = useCallback(() => {
-    fetch("https://espotify.azurewebsites.net/play-list/" + params.id)
-    // fetch("http://localhost:8080/play-list/" + params.id)
+    const token = localStorage.getItem('auth_token');
+
+    fetch("https://espotify.azurewebsites.net/play-list/" + params.id, {
+      method: 'GET', // (GET, POST, PUT, DELETE, etc.)
+      headers: {
+        'Authorization': `Bearer ${token}`, //autorización con el token Bearer
+        'Content-Type': 'application/json'
+      }
+    })
+      // fetch("http://localhost:8080/play-list/" + params.id)
       .then((res) => res.json())
       .then((json) => {
         setCanciones(json.playListSongList);
@@ -147,12 +154,23 @@ export default function PlayList() {
           <h1>¿Estas seguro que deseas eliminar?</h1>
         </div>
         <div className="botones_contenedor">
+          <Button
+            onClick={() => setCancionEliminar(null)}
+            className='modal_botonCancelar'
+            color='black'>Cancelar</Button>
 
-          <Button className='modal_botonAceptar' color='black' onClick={() => {
+
+          <Button className='modal_botonAceptar' color='red' onClick={() => {
+            const token = localStorage.getItem('auth_token');
+
             fetch(`https://espotify.azurewebsites.net/play-list-song/${cancionEliminar.playListSongId}`, {
-            // fetch(`http://localhost:8080/play-list-song/${cancionEliminar.playListSongId}`, {
+              // fetch(`http://localhost:8080/play-list-song/${cancionEliminar.playListSongId}`, {
 
               method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              },
               mode: "cors", // no-cors, *cors, same-origin
 
             }).then((res) => {
@@ -171,11 +189,6 @@ export default function PlayList() {
             )
 
           }}>Aceptar</Button>
-          <Button 
-            onClick={() => setCancionEliminar(null)} 
-            className='modal_botonCancelar' 
-            color='red'>Cancelar</Button>
-
         </div>
       </Modal.Content>
     </Modal>
@@ -206,18 +219,23 @@ export default function PlayList() {
               <Header as="h1">{state.playListName}</Header>
               <div className="playlist-titulo-botones">
                 <Button
+                  circular
                   icon="play"
                   onClick={(ev) => {
                     ev.stopPropagation();
                     onPlay(canciones[0].song)
                   }}
-                  
+
                 ></Button>
                 <Button
+                  circular
+                  toggle
+                  active={activo}
                   icon="sync"
                   onClick={(ev) => {
                     ev.stopPropagation();
                     onPlay(canciones[0].song)
+                    handleActivo();
                   }}></Button>
               </div>
             </div>
@@ -251,7 +269,7 @@ export default function PlayList() {
               <Dropdown.Menu>
                 <Dropdown.Item onClick={handleOpen} text="Editar" />
                 <Dropdown.Item onClick={setShowDelete.bind(null, true)} text="Eliminar" />
-                <Dropdown.Item onClick={() => {}} text="Añadir" />
+                <Dropdown.Item onClick={() => { }} text="Añadir" />
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -285,7 +303,7 @@ export default function PlayList() {
               <Table.Body>
                 {canciones.map((cancion, i) => (
                   <Table.Row onClick={() => { onClick(cancion.song) }} key={i}>
-                   
+
                     <Table.Cell>
                       {i + 1}
                     </Table.Cell>
@@ -293,7 +311,7 @@ export default function PlayList() {
                     <Table.Cell onClick={(ev) => {
                       ev.stopPropagation();
                       onPlay(cancion.song)
-                      }}>
+                    }}>
                       <Icon size='large' name='play circle outline' />
                     </Table.Cell>
 
@@ -310,7 +328,13 @@ export default function PlayList() {
                     </Table.Cell>
 
                     <Table.Cell>
-                      {cancion.registrationDate.split(" ")[0]}
+                      {(() => {
+                        const fechaOriginal = cancion.registrationDate.split(" ")[0];
+                        const [anio, mes, dia] = fechaOriginal.split('-');
+                        const nuevaFecha = `${dia}-${mes}-${anio}`;
+
+                        return nuevaFecha;
+                      })()}
                     </Table.Cell>
 
                     <Table.Cell>
@@ -322,7 +346,7 @@ export default function PlayList() {
                       }}>
                         {/* <Icon size="large" name="trash" ></Icon> */}
                       </Button>
-                      
+
                     </Table.Cell>
 
                   </Table.Row>
@@ -340,8 +364,7 @@ export default function PlayList() {
         </div>
 
       </div >
-      {open && <PlayListForm {...{ setOpen, setState, state }} />
-      }
+      {open && <PlayListForm {...{ setOpen, setState, state }} />}
       {modalEliminar}
     </>
   );

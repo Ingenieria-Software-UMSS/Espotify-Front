@@ -10,7 +10,7 @@ import UsuarioLogueado from '../components/UsuarioLogueado';
 import UsuarioNoLogueado from '../components/UsuarioNoLogueado';
 import { Axios } from 'axios';
 import { set } from 'lodash';
-import CampoBusqueda from '../components/CampoBusqueda';
+import Buscador from '../components/Buscador';
 import { useLocation } from 'react-router-dom';
 
 
@@ -24,7 +24,6 @@ const LogeadoLayout = (props) => {
 
 
 
-  const [busquedaResults, setBusquedaResults] = React.useState([]);
   const searchRef = React.useRef(null);
 
   const [logueado, setLogueado] = useState(false);
@@ -76,7 +75,10 @@ const LogeadoLayout = (props) => {
 
       <div className='contenido'>
         <div className='menu-izquierdo'>
-          <Aside onSearchFocus={() => searchRef.current.focus()}>
+          <Aside onSearchFocus={() => {
+            searchRef.current?.focus()
+            console.log(searchRef);
+          }}>
           </Aside>
 
         </div>
@@ -84,12 +86,8 @@ const LogeadoLayout = (props) => {
         <div className='principal'>
 
           <div className='barra-superior'>
-            <CampoBusqueda
-              id='campo-busqueda'
-              ref={searchRef}
-              busquedaResults={busquedaResults}
-              setBusquedaResults={setBusquedaResults}
-            />
+            <Buscador 
+              ref={searchRef}/>
             {botonesUsuario}
           </div>
 
