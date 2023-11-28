@@ -19,7 +19,7 @@
     color: var(--background-primario);
 }
 
-.boton-contenedor {
+.boton-contenedor-regresar {
     align-content: center;
     background: var(--contenedor-color);
 }
@@ -52,9 +52,13 @@
     background-color: #3f3f3f;
 }
 
-.ui.dropdown .menu.dropdownmenu>.header,
+.ui.dropdown .menu.dropdownmenu>.header{
+    color: var(--blanco);
+}
+
 .ui.dropdown .menu.dropdownmenu>.item {
     color: var(--blanco);
+    border: rgb(87, 86, 86) 1px solid
 }
 
 .ui.modal .content.modalExito_contenido {
@@ -89,6 +93,7 @@
 
 .boton-anadirlista {
     margin-left: 60%;
+    margin-top: 50%;
 }
 
 .plus {
@@ -116,4 +121,20 @@
 
 .informacion h2 {
     font-size: 24px;
+}
+
+.contenedor_botones_ADTM{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mensaje {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.item dropdownItem {
+    border: gray 2px solid;
 }

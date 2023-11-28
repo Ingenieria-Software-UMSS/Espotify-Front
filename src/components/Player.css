@@ -13,6 +13,12 @@
 
 }
 
+.icons-container{
+    display: flex;
+    padding: 10px;
+    margin: 5px;
+}
+
 .progress{
     display: flex;
     flex-direction: row;

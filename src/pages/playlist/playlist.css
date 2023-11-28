@@ -175,7 +175,9 @@ button.ui.button.custom_icon_button {
   align-items: center;
   /* position: relative; */
   padding-right: 35%;
-
+  padding-left: 30%;
+  gap: 10%;
+  justify-content: center;
 }
 
 .ui.modal>.content.modalEliminar_contenedor {
@@ -188,8 +190,13 @@ button.ui.button.custom_icon_button {
 
 .boton-contenedor {
   align-content: center;
-  background: var(--contenedor-color);
   margin-bottom: auto;
+  background-color: #3f3f3f;
+}
+
+.boton-regresar {
+  background-color: var(--blanco);
+  color: var(--background-primario);
 }
 
 .playlist-titulo {
